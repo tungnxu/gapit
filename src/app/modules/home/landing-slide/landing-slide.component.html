@@ -1,0 +1,12 @@
+<ngx-slick-carousel class="carousel main-slide slider" #slickModal="slick-carousel" [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let slide of slideLanding" class="slide-item slide">
+        <div class="main-header"  [ngStyle]="{ 'background-image': 'url(' + slide?.imageUrl + ')'}" >
+            <div class="overlay"></div>
+            <img *ngIf="slide?.hasLable" class="logo-smile" src="assets/img/logo-label.png" alt="logo-label">
+            <div class="header-content">
+                <h6>{{slide?.smallTitle}}</h6>
+                <h1>{{slide?.bigTitle}}</h1>
+            </div>
+        </div>
+    </div>
+</ngx-slick-carousel>

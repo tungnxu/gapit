@@ -1,0 +1,302 @@
+.resource-list {
+  .resource-content {
+    .banner {
+      border-radius: 30px 0 30px 0;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      height: 300px;
+      background-position: center;
+      background-size: cover;
+      background-image: url("./../img/smile.jpg");
+      .content {
+        color: white;
+        position: absolute;
+        left: 6rem;
+        bottom: 2rem;
+        z-index: 2;
+      }
+      .overlay {
+        position: absolute;
+        width: 70%;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.6));
+      }
+    }
+  }
+
+  
+}
+
+.resource-card-item{
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0px 3px 6px rgba(0 ,0 ,0 , .18);
+  margin-bottom: 2rem;
+  .resource-thumbnail{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    img{
+      width:100%;
+    }
+  }
+  .resource-card-des{
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    height: 150px;
+    border-radius: 30px 0 0 0;
+    padding: 1rem 2rem;
+    .title{
+      font-size: 14px;
+    }
+    .bottom-card{
+      padding: 0rem 2rem;
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      .action{
+        padding: 3px 0px 3px 3px;
+        display: block;
+        width: 32px;
+        height: 32px;
+        line-height: 35px;
+        background-color: $primary;
+        text-align: center;
+        color: white;
+        border-radius: 50%;
+        font-size: 22px;
+      }
+    }
+    
+  }
+}
+
+.category-accordion{
+  .accordion{
+    .card{
+      &:first-child{
+      border-radius: 30px 30px 0 0;
+      } 
+      &:last-child {
+        border-radius: 0 0 30px 30px;
+      }
+      .card-header{
+        cursor: pointer;
+        i{
+          font-size: 22px;
+          transition: 250ms ease-in-out;
+          line-height: 40px;
+        }
+        a{
+          text-decoration: none !important;
+        }
+      }
+
+      .card-header[aria-expanded="false"]{
+        background: white;
+        color: $primary;
+       
+      }
+      .card-header[aria-expanded="true"]{
+        background: $secondary;
+        button{
+          color: white;
+        }
+        i{
+          color: white;
+          transform: rotate(180deg);
+        }
+      }
+
+      .card-body{
+        background-color: $gray-100;
+        .cat-list{
+          list-style: none;
+          padding: 0;
+          .cat-item{
+            padding: .5rem 0;
+            padding-left: 2rem;
+            a{
+              text-decoration: none !important;
+              color: $gray-900;
+            }
+
+            &.active {
+              background-color: #99D7DB;
+              padding: .3rem .5rem .3rem 2rem;
+              border-radius: 5px;
+              &:before{
+
+              }
+              a{
+                color: $secondary;
+              }
+            }
+          }
+        }
+      }
+    }
+   
+  }
+}
+
+
+.resource-detail{
+  .mask{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    min-height: 650px;
+    background-position: 50%;
+    background-size: cover;
+    background: #a9261f;
+    border-radius: 0 0 173% 42%;
+      // background-image: url("./../img/amask.png");
+      @media only screen and (max-width: 800px) {
+        border-radius: 0;
+      }
+   .resource-icon{
+    position: absolute;
+    right: 5rem;
+    top: 5rem;
+    width: 407px;
+    @media only screen and (max-width: 800px) {
+      width: 141px;
+      right: 1rem;
+      top: 2rem;
+    }
+    img{
+      width: 100%;
+    }
+   }
+      .content {
+        color: white;
+        width: 60%;
+        @media only screen and (max-width: 800px) {
+          width: 90%;
+        }
+        margin-top: 10rem;
+      }
+  }
+
+  .resource-activity-content{
+    position: relative;
+    margin-top: -8rem;
+    @media only screen and (max-width: 800px) {
+      margin-top: 0rem;
+    }
+  }
+
+  .feed-back{
+    position: relative;
+    color: white;
+    width: 100%;
+    min-height: 250px;
+    background: #8f1f1d;
+    border-radius: 30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("./../img/feedback.png");
+  }
+
+  .btn-like{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray-100;
+    border-radius: 10px;
+    width: 80px;
+    height: 80px;
+    outline: none !important;
+    border: none;
+    opacity: .9;
+    &:hover{
+      opacity: 1;
+    }
+
+  }
+
+  .social-info{
+    .like-info{
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $gray-100;
+      img{
+        width: 50%;
+      }
+    }
+  }
+  .slide-commic-list{
+    .comic-item{
+      width: 400px;
+      height: auto;
+      margin-right: 3rem;
+    }
+    .slick-prev, .slick-next {
+      bottom: -8% !important;
+     
+    }
+    .slick-prev{
+      left: 0px !important;
+    }
+    .slick-next {
+      left: 180px !important;
+    }
+    .slick-arrow{
+      top:unset !important;
+    }
+
+    .slick-dots{
+      width: 191px;
+      bottom: -29px !important;
+      justify-content: center;
+      display: inline-flex !important;
+    }
+  }
+}
+
+.resource-gallery-item{
+  margin-bottom: 1rem;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.26);
+  .resource-thumbnail{
+    width: 100%;
+    img{width: 100%;
+      transform: scale(1.2);
+  }
+  }
+  .resource-card-des{
+    font-size: 14px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 20px 0 20px 0;
+    position: relative;
+    height: 50px;
+    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+}

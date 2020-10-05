@@ -1,0 +1,55 @@
+<div class="section-outside">
+    <div class="container">
+        <h2>Các chương trình</h2>
+        <nav class="nav-colgate nav nav-pills nav-justified">
+            <a  *ngFor="let item of slideProgram;index as i" [class.active]="i === currentSlide" (click)="slickModal.slickGoTo(i)" class="nav-link" href="javascript:;">{{item?.bigTitle}}</a>
+            <!-- <a class="nav-link" href="#">Tình nguyện viên</a>
+            <a class="nav-link" href="#">Bộ dụng cụ lớp</a>
+            <a class="nav-link" href="#">Mẫu sản phẩm</a>
+            <a class="nav-link" href="#">Cuộc thi nghệ thuật</a> -->
+        </nav>
+
+        <ngx-slick-carousel class="carousel programs slider" #slickModal="slick-carousel"  (beforeChange)="beforeChange($event)" [config]="slideConfig">
+            <div ngxSlickItem *ngFor="let slide of slideProgram" class="program-item">
+                <div class="thumbnail">
+                    <img width="100%" [src]="slide?.imageUrl ">
+                </div>
+                <div class="overlay"></div>
+                <div class="content">
+                    <h3>{{slide?.bigTitle}}</h3>
+                    <p>{{slide?.smallTitle}}</p>
+                    <a class="btn btn-light btn-round" routerLink="slide?.link" >{{slide?.buttonTitle}}</a>
+                </div>
+            </div>
+        </ngx-slick-carousel>
+        
+
+        <!-- <div class="programs slider">
+            <div class="program-item">
+                <div class="thumbnail">
+                    <img width="100%" src="assets/img/p-1.jpg">
+                </div>
+                <div class="overlay"></div>
+                <div class="content">
+                    <h3>Kiểm tra & Phòng ngừa Nha khoa</h3>
+                    <p>Với hai ghế nha khoa cỡ trẻ em trên tàu, Colgate's Bright Smiles, Bright Futures® sẽ
+                        sàng lọc hai trẻ em cùng một lúc.</p>
+                    <a class="btn btn-light btn-round" href="#">Lên lịch</a>
+                </div>
+            </div>
+
+            <div class="program-item">
+                <div class="thumbnail">
+                    <img width="100%" src="assets/img/p-2.jpg">
+                </div>
+                <div class="overlay"></div>
+                <div class="content">
+                    <h3>Tình nguyện viên</h3>
+                    <p>Bạn muốn trở thành tình nguyện viên của Colgate Bright Smiles, Bright Futures? Bắt
+                        đầu bằng cách điền vào biểu mẫu quan tâm tình nguyện của chúng tôi.</p>
+                    <a class="btn btn-light btn-round" href="#">Bắt đầu</a>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>

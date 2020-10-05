@@ -1,0 +1,31 @@
+<div class="resource-section">
+    <div class="container">
+        <h2>Tài nguyên</h2>
+        <nav class="nav-colgate nav nav-pills nav-justified">
+            <a class="nav-link active" href="#">Hàng đầu</a>
+            <a class="nav-link" (click)="getCategory(10)" href="javascript:;">Dành cho gia đình</a>
+            <a class="nav-link" (click)="getCategory(11)" href="javascript:;">Dành cho giáo viên</a>
+            <a class="nav-link" (click)="currentResourceList = null">Dành cho chuyên gia nha khoa</a>
+            <a class="nav-link" href="#">Dành cho tình nguyện viên</a>
+        </nav>
+
+        <ng-container *ngIf="currentResourceList?.length > 0">
+            <ngx-slick-carousel   (init)="slickInit($event)"    #slickModal="slick-carousel"   class="carousel list-resource-card slider" [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let slide of currentResourceList" class="resource-card-wrapper">
+                    <div class="resource-card">
+                        <div class="resource-thumbnail">
+                            <img [src]="slide?.thumbnailUrl">
+                        </div>
+                        <div class="resource-card-des">
+                            <div class="title">{{slide?.title}}</div>
+                            <a class="action" title="Xem chi tiết" [routerLink]="slide?.link"><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </ngx-slick-carousel>
+        </ng-container>
+       
+       
+    </div>
+</div>

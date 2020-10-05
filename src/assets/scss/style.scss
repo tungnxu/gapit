@@ -1,0 +1,262 @@
+@import "bootstrap/bootstrap";
+@import "landing";
+@import "resource-list";
+
+
+button{
+  outline: none !important;
+}
+
+.bg-gray{
+  background-color: #F3F3F3;
+}
+
+.btn-light{
+  border-radius: 20px 0px 20px 20px;
+}
+
+.no-wrap{
+  white-space: nowrap;
+}
+
+.sort-form{
+  min-width:350px ;
+}
+
+.box-term{
+  background-color: $gray-100 ;
+  max-height: 320px;
+  overflow: auto;
+  font-size: 14px;
+}
+
+.form-side{
+  position: relative;
+  &.no-side{
+    .close{
+      right: 1rem;
+    }
+  }
+  .close{
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid $primary;
+    z-index: 2;
+  }
+}
+
+.navbar {
+  .navbar-wrapper {
+    position: relative;
+    top: -28px;
+    left: 82px;
+    @media only screen and (max-width: 800px) {
+      left: 0px;
+    }
+  }
+}
+.logo {
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 120px;
+    @media only screen and (max-width: 800px) {
+      max-width: 90px;
+    }
+    z-index: 2;
+  }
+}
+
+.bottom-bar{
+  position: relative;
+  border-radius: 0 0 52px 0;
+  overflow: hidden;
+  z-index: 1;
+  .follow{
+    position: absolute;
+    right:0;
+    transform: translateY(-50%);
+    top: 50%;
+    margin-right: 8%;
+  }
+}
+
+footer{
+  position: relative;
+  color: white;
+  margin-top: -37px;
+  font-size: 14px;
+  padding-top: 50px;
+  background-color: $gray-900;
+  ul{
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    li{
+      margin: .5rem 0;
+      a{
+        color: white !important;
+      }
+    }
+  }
+
+  &:after{
+    content: "";
+    position: absolute;
+    bottom:-10px;
+    width: 100%;
+    height: 10px;
+    background-color: $primary;
+  }
+}
+
+.slick-prev {
+  left: unset !important;
+  right: 30px !important;
+ 
+}
+
+.slick-next {
+  right: 0px !important;
+}
+
+.slick-arrow{
+  top: -16px !important;
+  &:before{
+    color: $secondary !important;
+  }
+}
+
+.fix-container {
+  margin: 0 1.5rem;
+  @media only screen and (max-width: 800px) {
+    margin: 0;
+  }
+}
+
+.art-main{
+  display: flex;
+  flex-direction: column;
+  background-color: $gray-100;
+  // height: 100vh;
+ 
+  .wrapper-content{
+  }
+  .tool{
+    .action{
+      
+    padding: 5px 0 4px 3px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    text-align: center;
+    color: #d2010d;
+    border-radius: 50%;
+    font-size: 26px;
+    margin: 0 1rem;
+
+    }
+  }
+  .art-content{
+    height: calc( 100vh - 73px);
+    @media only screen and (max-width: 800px) {
+      margin: 2rem 0;
+      height: auto;
+    }
+
+    .my-image{
+      max-height: calc(100vh - 73px - 80px);
+      width: 90%;
+      text-align: center;
+      img{
+        height: 100%;
+        @media only screen and (max-width: 800px) {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+
+.ribbon5 {
+  display: block;
+  width: 80%;
+  height: 90px;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: .5rem 1.5rem 1rem .5rem;
+  background: #d2010d;
+  color: #fff;
+  position: relative;
+  top: 0;
+  line-height: 1.2;
+  left: -17px;
+  @media only screen and (max-width: 1024px) {
+    margin-left: 0px;
+  }
+  
+}
+.ribbon5:before, .ribbon5:after {
+  content: "";
+  position: absolute;
+}
+.ribbon5:before {
+  height: 0;
+  width: 0;
+  bottom: -10px;
+  left: 0;
+  border-top: 10px solid #7b160e;
+  border-left: 10px solid transparent;
+}
+.ribbon5:after {
+  // transform: translateY(-50%);
+  content: "";
+  background-image: url('./../img/logo-label.png');
+  width: 120px;
+  right: -87px;
+  top: -16%;
+  background-repeat: no-repeat;
+  height: 120px;
+  background-size: contain;
+}
+
+.profile{
+  margin-bottom: 1rem;
+}
+.profile-meta{
+  font-size: 14px;
+}
+
+.request-content{
+  height: calc( 100vh - 73px);
+  overflow: auto;
+
+  .section-form{
+    max-width: 80%;
+    margin: 1rem auto;
+    padding: 3rem;
+    background-color: $gray-100;
+    border-radius: 20px;
+    @media only screen and (max-width: 1024px) {
+      padding: 1rem;
+      max-width: 100%;
+    }
+  }
+}
+
+.request-bg{
+  background-image: url('./../img/side.jpg');
+  width: 100%;
+  height: 100%;
+
+}
