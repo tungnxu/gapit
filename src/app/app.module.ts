@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     SharedModule,
     CoreModule,
+
     HttpClientModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),

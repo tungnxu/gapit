@@ -1,6 +1,7 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EnsureModuleLoadedOnceGuard } from './ensureModuleLoadedOnceGuard';
+import { CountAnimationDirective } from '../shared/directives/count-animation.directive';
 
 
 

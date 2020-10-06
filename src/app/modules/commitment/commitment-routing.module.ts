@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MusicComponent } from './music.component';
+import { CommitmentComponent } from './commitment.component';
 
-const routes: Routes = [{ path: '', component: MusicComponent }];
+const routes: Routes = [{ path: '', component: CommitmentComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MusicRoutingModule { }
+export class CommitmentRoutingModule { }

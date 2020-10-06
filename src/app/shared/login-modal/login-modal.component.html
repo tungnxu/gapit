@@ -1,39 +1,39 @@
+<div class="modal-body p-0">
+  <div class="row">
+    <div class="col-sm-7">
+      <img width="100%" src="assets/img/modal.jpg" alt="">
+    </div>
+    <div class="col-sm-5 form-side">
+      <button type="button" (click)="bsModalRef.hide()" class="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="form-modal p-5">
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <h3 class="text-primary">{{title}}</h3>
+          <div class="form-group">
+            <input type="text" formControlName="username" placeholder="Email/Số điện thoại đăng nhập"
+              class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <input type="password" formControlName="password" placeholder="6 ký tự chữ cái, viết thường"
+              class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="form-group custom-control custom-checkbox">
+            <input formControlName="isCheckTerm" type="checkbox" class="custom-control-input" id="exampleCheck2">
+            <label class="custom-control-label" for="exampleCheck2"><small>Tôi đã đọc kỹ <a href="">Điều khoản đăng
+                  nhập</a></small></label>
+          </div>
+          <file-upload-control formControlName="attachedFileUrl" label="{{ 'Attach file' }}">
+          </file-upload-control>
+          <div class="form-group">
+            <button [disabled]="loading || !loginForm.value.isCheckTerm" type="submit"
+              class="btn btn-primary btn-block">Xác nhận</button>
+            <button type="button" class="btn btn-clear btn-block">Quên mật khẩu</button>
+          </div>
+        </form>
+      </div>
 
-
-
-
-            <div class="modal-body p-0">
-                <div class="row">
-                    <div class="col-sm-7">
-                        <img width="100%" src="assets/img/modal.jpg" alt="">
-                    </div>
-                    <div class="col-sm-5 form-side">
-                        <button type="button" (click)="bsModalRef.hide()" class="close" >
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="form-modal p-5">
-                            <form>
-                                <h3 class="text-primary">{{title}}</h3>
-                                <div class="form-group">
-                                    <input type="email" placeholder="Email/Số điện thoại đăng nhập"
-                                        class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" placeholder="6 ký tự chữ cái, viết thường"
-                                        class="form-control" id="exampleInputPassword1">
-                                </div>
-                                <div class="form-group custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="exampleCheck2">
-                                    <label class="custom-control-label" for="exampleCheck2"><small>Tôi đã đọc kỹ <a
-                                                href="">Điều khoản đăng nhập</a></small></label>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Xác nhận</button>
-                                    <button type="submit" class="btn btn-clear btn-block">Quên mật khẩu</button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@
                         <img width="100%" src="assets/img/modal.jpg" alt="">
                     </div>
                     <div class="col-sm-5 form-side">
-                        <button type="button" class="close" (click)="bsModalRef.hide()">
+                        <button type="button" class="close" (click)="bsModalRef1.hide()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <div class="form-modal p-5">
@@ -18,7 +18,7 @@
                                     <input type="password" placeholder="6 ký tự chữ cái, viết thường"
                                         class="form-control" id="exampleInputPassword1">
                                 </div>
-                              
+
                                 <div class="form-group custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="exampleCheck1">
                                     <label class="custom-control-label" for="exampleCheck1"><small>Tôi đã đọc kỹ <a
@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button></div>
-                                <div class="text-muted"><small>Đã có tài khoản? <a href="">Đăng nhập</a></small>
+                                <div class="text-muted"><small>Đã có tài khoản? <a (click)="openLoginModal()" href="javascript:;">Đăng nhập</a></small>
                                 </div>
                             </form>
                         </div>

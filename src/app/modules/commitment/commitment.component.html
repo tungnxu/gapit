@@ -1,0 +1,104 @@
+<section class="fix-container">
+  <div class="container-fluid">
+      <div class="main-header commit">
+          <div class="overlay"></div>
+          <img class="logo-smile" src="assets/img/logo-label.png" alt="logo-label">
+          <div class="header-content ">
+              <h1>Cam kết của chúng tôi trong việc giáo dục sức khỏe răng miệng</h1>
+              <a class="btn btn-sm btn-light" href="">Xem các video Tổng quan</a>
+          </div>
+      </div>
+  </div>
+  <div class="section-outside ">
+      <div class="container">
+          <h2 class="text-primary">Colgate Tiếp cận Trẻ em Có nhu cầu trên Toàn cầu bằng Sức mạnh của Nụ cười rạng
+              rỡ.</h2>
+          <p>Trên khắp thế giới, nhiều trẻ em không được tiếp cận với dịch vụ chăm sóc răng miệng cơ bản và thiếu
+              sự giáo dục cần thiết để có được nụ cười khỏe mạnh. Colgate Bright Smiles, Bright Futures® tiếp cận
+              trẻ em trên toàn thế giới với dịch vụ khám răng và giáo dục sức khỏe răng miệng miễn phí. Cam kết
+              của Colgate trong việc xây dựng thói quen lành mạnh suốt đời mang lại cho trẻ em lòng tự trọng ngày
+              càng lớn và nền tảng để thành công - đó là Sức mạnh của Nụ cười rạng rỡ.</p>
+      </div>
+  </div>
+
+  <div class="section-outside ">
+      <div class="container-fluid section-count">
+          <img width="100%" src="assets/img/commit-2.jpg">
+          <h2>Tiếp cận hàng tỷ trẻ em trên khắp thế giới</h2>
+          <h1 countAnimation [endNumber]="currentData?.numOfChild"></h1>
+      </div>
+  </div>
+
+  <div class="section-outside pt-0">
+      <div class="container-fluid">
+          <nav class="nav-colgate nav nav-pills nav-justified justify-content-around">
+              <a [class.active]="item === currentData" *ngFor="let item of dataChilren; last as last" (click)="getDataChild(item.year)" class="nav-link " href="javascript:;">{{item?.year}} {{last? 'mục tiêu':''}}</a>
+          </nav>
+
+      </div>
+      <div class="container my-5 ">
+          <div class="section-content">
+              <h3 class="text-primary">Phạm vi toàn cầu của Colgate</h3>
+              <p>Trên khắp thế giới, nhiều trẻ em không được tiếp cận với dịch vụ chăm sóc răng miệng cơ bản và
+                  thiếu
+                  sự giáo dục cần thiết để có được nụ cười khỏe mạnh. Colgate Bright Smiles, Bright Futures® tiếp
+                  cận
+                  trẻ em trên toàn thế giới với dịch vụ khám răng và giáo dục sức khỏe răng miệng miễn phí. Cam
+                  kết
+                  của Colgate trong việc xây dựng thói quen lành mạnh suốt đời mang lại cho trẻ em lòng tự trọng
+                  ngày
+                  càng lớn và nền tảng để thành công - đó là Sức mạnh của Nụ cười rạng rỡ.</p>
+                  <br>
+              <h3 class="text-primary">Phạm vi toàn cầu của Colgate</h3>
+              <p>Nền tảng của Colgate Bright Smiles, Bright Futures® là chương trình giáo dục từng đoạt giải
+                  thưởng. Được phát triển bởi các chuyên gia toàn cầu, tài liệu giáo dục đa văn hóa của Colgate
+                  giúp minh họa cách duy trì răng và nướu khỏe mạnh.
+                  Tại Hoa Kỳ, chương trình giảng dạy trong lớp học của Colgate tiếp cận gần 9 trên 10 học sinh mẫu
+                  giáo mỗi năm, 3,5 triệu trẻ em ở tất cả 50 tiểu bang và hơn 10 triệu trẻ em thông qua chương
+                  trình xe van cơ sở xe nha khoa di động của chúng tôi.
+                  Ngày nay, chương trình giáo dục Colgate Bright Smiles, Bright Futures® có sẵn bằng 30 ngôn ngữ
+                  và ở nhiều quốc gia, đã trở thành một phần của chương trình giảng dạy thường xuyên tại trường
+                  học.</p>
+                  <br>
+              <h3 class="text-primary">Phạm vi toàn cầu của Colgate</h3>
+              <p>Trên khắp thế giới, nhiều trẻ em không được tiếp cận với dịch vụ chăm sóc răng miệng cơ bản và
+                  thiếu
+                  sự giáo dục cần thiết để có được nụ cười khỏe mạnh. Colgate Bright Smiles, Bright Futures® tiếp
+                  cận
+                  trẻ em trên toàn thế giới với dịch vụ khám răng và giáo dục sức khỏe răng miệng miễn phí. Cam
+                  kết
+                  của Colgate trong việc xây dựng thói quen lành mạnh suốt đời mang lại cho trẻ em lòng tự trọng
+                  ngày
+                  càng lớn và nền tảng để thành công - đó là Sức mạnh của Nụ cười rạng rỡ.</p>
+          </div>
+          <a class="btn btn-light text-primary" href="#">Xem tất cả các chương trình cộng đồng của chúng tôi</a>
+      </div>
+  </div>
+  <div class="section-outside pt-0">
+      <div class="container-fluid">
+          <div class="row no-gutters video-section">
+              <div class="col-md">
+                 <div class="video-thumb">
+                    <i class="fa fa-play-circle fa-4x" aria-hidden="true"></i>
+                  </div>
+              </div>
+              <div class="col-md text-white d-flex justify-content-center align-items-center" style="background-color: #8F1F1D;height: 500px;">
+                  <div class="video-des w-50  ">
+                      <h3>Làm rạng rỡ cộng đồng của chúng ta Một nụ cười tại một thời điểm</h3>
+                      <p>Hãy đến thăm một số cộng đồng, trẻ em, nha sĩ và tình nguyện viên, những người đã giúp tạo nên thành công cho xe van Colgate Bright Smiles, Bright Futures® của chúng tôi, và tận mắt nghe cách khám răng đơn giản có thể giúp trẻ có một tương lai khỏe mạnh và tươi sáng.</p>
+                      <a class="btn btn-light text-primary btn-sm" href="http://">Xem video</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="section-outside pt-0">
+      <div class="smile">
+          <div class="content">
+              <h1>Xây dựng nụ cười<br> trong hơn 200 năm</h1>
+              <a class="btn btn-light btn-sm text-primary" href="#">Câu chuyện của chúng tôi</a>
+          </div>
+      </div>
+  </div>
+
+</section>

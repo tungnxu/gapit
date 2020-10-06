@@ -1,0 +1,12 @@
+<label [for]="inputId" class="btn-upload-file text-primary mb-0">
+  <i class="far fa-cloud-upload mr-2"></i>
+  {{ label }}
+</label>
+<br>
+<div class="file-attach d-flex align-items-center" *ngIf="fileName">
+  <div>{{ fileName }}</div>
+  <a class="ml-2 pointer" (click)="remove()">
+    <i class="far fa-trash-alt"></i>
+  </a>
+</div>
+<input [id]="inputId" class="ghost" type="file" (change)="onFileChanged($event)">

@@ -21,8 +21,8 @@ const routes: Routes = [
         loadChildren: () => import('./modules/article/article.module').then(m => m.ArticleModule)
       },
       {
-        path: 'music',
-        loadChildren: () => import('./modules/music/music.module').then(m => m.MusicModule)
+        path: 'commitment',
+        loadChildren: () => import('./modules/commitment/commitment.module').then(m => m.CommitmentModule)
       }
     ]
   },
@@ -34,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

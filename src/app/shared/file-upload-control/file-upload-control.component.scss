@@ -1,0 +1,42 @@
+:host {
+  line-height: 2rem;
+}
+.filename {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btn-upload-file {
+  display: inline-block;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-attach {
+  display: inline-block;
+  background: #fafafa;
+  font-size: 14px;
+  padding: 0 .5rem;
+  border-radius: 5px;
+  color: gray;
+  i {
+    cursor: pointer;
+    &:hover{
+      color: red;
+    }
+  }
+  div {
+    display: inline-block;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    height: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
