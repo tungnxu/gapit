@@ -1,0 +1,36 @@
+            <div class="modal-body p-0">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <img width="100%" src="assets/img/modal.jpg" alt="">
+                    </div>
+                    <div class="col-sm-5 form-side">
+                        <button type="button" class="close" (click)="bsModalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="form-modal p-5">
+                            <form>
+                                <h3 class="text-primary">{{title}}</h3>
+                                <div class="form-group">
+                                    <input type="email" placeholder="Email/Số điện thoại đăng nhập"
+                                        class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" placeholder="6 ký tự chữ cái, viết thường"
+                                        class="form-control" id="exampleInputPassword1">
+                                </div>
+                              
+                                <div class="form-group custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="exampleCheck1">
+                                    <label class="custom-control-label" for="exampleCheck1"><small>Tôi đã đọc kỹ <a
+                                                href="">Điều khoản đăng ký</a></small></label>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button></div>
+                                <div class="text-muted"><small>Đã có tài khoản? <a href="">Đăng nhập</a></small>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
