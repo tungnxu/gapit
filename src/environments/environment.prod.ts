@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  urlAddress: 'https://tnx.educationhost.cloud/wp-json/'
+  cmsUrl: 'https://tnx.educationhost.cloud/wp-json/',
+  apiUrl: 'https://hvn.gapit.com.vn/api',
 };

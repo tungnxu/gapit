@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-template-modal',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateModalComponent implements OnInit {
 
-  constructor() { }
+  constructor( public bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {
   }

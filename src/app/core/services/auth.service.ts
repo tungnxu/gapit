@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { catchError, map } from 'rxjs/operators'
 import { AccountApi } from 'src/app/api/account.api'
 import { User } from 'src/app/types/models'
 import { environment } from 'src/environments/environment'
@@ -19,12 +19,45 @@ export class AuthService {
     private accountApi: AccountApi,
     private localStorageService: LocalStorageService,
     private jWTTokenService: JWTTokenService) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')))
+    this.currentUserSubject = new BehaviorSubject<User>(null)
+    this.jWTTokenService.setToken(this.localStorageService.get('token'))
+    if (this.jWTTokenService.getUsername()){
+      if(!this.jWTTokenService.isTokenExpired()){
+        const userInfo: User = {
+          username: this.jWTTokenService.getUsername(),
+          id: this.jWTTokenService.getUserId(),
+          expiredDate: this.jWTTokenService.getExpiryTime()
+        }
+        this.currentUserSubject = new BehaviorSubject<User>(userInfo)
+      }else{
+        if(!this.localStorageService.get('refreshToken')){
+          this.logout()
+        }
+      }
+    
+    }
+   
     this.currentUser = this.currentUserSubject.asObservable()
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value
+  }
+
+  getNewToken(){
+     if(this.jWTTokenService.jwtToken && this.jWTTokenService.isTokenExpired()){
+      this.accountApi.getRefreshToken().subscribe(data => {
+        this.jWTTokenService.setToken(data.token)
+        const userInfo: User = {
+          username: this.jWTTokenService.getUsername(),
+          id: this.jWTTokenService.getUserId(),
+          expiredDate: this.jWTTokenService.getExpiryTime()
+        }
+        this.currentUserSubject.next(userInfo)
+        this.localStorageService.set('token', data.token)
+        this.localStorageService.remove('refreshToken')
+      })
+     }
   }
 
   login(username: string, password: string) {
@@ -34,20 +67,29 @@ export class AuthService {
     }
     return this.accountApi.loginAccount(command)
       .pipe(map(user => {
-        this.jWTTokenService.setToken(user.token)
-        this.localStorageService.set('token', user.token)
-        this.localStorageService.set('refreshToken', user.refreshToken)
-        localStorage.setItem('currentUser', this.jWTTokenService.getUser())
+        if (!user) return
+        this.jWTTokenService.setToken(user.Token)
+        this.localStorageService.set('token', user.Token)
+        this.localStorageService.set('refreshToken', user.RefreshToken)
         //TODO
-        debugger
-        this.currentUserSubject.next(user)
+        const userInfo: User = {
+          username: this.jWTTokenService.getUsername(),
+          id: this.jWTTokenService.getUserId(),
+          expiredDate: this.jWTTokenService.getExpiryTime()
+        }
+        this.currentUserSubject.next(userInfo)
         return user
       }))
   }
 
+  getJWTToken() {
+    return this.localStorageService.get('token')
+  }
+
   logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser')
+    this.localStorageService.remove('token')
+    this.localStorageService.remove('refreshToken')
     this.currentUserSubject.next(null)
+    window.location.reload();
   }
 }

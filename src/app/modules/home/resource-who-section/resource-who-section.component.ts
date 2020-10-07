@@ -112,12 +112,10 @@ export class ResourceWhoSectionComponent implements OnInit {
       ]
     }
 
-    console.log(this.currentResourceList)
-
   }
 
   slickInit(e) {
-    console.log(e);this.slickModal = e.slick
+   this.slickModal = e.slick
   }
   
 

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { LoginModalComponent } from 'src/app/shared/login-modal/login-modal.component';
 import { RegisterModalComponent } from 'src/app/shared/register-modal/register-modal.component';
 import { SearchResultModalComponent } from 'src/app/shared/search-result-modal/search-result-modal.component';
 import { SubmitContestModalComponent } from 'src/app/shared/submit-contest-modal/submit-contest-modal.component';
 import { TemplateModalComponent } from 'src/app/shared/template-modal/template-modal.component';
 import { TermModalComponent } from 'src/app/shared/term-modal/term-modal.component';
+import { User } from 'src/app/types/models';
 
 @Component({
   selector: 'tnx-main-layout',
@@ -14,9 +16,18 @@ import { TermModalComponent } from 'src/app/shared/term-modal/term-modal.compone
 export class MainLayoutComponent implements OnInit {
   bsRegisterModalRef: BsModalRef;
   bsLoginModalRef: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+  currentUser: User
+  constructor(private modalService: BsModalService, private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.getNewToken()
+    this.authService.currentUser.subscribe(userData => {
+      this.currentUser = userData
+    })
+  }
+
+  logout(){
+    this.authService.logout()
   }
 
   openRegisterModal() {
@@ -37,7 +48,7 @@ export class MainLayoutComponent implements OnInit {
       ignoreBackdropClick: true,
       title: 'Đăng nhập tài khoản',
     };
-    this.bsLoginModalRef = this.modalService.show(LoginModalComponent, Object.assign({initialState}, { class: 'modal-xl modal-dialog-centered' }));
+    this.bsLoginModalRef = this.modalService.show(LoginModalComponent, Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
     this.bsLoginModalRef.content.closeBtnName = 'Close';
   }
 

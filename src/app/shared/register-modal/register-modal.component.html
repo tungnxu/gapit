@@ -10,7 +10,7 @@
                         <div class="form-modal p-5">
                             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                 <h3 class="text-primary">{{title}}</h3>
-                                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                                <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
                                 <div class="form-group">
                                     <input formControlName="username" type="text" placeholder="Email/Số điện thoại đăng nhập"
                                         class="form-control" id="inputEmail" aria-describedby="emailHelp">
@@ -26,7 +26,7 @@
                                                 href="">Điều khoản đăng ký</a></small></label>
                                 </div>
                                 <div class="form-group">
-                                    <button  [disabled]="loading || !registerForm.value.isCheckTerm" type="submit" class="btn btn-primary btn-block">Đăng ký</button></div>
+                                    <button [class.is-loading]="loading" type="submit" class="btn btn-primary btn-block">Đăng ký</button></div>
                                 <div class="text-muted"><small>Đã có tài khoản? <a (click)="openLoginModal()" href="javascript:;">Đăng nhập</a></small>
                                 </div>
                             </form>

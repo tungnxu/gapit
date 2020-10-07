@@ -3,9 +3,16 @@
 
 
     <div class="d-flex align-items-center">
-        <button type="button" class="btn mx-1 btn-sm btn-primary" (click)="openRegisterModal()">Đăng ký</button>
-        <button type="button" class="btn mx-1 btn-sm  btn-outline-primary" (click)="openLoginModal()" >Đăng nhập</button>
-        <a class=" mx-1 px-1" href=""><i class="fa fa-search" aria-hidden="true"></i></a>
+        <ng-container *ngIf="currentUser">
+            <!-- <button (click)="test()">Test</button> -->
+            <div>{{currentUser?.username}}</div>
+            <button type="button" class="btn mx-1 btn-sm btn-outline-primary" (click)="logout()">Đăng xuất</button>
+        </ng-container>
+        <ng-container *ngIf="!currentUser">
+            <button type="button" class="btn mx-1 btn-sm btn-primary" (click)="openRegisterModal()">Đăng ký</button>
+            <button type="button" class="btn mx-1 btn-sm  btn-outline-primary" (click)="openLoginModal()" >Đăng nhập</button>
+        </ng-container>
+        
         <div class="btn-group" dropdown>
             <button id="button-basic" dropdownToggle type="button" class="btn btn-clear text-primary"
                     aria-controls="dropdown-basic">
@@ -19,20 +26,7 @@
               <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openTermModal()">Thể lệ chương trình</a></li>
             </ul>
           </div>
-        <!-- <div class="dropdown">
-            <a class=" mx-1 px-1" href="javascrip:;" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i></a>
-            <div class="dropdown-menu" style="right: 0; left: unset;" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item text-primary" href="javascript:;" data-toggle="modal"
-                    data-target="#templateModal1">Mẫu đăng ký</a>
-                <a class="dropdown-item text-primary"  href="javascript:;" data-toggle="modal"
-                data-target="#submitContestModal" >Gửi bài dự thi</a>
-                <a class="dropdown-item text-primary" href="javascript:;" data-toggle="modal"
-                    data-target="#resultModal">Xem kết quả</a>
-                <a class="dropdown-item text-primary" href="javascript:;" data-toggle="modal"
-                    data-target="#termModal">Thể lệ chương trình</a>
-            </div>
-        </div> -->
+      
 
     </div>
 

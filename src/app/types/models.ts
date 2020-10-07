@@ -9,10 +9,11 @@ export interface QueryResultBase<T> {
 }
 
 export class User {
-  id: number
+  id: string
   username: string
-  token?: string
-  refreshToken?: string
+  expiredDate : string
+  Token?: string
+  RefreshToken?: string
 }
 
 export interface PostWP {

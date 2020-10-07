@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 import { first } from 'rxjs/operators'
 import { AccountApi } from 'src/app/api/account.api'
+import { AuthService } from 'src/app/core/services/auth.service'
 import { LoginModalComponent } from '../login-modal/login-modal.component'
 
 @Component({
@@ -28,7 +29,8 @@ export class RegisterModalComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private accountApi: AccountApi) {}
+    private accountApi: AccountApi,
+    private authService: AuthService) {}
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -46,7 +48,11 @@ export class RegisterModalComponent implements OnInit {
     if (this.registerForm.invalid) {
       return
     }
-    console.log(this.registerForm.value)
+
+    if(!this.f.isCheckTerm.value){
+      this.error = 'Bạn chưa đồng ý với điều khoản'
+      return
+    }
     this.loading = true
 
     const command = {
@@ -55,18 +61,21 @@ export class RegisterModalComponent implements OnInit {
     }
 
     const next = (data) => {
-      this.loading = false
-      this.openLoginModal()
+      this.authService.login(this.f.username.value, this.f.password.value).subscribe(()=>{
+        this.loading = false
+        this.bsModalRef1.hide()
+      })
     }
 
     const error = (error) => {
-      this.error = error
+      this.error = error.error['signUp.UserName'][0]
       this.loading = false
     }
 
     this.accountApi.registerAccount(command).pipe(first()).subscribe(next, error)
 
   }
+ 
 
   openLoginModal() {
     this.bsModalRef1.hide()
@@ -76,7 +85,7 @@ export class RegisterModalComponent implements OnInit {
       ignoreBackdropClick: true,
       title: 'Đăng nhập tài khoản',
     }
-    this.bsLoginModalRef = this.modalService.show(LoginModalComponent, Object.assign({initialState}, { class: 'modal-xl modal-dialog-centered' }))
+    this.bsLoginModalRef = this.modalService.show(LoginModalComponent, Object.assign({initialState}, { class: 'modal-md  modal-dialog-centered' }))
     this.bsLoginModalRef.content.closeBtnName = 'Close'
   }
 

@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core'
-import * as jwt_decode from 'jwt-decode'
-
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +6,7 @@ import * as jwt_decode from 'jwt-decode'
 export class JWTTokenService {
 
   jwtToken: string
-  decodedToken: { [key: string]: string }
+  decodedToken: { [key: string]: any }
 
   constructor() {
   }
@@ -21,22 +19,22 @@ export class JWTTokenService {
 
   decodeToken() {
     if (this.jwtToken) {
-      this.decodedToken = jwt_decode(this.jwtToken)
+      this.decodedToken = this.parseJwt(this.jwtToken)
     }
   }
 
   getDecodeToken() {
-    return jwt_decode(this.jwtToken)
+    return this.parseJwt(this.jwtToken)
   }
 
-  getUser() {
+  getUserId() {
     this.decodeToken()
-    return this.decodedToken ? this.decodedToken.displayname : null
+    return this.decodedToken ? this.decodedToken.userId : null
   }
 
-  getEmailId() {
+  getUsername() {
     this.decodeToken()
-    return this.decodedToken ? this.decodedToken.email : null
+    return this.decodedToken ? this.decodedToken.username : null
   }
 
   getExpiryTime() {
@@ -45,11 +43,17 @@ export class JWTTokenService {
   }
 
   isTokenExpired(): boolean {
-    const expiryTime: number = +this.getExpiryTime()
-    if (expiryTime) {
-      return ((1000 * expiryTime) - (new Date()).getTime()) < 5000
-    } else {
-      return false
-    }
+    const now = new Date()
+    return now.getTime() > (+this.getExpiryTime() * 1000);
+  }
+
+  parseJwt(token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload)
   }
 }

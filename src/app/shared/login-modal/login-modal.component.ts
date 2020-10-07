@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { BsModalRef } from 'ngx-bootstrap/modal'
 import { first } from 'rxjs/operators'
+import { AuthService } from 'src/app/core/services/auth.service'
+import { JWTTokenService } from 'src/app/core/services/jwt-token.service'
+import { LocalStorageService } from 'src/app/core/services/local-storage.service'
 
 @Component({
   selector: 'app-login-modal',
@@ -23,7 +26,8 @@ export class LoginModalComponent implements OnInit {
     public bsModalRef: BsModalRef,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -43,8 +47,18 @@ export class LoginModalComponent implements OnInit {
     if (this.loginForm.invalid) {
       return
     }
-    console.log(this.loginForm.value)
-    this.loading = true
+
+    const next = (data) => {
+      this.loading = false
+      this.bsModalRef.hide()
+    }
+
+    const error = (error) => {
+      this.error = error.error.message
+      this.loading = false
+    }
+    this.authService.login(this.f.username.value, this.f.password.value).subscribe(next, error)
 
   }
+ 
 }

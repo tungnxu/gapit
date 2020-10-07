@@ -27,7 +27,6 @@ export class CountAnimationDirective {
   }
 
   ngOnChanges(changes) {
-    debugger
     this.timestamp = Math.abs(this.endNumber - this.startNum)
     if (changes.endNumber) {
       this.incNbrRec(this.startNum, this.endNumber, this.elementRef.nativeElement)

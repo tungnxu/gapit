@@ -32,7 +32,6 @@ export class FileUploadControlComponent implements OnInit, ControlValueAccessor 
 
   onFileChanged($event: any) {
     const input = (event.target as HTMLInputElement)
-    debugger
     this.file = input.files[0] as File
     const formData = new FormData();
     formData.append('file',  this.file,  this.file.name);

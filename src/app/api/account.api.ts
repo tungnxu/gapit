@@ -21,7 +21,7 @@ export class AccountApi extends BaseApi {
     username: string;
     password: string;
   }) {
-    return this.httpClient.post<any>(this.createUrl('SignIn'), command)
+    return this.httpClient.post<any>(this.createUrl('SignUp'), command)
   }
 
   loginAccount(command: {
@@ -29,5 +29,9 @@ export class AccountApi extends BaseApi {
     password: string;
   }): Observable<User> {
     return this.httpClient.post<any>(this.createUrl('Token'), command)
+  }
+
+  getRefreshToken(){
+    return this.httpClient.post<any>(this.createUrl('RefreshToken'), null)
   }
 }
