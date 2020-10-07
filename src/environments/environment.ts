@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlAddress: 'http://localhost/wordpress/wp-json/'
+  urlAddress: 'https://tnx.educationhost.cloud/wp-json/'
 };
 
 /*

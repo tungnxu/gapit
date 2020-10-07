@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  urlAddress: 'http://localhost/wordpress/wp-json/'
+  urlAddress: 'https://tnx.educationhost.cloud/wp-json/'
 };
