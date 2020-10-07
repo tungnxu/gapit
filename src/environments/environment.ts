@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  urlAddress: 'https://tnx.educationhost.cloud/wp-json/'
-};
+  cmsUrl: 'https://tnx.educationhost.cloud/wp-json/',
+  apiUrl: 'https://hvn.gapit.com.vn/api',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

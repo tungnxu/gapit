@@ -19,13 +19,6 @@
             <input type="password" formControlName="password" placeholder="6 ký tự chữ cái, viết thường"
               class="form-control" id="exampleInputPassword1">
           </div>
-          <div class="form-group custom-control custom-checkbox">
-            <input formControlName="isCheckTerm" type="checkbox" class="custom-control-input" id="exampleCheck2">
-            <label class="custom-control-label" for="exampleCheck2"><small>Tôi đã đọc kỹ <a href="">Điều khoản đăng
-                  nhập</a></small></label>
-          </div>
-          <file-upload-control formControlName="attachedFileUrl" label="{{ 'Attach file' }}">
-          </file-upload-control>
           <div class="form-group">
             <button [disabled]="loading || !loginForm.value.isCheckTerm" type="submit"
               class="btn btn-primary btn-block">Xác nhận</button>

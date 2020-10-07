@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { QueryResultBase, CategoryWP } from '../types/models';
 import { BaseApi } from './base-api.class';
-import { baseUrl } from './base-url.class';
+import { cmsUrl } from './base-url.class';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +12,7 @@ import { baseUrl } from './base-url.class';
 export class CategoryApi extends BaseApi {
     constructor(
         httpClient: HttpClient,
-        @Inject(baseUrl) protected hostUrl: string,
+        @Inject(cmsUrl) protected hostUrl: string,
     ) {
         super(httpClient)
         this.setEndpoint(hostUrl, '/wp/v2/categories')

@@ -8,24 +8,25 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <div class="form-modal p-5">
-                            <form>
+                            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                 <h3 class="text-primary">{{title}}</h3>
+                                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
                                 <div class="form-group">
-                                    <input type="email" placeholder="Email/Số điện thoại đăng nhập"
-                                        class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <input formControlName="username" type="text" placeholder="Email/Số điện thoại đăng nhập"
+                                        class="form-control" id="inputEmail" aria-describedby="emailHelp">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" placeholder="6 ký tự chữ cái, viết thường"
-                                        class="form-control" id="exampleInputPassword1">
+                                    <input formControlName="password" type="password" placeholder="6 ký tự chữ cái, viết thường"
+                                        class="form-control" id="inputPassword">
                                 </div>
 
                                 <div class="form-group custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="exampleCheck1">
+                                    <input formControlName="isCheckTerm" type="checkbox" class="custom-control-input" id="exampleCheck1">
                                     <label class="custom-control-label" for="exampleCheck1"><small>Tôi đã đọc kỹ <a
                                                 href="">Điều khoản đăng ký</a></small></label>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button></div>
+                                    <button  [disabled]="loading || !registerForm.value.isCheckTerm" type="submit" class="btn btn-primary btn-block">Đăng ký</button></div>
                                 <div class="text-muted"><small>Đã có tài khoản? <a (click)="openLoginModal()" href="javascript:;">Đăng nhập</a></small>
                                 </div>
                             </form>
