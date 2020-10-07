@@ -261,3 +261,31 @@ footer{
   height: 100%;
 
 }
+
+
+.btn{
+  &.is-loading{
+    opacity: .7;
+    pointer-events: none;
+    i{
+      display: none;
+    }
+    &:before{
+      content: "";
+      width: 1rem;
+      display: inline-block;
+      height: 1rem;
+      position: relative;
+      left: 0;
+      top: 0;
+      margin-right: 8px;
+      vertical-align: text-bottom;
+      border: .20em solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      -webkit-animation: spinner-border .75s linear infinite;
+      animation: spinner-border .75s linear infinite;
+    }
+
+   
+  }}
