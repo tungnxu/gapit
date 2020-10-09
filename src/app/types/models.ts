@@ -20,7 +20,7 @@ export interface QueryResultBase<T> {
 export class User {
   id: string
   username: string
-  expiredDate : string
+  expiredDate: string
   Token?: string
   RefreshToken?: string
 }
@@ -77,4 +77,19 @@ export interface ResourceListItem {
   activityType?: string
   rank?: number
   whoTitte?: string
+}
+
+export interface StudentRegistrationInfo {
+  student_name: string
+  province_id: number
+  district_id: number
+  address: string
+  parent: string
+  phone: string
+  school_name: string
+  school_province_id: number
+  school_district_id: number
+  school_address: string
+  class: number
+  email: string
 }

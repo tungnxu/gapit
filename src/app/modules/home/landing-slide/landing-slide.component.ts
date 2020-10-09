@@ -23,8 +23,8 @@ export class LandingSlideComponent implements OnInit {
       link: '#'
     }
   ]
- 
-  slideConfig = { 
+
+  slideConfig = {
     'dots': true,
     'infinite': true,
     'slidesToShow': 1,
