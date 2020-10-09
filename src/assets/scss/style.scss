@@ -2,7 +2,7 @@
 @import "bootstrap/bootstrap";
 @import "landing";
 @import "resource-list";
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 button{
   outline: none !important;
@@ -308,4 +308,8 @@ footer{
         }
       }
     }
+  }
+
+  .bs-datepicker-container{
+    padding: 0 !important;
   }

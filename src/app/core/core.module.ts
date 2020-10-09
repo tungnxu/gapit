@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormValidationModule } from './form-validation/form-validation.module';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -8,10 +9,13 @@ import { FormValidationModule } from './form-validation/form-validation.module';
   declarations: [],
   imports: [
     CommonModule,
-    FormValidationModule
+    FormValidationModule,
+    BsDatepickerModule.forRoot(),
+
   ],
   exports: [
-    FormValidationModule
+    FormValidationModule,
+    BsDatepickerModule
   ]
 })
 export class CoreModule {

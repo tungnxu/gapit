@@ -3,6 +3,17 @@ export interface ContentBase {
   rendered: string
 }
 
+export interface Province {
+  value: number
+  text: string
+  districts: District[]
+}
+
+export interface District {
+  value: number
+  text: string
+}
+
 export interface BackendError {
   messages?: string[]
   message?: string
@@ -81,15 +92,17 @@ export interface ResourceListItem {
 
 export interface StudentRegistrationInfo {
   student_name: string
-  province_id: number
-  district_id: number
-  address: string
-  parent: string
-  phone: string
+  student_date_of_birth: Date
+  student_province_id: number
+  student_district_id: number
+  student_address: string
+  parent_name: string
+  parent_phone: string
+  parent_email: string
   school_name: string
   school_province_id: number
   school_district_id: number
   school_address: string
-  class: number
-  email: string
+  school_class: number
+  school_email: string
 }

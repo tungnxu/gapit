@@ -10,7 +10,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [EmptyLayoutComponent, MainLayoutComponent],
   imports: [
-    CommonModule,RouterModule ,BsDropdownModule
+    CommonModule,RouterModule ,BsDropdownModule, 
   ],
   exports: [
     EmptyLayoutComponent, MainLayoutComponent

@@ -11,6 +11,7 @@ import { TermModalComponent } from './term-modal/term-modal.component';
 import { SearchResultModalComponent } from './search-result-modal/search-result-modal.component';
 import { SubmitContestModalComponent } from './submit-contest-modal/submit-contest-modal.component';
 import { TemplateModalComponent } from './template-modal/template-modal.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -21,7 +22,8 @@ import { TemplateModalComponent } from './template-modal/template-modal.componen
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    CoreModule
+    CoreModule,
+    NgSelectModule,
   ],
   exports: [
     LayoutsModule,

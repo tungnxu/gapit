@@ -11,6 +11,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppInterceptor } from './core/services/app-interceptor.service';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,6 @@ import { AppInterceptor } from './core/services/app-interceptor.service';
     AppRoutingModule,
     SharedModule,
     CoreModule,
-
     HttpClientModule,
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
