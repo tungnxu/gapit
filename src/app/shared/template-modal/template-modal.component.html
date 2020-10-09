@@ -8,7 +8,7 @@
               <span aria-hidden="true">&times;</span>
           </button>
           <div class="form-modal p-5">
-              <form>
+              <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                   <h5 class="text-primary">Mẫu đăng ký</h5>
 
                   <!-- Step 1 -->

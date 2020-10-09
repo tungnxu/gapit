@@ -8,30 +8,28 @@ import { apiUrl } from './base-url.class';
 @Injectable({
   providedIn: 'root'
 })
-export class AccountApi extends BaseApi {
+export class LocationApi extends BaseApi {
   constructor(
     httpClient: HttpClient,
     @Inject(apiUrl) protected hostUrl: string,
   ) {
     super(httpClient)
-    this.setEndpoint(hostUrl, '/Account')
+    this.setEndpoint(hostUrl, '/Location')
   }
 
-  registerAccount(command: {
-    username: string;
-    password: string;
-  }) {
-    return this.httpClient.post<any>(this.createUrl('SignUp'), command)
+  getProvincesSchool() {
+    return this.httpClient.get<any>(this.createUrl('SchoolProvinces'), null)
   }
 
-  loginAccount(command: {
-    username: string;
-    password: string;
-  }): Observable<User> {
-    return this.httpClient.post<any>(this.createUrl('Token'), command)
+  getDistrictSchool(provinceId: number) {
+    return this.httpClient.get<any>(this.createUrl('SchoolProvinces/${provinceId}'), null)
   }
 
-  getRefreshToken(){
-    return this.httpClient.post<any>(this.createUrl('RefreshToken'), null)
+  getProvinces() {
+    return this.httpClient.get<any>(this.createUrl('Provinces'), null)
+  }
+
+  getDistrict(provinceId: number) {
+    return this.httpClient.get<any>(this.createUrl(`Provinces/${provinceId}`), null)
   }
 }
