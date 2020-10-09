@@ -7,18 +7,31 @@
       <img src="assets/img/logo-label.png" alt="">
     </div>
     <div class="col-sm-12 ">
-      
+
       <div class="form-modal py-4 px-5">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <h3 class="text-primary text-center mb-4">{{title}}</h3>
 
-          <div class="form-group">
+          <div class="form-group" hasError="username">
             <input type="text" formControlName="username" placeholder="Email/Số điện thoại đăng nhập"
-              class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              class="form-control" id="username">
+              <div errorMessage>
+                <div class="invalid-feedback" *ifError="'required'" translate>
+                  Vui lòng điền email/số điện thoại
+                </div>
+              </div>
           </div>
-          <div class="form-group">
+          <div class="form-group" hasError="password">
             <input type="password" formControlName="password" placeholder="6 ký tự chữ cái, viết thường"
               class="form-control" id="exampleInputPassword1">
+              <div errorMessage>
+                <div class="invalid-feedback" *ifError="'required'" translate>
+                  Mật khẩu không thể bỏ trống
+                </div>
+                <div class="invalid-feedback" *ifError="'minlength'" translate>
+                  Mật khẩu ít nhất 6 ký tự
+                </div>
+              </div>
           </div>
         <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
 

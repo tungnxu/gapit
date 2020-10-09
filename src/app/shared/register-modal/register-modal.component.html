@@ -11,13 +11,26 @@
                             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                 <h3 class="text-primary">{{title}}</h3>
                                 <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
-                                <div class="form-group">
-                                    <input formControlName="username" type="text" placeholder="Email/Số điện thoại đăng nhập"
+                                <div class="form-group" hasError="username">
+                                    <input formControlName="username" autocomplete="new-user" type="text" placeholder="Email/Số điện thoại đăng nhập"
                                         class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                                        <div errorMessage>
+                                          <div class="invalid-feedback" *ifError="'required'" translate>
+                                            Vui lòng điền email/số điện thoại
+                                          </div>
+                                        </div>
                                 </div>
-                                <div class="form-group">
-                                    <input formControlName="password" type="password" placeholder="6 ký tự chữ cái, viết thường"
+                                <div class="form-group" hasError="password">
+                                    <input formControlName="password" autocomplete="new-password" type="password" placeholder="6 ký tự chữ cái, viết thường"
                                         class="form-control" id="inputPassword">
+                                        <div errorMessage>
+                                          <div class="invalid-feedback" *ifError="'required'" translate>
+                                            Mật khẩu không thể bỏ trống
+                                          </div>
+                                          <div class="invalid-feedback" *ifError="'minlength'" translate>
+                                            Mật khẩu ít nhất 6 ký tự
+                                          </div>
+                                        </div>
                                 </div>
 
                                 <div class="form-group custom-control custom-checkbox">

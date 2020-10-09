@@ -1,18 +1,18 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EnsureModuleLoadedOnceGuard } from './ensureModuleLoadedOnceGuard';
-import { CountAnimationDirective } from '../shared/directives/count-animation.directive';
+import { FormValidationModule } from './form-validation/form-validation.module';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    FormValidationModule
+  ],
+  exports: [
+    FormValidationModule
   ]
 })
-export class CoreModule extends EnsureModuleLoadedOnceGuard {
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-    super(parentModule);
-  }
- }
+export class CoreModule {
+}

@@ -3,6 +3,15 @@ export interface ContentBase {
   rendered: string
 }
 
+export interface BackendError {
+  messages?: string[]
+  message?: string
+  silent?: boolean
+  detail?: string
+  title?: string
+  errors?: any[]
+}
+
 export interface QueryResultBase<T> {
   count: number
   items: Array<T>

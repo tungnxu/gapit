@@ -287,5 +287,25 @@ footer{
       animation: spinner-border .75s linear infinite;
     }
 
-   
+
   }}
+
+  .has-danger {
+    .form-control {
+      border-color: #dc3545 !important;
+    }
+    .invalid-feedback {
+      display: inherit;
+    }
+  }
+
+  .form-group {
+    label {
+      &.required {
+        &:after {
+          content: " *";
+          color: #eb4052;
+        }
+      }
+    }
+  }

@@ -35,7 +35,7 @@ export class RegisterModalComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       isCheckTerm: [false]
     })
   }
@@ -75,7 +75,7 @@ export class RegisterModalComponent implements OnInit {
     this.accountApi.registerAccount(command).pipe(first()).subscribe(next, error)
 
   }
- 
+
 
   openLoginModal() {
     this.bsModalRef1.hide()

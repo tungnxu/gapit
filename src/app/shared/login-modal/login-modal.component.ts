@@ -32,7 +32,7 @@ export class LoginModalComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
     })
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
@@ -60,5 +60,5 @@ export class LoginModalComponent implements OnInit {
     this.authService.login(this.f.username.value, this.f.password.value).subscribe(next, error)
 
   }
- 
+
 }

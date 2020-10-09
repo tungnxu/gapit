@@ -15,18 +15,19 @@ import { TemplateModalComponent } from './template-modal/template-modal.componen
 
 
 @NgModule({
-  declarations: [LoginModalComponent, RegisterModalComponent, CountAnimationDirective, FileUploadControlComponent, TermModalComponent, SearchResultModalComponent,SubmitContestModalComponent, TemplateModalComponent],
+  declarations: [LoginModalComponent, RegisterModalComponent, CountAnimationDirective, FileUploadControlComponent, TermModalComponent, SearchResultModalComponent, SubmitContestModalComponent, TemplateModalComponent],
   imports: [
     LayoutsModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CoreModule
   ],
   exports: [
     LayoutsModule,
     CountAnimationDirective,
     FileUploadControlComponent
   ],
-  entryComponents: [LoginModalComponent, RegisterModalComponent, TermModalComponent, SearchResultModalComponent,SubmitContestModalComponent,TemplateModalComponent]
+  entryComponents: [LoginModalComponent, RegisterModalComponent, TermModalComponent, SearchResultModalComponent, SubmitContestModalComponent, TemplateModalComponent]
 })
 export class SharedModule { }
