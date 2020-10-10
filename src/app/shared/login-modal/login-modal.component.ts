@@ -57,6 +57,7 @@ export class LoginModalComponent implements OnInit {
       this.error = error.error.message
       this.loading = false
     }
+    this.loading = true
     this.authService.login(this.f.username.value, this.f.password.value).subscribe(next, error)
 
   }

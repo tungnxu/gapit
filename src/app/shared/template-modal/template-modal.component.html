@@ -31,8 +31,8 @@
                             <label for="student_date_of_birth" class="col-sm-4 col-form-label"><small>Ngày
                                     sinh:</small></label>
                             <div class="col-sm-8">
-                                <input type="text" formControlName="student_date_of_birth"
-                                    class="form-control form-control-sm" id="student_date_of_birth" bsDatepicker #dp="bsDatepicker"  [bsConfig]="bsConfig">
+                                <input readonly type="text" formControlName="student_date_of_birth"
+                                    class="form-control form-control-sm bg-white" id="student_date_of_birth" placeholder="dd/mm/yyyy" bsDatepicker #dp="bsDatepicker"  [bsConfig]="bsConfig">
                                 <div errorMessage>
                                     <div class="invalid-feedback" *ifError="'required'" translate>
                                         Vui lòng chọn ngày sinh
@@ -100,7 +100,7 @@
                                     thoại:</small></label>
                             <div class="col-sm-8">
                                 <input type="tel" formControlName="parent_phone" class="form-control form-control-sm"
-                                    id="parent_phone" placeholder="Ví dụ: 0912345679" pattern="([0-9]|01[2|6|8|9])+([0-9]{8})\b">
+                                    id="parent_phone" placeholder="Ví dụ: 0912345679" pattern="((0|84)[3|5|7|8|9][0-9]{8})">
                                 <div errorMessage>
                                     <div class="invalid-feedback" *ifError="'required'" translate>
                                         Vui lòng điền số điện thoại bố mẹ/người giám hộ
@@ -118,6 +118,14 @@
                             <div class="col-sm-8">
                                 <input type="email" formControlName="parent_email" placeholder="example@gmail.com"
                                     class="form-control form-control-sm" id="parent_email">
+                                    <div errorMessage>
+                                        <div class="invalid-feedback" *ifError="'required'" translate>
+                                            Vui lòng điền email tên bố mẹ/người giám hộ
+                                        </div>
+                                        <div class="invalid-feedback" *ifError="'email'" translate>
+                                            Sai định dạng email
+                                        </div>
+                                    </div>
                             </div>
                         </div>
 
@@ -126,8 +134,11 @@
                             <label for="school_name" class="col-sm-4 col-form-label"><small>Tên trường
                                     học:</small></label>
                             <div class="col-sm-8">
-                                <input type="text" formControlName="school_name" class="form-control form-control-sm"
-                                    id="school_name">
+                                <input type="text"  class="form-control form-control-sm"  formControlName="school_name" (input)="onInputChange($event)" id="school_name" list="dynmicUserIds">
+                                    <datalist id="dynmicUserIds">
+                                        <option *ngFor="let item of schoolList1" [value]="item">{{item}}</option>
+                                     </datalist>
+                                 
                                 <div errorMessage>
                                     <div class="invalid-feedback" *ifError="'required'" translate>
                                         Vui lòng điền tên trường học
@@ -199,8 +210,7 @@
 
 
                         <div class="form-group mt-3">
-                            <button type="submit" class="btn btn-primary btn-block">TIẾP
-                                TỤC</button>
+                            <button [class.is-loading]="loading" type="submit" class="btn btn-primary btn-block">XÁC NHẬN</button>
                         </div>
                     </div>
 

@@ -1,54 +1,75 @@
 <div class="modal-body p-4 form-side no-side">
-    <button type="button" class="close"  (click)="bsModalRef.hide()">
+    <button type="button" class="close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
     </button>
-  <form>
-  <h4 class="text-primary mt-4">Gửi bài dự thi</h4>
-  <h6 class="text-uppercase">Thông tin bài dự thi</h6>
-  <div class=" row align-items-center">
-      <label for="title" class="col-sm-4 col-form-label"><small>Tiêu
-              đề:</small></label>
-      <div class="col-sm-8">
-          <input type="text" class="form-control form-control-sm" id="title">
-      </div>
-  </div>
-  <div class=" row align-items-start">
-      <label for="contentTest" class="col-sm-4 col-form-label"><small>Nội
-              dung:</small></label>
-      <div class="col-sm-8">
-          <textarea id="contentTest" class="form-control form-control-sm"
-          name="contentTest" rows="2"></textarea>
-      </div>
-  </div>
+    <form [formGroup]="submitContestForm" (ngSubmit)="onSubmit()">
 
-  <div class=" row align-items-center">
-      <label for="fileContent2"
-          class="col-sm-4 col-form-label text-primary"><small>Tải bài dự
-              thi:</small></label>
-      <div class="col-sm-8">
-          <input type="file" class="form-control form-control-sm"
-              id="fileContent2">
-      </div>
-  </div>
+        <div class="student-info text-14 text-muted mt-4" >
+            <p class="m-0">Bạn: {{(user$ | async)?.student?.student_info?.student_name}}</p>
+        </div>
+        <h4 class="text-primary mt-2">Gửi bài dự thi {{ (user$ | async)?.student?.exams.length === 0 ? 'đầu tiên' : 'thứ 2' }}</h4>
 
-  <div class=" row align-items-center">
-      <label for="emailParent"
-          class="col-sm-4 col-form-label"><small>Email:</small></label>
-      <div class="col-sm-8">
-          <input type="email" placeholder="example@gmail.com"
-              class="form-control form-control-sm" id="emailParent">
-      </div>
-  </div>
+        <h6 class="text-uppercase">Thông tin bài dự thi</h6>
+        <div class=" row align-items-start"  hasError="exam_name">
+            <label for="exam_name" class="col-sm-4 col-form-label"><small>Tiêu
+                    đề:</small></label>
+            <div class="col-sm-8">
+                <input formControlName="exam_name" type="text" class="form-control form-control-sm" id="exam_name">
+                <div errorMessage>
+                    <div class="invalid-feedback" *ifError="'required'" translate>
+                      Vui lòng điền tiêu đề cho bài dự thi
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class=" row align-items-start"  hasError="description">
+            <label for="description" class="col-sm-4 col-form-label"><small>Nội dung:</small></label>
+            <div class="col-sm-8">
+                <textarea formControlName="description" id="description" class="form-control form-control-sm" name="description" rows="2"></textarea>
+                <!-- <div errorMessage>
+                    <div class="invalid-feedback" *ifError="'required'" translate>
+                      Vui lòng điền một vài mô tả cho bài dự thi
+                    </div>
+                  </div> -->
+            </div>
+        </div>
 
-  <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="comfirmParent">
-      <label class="form-check-label" for="comfirmParent"><small>Tôi xác nhận là
-              phụ huynh/ người giám hộ của học sinh với thông tin đầy dủ phía
-              trên.</small></label>
-  </div>
+        <div class=" row align-items-start" hasError="file">
+            <label for="file" class="col-sm-4 col-form-label"><small>Tải lên bài dự
+                    thi:</small></label>
+            <div class="col-sm-8">
+                 <file-upload-control      formControlName="file"   label="Tải lên bài dự thi (tối đa: 5Mb)" ></file-upload-control>
+                 <div errorMessage>
+                    <div class="invalid-feedback" *ifError="'required'" translate>
+                      Vui lòng chọn file bài dự thi để tải lên
+                    </div>
+                  </div>
+            </div>
+        </div>
 
-  <div class="form-group mt-3">
-      <button type="submit" class="btn btn-primary btn-block">XÁC NHẬN</button>
-  </div>
-</form>
+        <div class=" row align-items-start" hasError="email">
+            <label for="email" class="col-sm-4 col-form-label"><small>Email(nếu có):</small></label>
+            <div class="col-sm-8">
+                <input type="email"    formControlName="email" placeholder="example@gmail.com" class="form-control form-control-sm" id="email">
+                <div errorMessage>
+                    <div class="invalid-feedback" *ifError="'required'" translate>
+                      Vui lòng điền email
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+
+        <div class="form-group custom-control custom-checkbox">
+            <input formControlName="isParent" type="checkbox" class="custom-control-input" id="isParent">
+            <label class="custom-control-label" for="isParent"><small>Tôi xác nhận là
+                phụ huynh/ người giám hộ của học sinh với thông tin đầy dủ phía
+                trên.</small></label>
+        </div>
+
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary btn-block">GỬI BÀI</button>
+        </div>
+        <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
+    </form>
 </div>

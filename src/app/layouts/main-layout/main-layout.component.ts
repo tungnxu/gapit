@@ -16,6 +16,13 @@ import { User } from 'src/app/types/models';
 export class MainLayoutComponent implements OnInit {
   bsRegisterModalRef: BsModalRef;
   bsLoginModalRef: BsModalRef;
+
+  bsTermModalRef: BsModalRef;
+  bsSearchModalRef: BsModalRef;
+
+  bsSubmitContestModalRef: BsModalRef;
+  bsTemplateModalRef: BsModalRef;
+
   currentUser: User
   constructor(private modalService: BsModalService, private authService: AuthService) {}
 
@@ -58,8 +65,8 @@ export class MainLayoutComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
     };
-    this.bsLoginModalRef = this.modalService.show(TermModalComponent, Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
-    this.bsLoginModalRef.content.closeBtnName = 'Close';
+    this.bsTermModalRef = this.modalService.show(TermModalComponent, Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
+    this.bsTermModalRef.content.closeBtnName = 'Close';
   }
 
   openSearchResultModal() {
@@ -68,8 +75,8 @@ export class MainLayoutComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
     };
-    this.bsLoginModalRef = this.modalService.show(SearchResultModalComponent, Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
-    this.bsLoginModalRef.content.closeBtnName = 'Close';
+    this.bsSearchModalRef = this.modalService.show(SearchResultModalComponent, Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
+    this.bsSearchModalRef.content.closeBtnName = 'Close';
   }
 
   openSubmitContestModal(){
@@ -78,8 +85,8 @@ export class MainLayoutComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
     };
-    this.bsLoginModalRef = this.modalService.show(SubmitContestModalComponent, Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
-    this.bsLoginModalRef.content.closeBtnName = 'Close';
+    this.bsSubmitContestModalRef = this.modalService.show(SubmitContestModalComponent, Object.assign(initialState, { class: 'modal-md modal-dialog-centered' }));
+    this.bsSubmitContestModalRef.content.closeBtnName = 'Close';
   }
 
   openTemplateModal(){
@@ -88,8 +95,8 @@ export class MainLayoutComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
     };
-    this.bsLoginModalRef = this.modalService.show(TemplateModalComponent, Object.assign({initialState}, { class: 'modal-xl modal-dialog-centered' }));
-    this.bsLoginModalRef.content.closeBtnName = 'Close';
+    this.bsTemplateModalRef = this.modalService.show(TemplateModalComponent, Object.assign(initialState, { class: 'modal-xl modal-dialog-centered' }));
+    this.bsTemplateModalRef.content.closeBtnName = 'Close';
   }
 
 }

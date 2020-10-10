@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormValidationModule } from './form-validation/form-validation.module';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FileUploadControlComponent } from '../shared/file-upload-control/file-upload-control.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [FileUploadControlComponent],
   imports: [
     CommonModule,
     FormValidationModule,
@@ -14,6 +15,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
   ],
   exports: [
+    FileUploadControlComponent,
     FormValidationModule,
     BsDatepickerModule
   ]

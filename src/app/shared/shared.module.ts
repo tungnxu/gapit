@@ -14,9 +14,8 @@ import { TemplateModalComponent } from './template-modal/template-modal.componen
 import { NgSelectModule } from '@ng-select/ng-select';
 
 
-
 @NgModule({
-  declarations: [LoginModalComponent, RegisterModalComponent, CountAnimationDirective, FileUploadControlComponent, TermModalComponent, SearchResultModalComponent, SubmitContestModalComponent, TemplateModalComponent],
+  declarations: [LoginModalComponent, RegisterModalComponent, CountAnimationDirective, TermModalComponent, SearchResultModalComponent, SubmitContestModalComponent, TemplateModalComponent],
   imports: [
     LayoutsModule,
     CommonModule,
@@ -28,7 +27,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
   exports: [
     LayoutsModule,
     CountAnimationDirective,
-    FileUploadControlComponent
   ],
   entryComponents: [LoginModalComponent, RegisterModalComponent, TermModalComponent, SearchResultModalComponent, SubmitContestModalComponent, TemplateModalComponent]
 })

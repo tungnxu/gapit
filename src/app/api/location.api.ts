@@ -32,4 +32,8 @@ export class LocationApi extends BaseApi {
   getDistrict(provinceId: number) {
     return this.httpClient.get<any>(this.createUrl(`Provinces/${provinceId}`))
   }
+
+  getSchools(){
+    return this.httpClient.get<string[]>(this.createUrl(`Schoolname`))
+  }
 }

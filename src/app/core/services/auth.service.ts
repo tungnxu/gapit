@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable } from 'rxjs'
-import { catchError, map } from 'rxjs/operators'
+import { catchError, map, switchMap, tap } from 'rxjs/operators'
 import { AccountApi } from 'src/app/api/account.api'
+import { StudentApi } from 'src/app/api/student.api'
 import { User } from 'src/app/types/models'
 import { environment } from 'src/environments/environment'
 import { JWTTokenService } from './jwt-token.service'
@@ -18,25 +19,27 @@ export class AuthService {
   constructor(
     private accountApi: AccountApi,
     private localStorageService: LocalStorageService,
-    private jWTTokenService: JWTTokenService) {
+    private jWTTokenService: JWTTokenService,
+    private studentApi: StudentApi) {
     this.currentUserSubject = new BehaviorSubject<User>(null)
     this.jWTTokenService.setToken(this.localStorageService.get('token'))
-    if (this.jWTTokenService.getUsername()){
-      if(!this.jWTTokenService.isTokenExpired()){
-        const userInfo: User = {
-          username: this.jWTTokenService.getUsername(),
-          id: this.jWTTokenService.getUserId(),
-          expiredDate: this.jWTTokenService.getExpiryTime()
-        }
-        this.currentUserSubject = new BehaviorSubject<User>(userInfo)
-      }else{
-        if(!this.localStorageService.get('refreshToken')){
+    if (this.jWTTokenService.getUsername()) {
+      if (!this.jWTTokenService.isTokenExpired()) {
+        this.generateUserInfo()
+        // const userInfo: User = {
+        //   username: this.jWTTokenService.getUsername(),
+        //   id: this.jWTTokenService.getUserId(),
+        //   expiredDate: this.jWTTokenService.getExpiryTime()
+        // }
+        // this.currentUserSubject.next(userInfo)
+      } else {
+        if (!this.localStorageService.get('refreshToken')) {
           this.logout()
         }
       }
-    
+
     }
-   
+
     this.currentUser = this.currentUserSubject.asObservable()
   }
 
@@ -44,20 +47,21 @@ export class AuthService {
     return this.currentUserSubject.value
   }
 
-  getNewToken(){
-     if(this.jWTTokenService.jwtToken && this.jWTTokenService.isTokenExpired()){
+  getNewToken() {
+    if (this.jWTTokenService.jwtToken && this.jWTTokenService.isTokenExpired()) {
       this.accountApi.getRefreshToken().subscribe(data => {
         this.jWTTokenService.setToken(data.token)
-        const userInfo: User = {
-          username: this.jWTTokenService.getUsername(),
-          id: this.jWTTokenService.getUserId(),
-          expiredDate: this.jWTTokenService.getExpiryTime()
-        }
-        this.currentUserSubject.next(userInfo)
+        this.generateUserInfo()
+        // const userInfo: User = {
+        //   username: this.jWTTokenService.getUsername(),
+        //   id: this.jWTTokenService.getUserId(),
+        //   expiredDate: this.jWTTokenService.getExpiryTime()
+        // }
+        // this.currentUserSubject.next(userInfo)
         this.localStorageService.set('token', data.token)
         this.localStorageService.remove('refreshToken')
       })
-     }
+    }
   }
 
   login(username: string, password: string) {
@@ -72,14 +76,39 @@ export class AuthService {
         this.localStorageService.set('token', user.Token)
         this.localStorageService.set('refreshToken', user.RefreshToken)
         //TODO
-        const userInfo: User = {
-          username: this.jWTTokenService.getUsername(),
-          id: this.jWTTokenService.getUserId(),
-          expiredDate: this.jWTTokenService.getExpiryTime()
-        }
-        this.currentUserSubject.next(userInfo)
+        this.generateUserInfo()
+        // const userInfo: User = {
+        //   username: this.jWTTokenService.getUsername(),
+        //   id: this.jWTTokenService.getUserId(),
+        //   expiredDate: this.jWTTokenService.getExpiryTime()
+        // }
+        // this.currentUserSubject.next(userInfo)
         return user
-      }))
+      }),
+        switchMap((user) =>
+          this.studentApi.getStudentInfo().pipe(map((studentInfo) => {
+            this.localStorageService.set('student', JSON.stringify(studentInfo))
+            this.generateUserInfo()
+            // if(studentInfo){
+            //   this.localStorageService.set('student', studentInfo)
+            //   userNew.student = studentInfo
+            //   this.currentUserSubject.next(userNew)
+            // }
+            return user
+          }))
+        )
+
+      )
+  }
+
+  generateUserInfo() {
+    const userInfo: User = {
+      username: this.jWTTokenService.getUsername(),
+      id: this.jWTTokenService.getUserId(),
+      expiredDate: this.jWTTokenService.getExpiryTime(),
+      student: JSON.parse(this.localStorageService.get('student'))
+    }
+    this.currentUserSubject.next(userInfo)
   }
 
   getJWTToken() {
@@ -89,6 +118,7 @@ export class AuthService {
   logout() {
     this.localStorageService.remove('token')
     this.localStorageService.remove('refreshToken')
+    this.localStorageService.remove('student')
     this.currentUserSubject.next(null)
     window.location.reload();
   }

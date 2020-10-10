@@ -34,7 +34,10 @@ export class User {
   expiredDate: string
   Token?: string
   RefreshToken?: string
+  student?: Student
 }
+
+
 
 export interface PostWP {
   id: number
@@ -105,4 +108,40 @@ export interface StudentRegistrationInfo {
   school_address: string
   school_class: number
   school_email: string
+}
+
+
+export interface StudentInfo {
+  Id: number;
+  user_id: number;
+  student_name: string;
+  province_id: number;
+  district_id: number;
+  address: string;
+  parent: string;
+  phone: string;
+  school_name: string;
+  school_province_id: number;
+  school_district_id: number;
+  school_address: string;
+  class?: any;
+  email?: any;
+  UpdateDate: Date;
+  CreateDate: Date;
+  Status: boolean;
+}
+
+export interface Exam {
+  id: number;
+  user_id: number;
+  name_exam: string;
+  description: string;
+  create_date: Date;
+  url: string;
+  point?: any;
+}
+
+export interface Student {
+  student_info: StudentInfo;
+  exams: Exam[];
 }

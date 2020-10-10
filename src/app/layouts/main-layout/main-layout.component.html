@@ -1,12 +1,23 @@
-<nav class="navbar d-flex navbar-expand-lg navbar-light bg-white ">
+<nav class="navbar d-flex navbar-expand-lg navbar-light bg-white " style="position: fixed;
+top: 0;
+right: 0;
+z-index: 10;
+width: 100%;
+left: 0;">
     <div class="navbar-wrapper mr-auto"><a class="logo" routerLink="/"><img src="assets/img/logo.png" alt=""></a></div>
 
 
     <div class="d-flex align-items-center">
         <ng-container *ngIf="currentUser">
-            <!-- <button (click)="test()">Test</button> -->
-            <div>{{currentUser?.username}}</div>
-            <button type="button" class="btn mx-1 btn-sm btn-outline-primary" (click)="logout()">Đăng xuất</button>
+            <div  class="d-flex flex-column align-items-end" *ngIf="!currentUser?.student?.student_info">
+                <small class="text-secondary"><b>{{currentUser?.username}}</b></small>
+                <small> <a href="javascript:;" (click)="openTemplateModal()">Đăng ký dự thi</a> </small>
+            </div>
+            <div class="d-flex flex-column align-items-end" *ngIf="currentUser?.student?.student_info">
+                <div *ngIf="currentUser?.student"><small>Xin chào, </small> <b class="text-secondary">{{currentUser?.student?.student_info?.student_name}}</b></div>
+                <small>Số bài dự thi đã gửi: {{currentUser?.student?.exams?.length}}/2 bài </small>
+                
+            </div>
         </ng-container>
         <ng-container *ngIf="!currentUser">
             <button type="button" class="btn mx-1 btn-sm btn-primary" (click)="openRegisterModal()">Đăng ký</button>
@@ -20,10 +31,11 @@
             </button>
             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
                 role="menu" aria-labelledby="button-basic">
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openTemplateModal()">Mẫu đăng ký</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openSubmitContestModal()">Gửi bài dự thi</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="javascript:;"  *ngIf="!currentUser?.student?.student_info" (click)="currentUser ? openTemplateModal() : openLoginModal()">Mẫu đăng ký dự thi</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="javascript:;" *ngIf="currentUser?.student?.exams?.length < 2" (click)="currentUser? (currentUser?.student?.student_info ? openSubmitContestModal() : openTemplateModal() ) : openLoginModal()">Gửi bài dự thi</a></li>
               <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openSearchResultModal()">Xem kết quả</a></li>
               <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openTermModal()">Thể lệ chương trình</a></li>
+              <li role="menuitem" *ngIf="currentUser"><a class="dropdown-item text-primary" href="javascript:;" (click)="logout()">Đăng xuất</a></li>
             </ul>
           </div>
       
@@ -32,7 +44,8 @@
 
 
 </nav>
-<router-outlet></router-outlet>
+<router-outlet style="    display: block;
+height: 59px;"></router-outlet>
 <div class="bottom-bar">
     <img width="100%" src="assets/img/bottom-bar.png" alt="">
     <div class="follow">

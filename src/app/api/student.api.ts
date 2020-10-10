@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { StudentRegistrationInfo, User } from '../types/models';
+import { Observable } from 'rxjs';
+import { Student, StudentInfo, StudentRegistrationInfo, User } from '../types/models';
 import { BaseApi } from './base-api.class';
 import { apiUrl } from './base-url.class';
 
@@ -20,7 +21,11 @@ export class StudentApi extends BaseApi {
     return this.httpClient.post<any>(this.createUrl('RegisterForm'), command)
   }
 
-  getStudentInfo() {
-    return this.httpClient.get<any>(this.createUrl('Info'), null)
+  getStudentInfo():Observable<Student> {
+    return this.httpClient.get<Student>(this.createUrl('Info'))
+  }
+
+  uploadExam(formData:FormData):Observable<any>{
+    return this.httpClient.post(this.createUrl('UploadExam'),formData)
   }
 }
