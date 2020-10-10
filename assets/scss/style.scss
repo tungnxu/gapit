@@ -8,6 +8,10 @@ button{
   outline: none !important;
 }
 
+.text-14{
+  font-size: 14px;
+}
+
 .bg-gray{
   background-color: #F3F3F3;
 }
@@ -35,10 +39,16 @@ button{
   position: relative;
   &.no-side{
     .close{
+      justify-content: center;
+    align-items: center;
+    display: flex;
       right: 1rem;
     }
   }
   .close{
+    justify-content: center;
+    align-items: center;
+    display: flex;
     position: absolute;
     top: 1rem;
     right: 2rem;
@@ -63,7 +73,7 @@ button{
 .logo {
   img {
     position: absolute;
-    top: 0;
+    top: -4px;
     left: 0;
     max-width: 120px;
     @media only screen and (max-width: 800px) {
@@ -296,6 +306,7 @@ footer{
     }
     .invalid-feedback {
       display: inherit;
+      margin-bottom: 0.5rem;
     }
   }
 
