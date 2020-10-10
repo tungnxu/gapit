@@ -2,7 +2,7 @@
 @import "bootstrap/bootstrap";
 @import "landing";
 @import "resource-list";
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 button{
   outline: none !important;
@@ -287,5 +287,29 @@ footer{
       animation: spinner-border .75s linear infinite;
     }
 
-   
+
   }}
+
+  .has-danger {
+    .form-control {
+      border-color: #dc3545 !important;
+    }
+    .invalid-feedback {
+      display: inherit;
+    }
+  }
+
+  .form-group {
+    label {
+      &.required {
+        &:after {
+          content: " *";
+          color: #eb4052;
+        }
+      }
+    }
+  }
+
+  .bs-datepicker-container{
+    padding: 0 !important;
+  }
