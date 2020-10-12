@@ -43,7 +43,7 @@ export class MainLayoutComponent implements OnInit {
       title: 'Đăng ký tài khoản',
       backdrop: true,
       ignoreBackdropClick: true,
-    };
+    }
     this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign({initialState}, { class: 'modal-xl modal-dialog-centered' }));
     this.bsRegisterModalRef.content.closeBtnName = 'Close';
   }

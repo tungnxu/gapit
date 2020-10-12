@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialRoutingModule } from './material-routing.module';
 import { MaterialViewComponent } from './material.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     MaterialRoutingModule,
-    SharedModule
+    SharedModule,
+    AccordionModule
   ]
 })
 export class MaterialModule { }
