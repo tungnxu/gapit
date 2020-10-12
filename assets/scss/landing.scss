@@ -6,7 +6,7 @@
     margin: 0 ;
     padding: 0;
   }
- 
+
 
   .resource-section{
       padding: 1.5rem 0 2rem 0;
@@ -135,7 +135,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-     
+
     }
     .overlay{
       position: absolute;
@@ -192,7 +192,7 @@
       margin-top: -20px;
       text-align: center;
     }
-    
+
   }
 }
 
@@ -215,7 +215,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-     
+
     }
     .overlay{
       position: absolute;
@@ -250,7 +250,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-   
+
   }
   .overlay{
     position: absolute;
@@ -267,7 +267,7 @@
     bottom: 1rem;
     left: 0;
     right: 0;
-    
+
     color: white;
     h5{
       line-height: 1.5;
@@ -307,6 +307,8 @@
     position: absolute;
     text-align: center;
     bottom: 3rem;
+    right:0;
+    left: 0;
     font-size: 80px;
     @media only screen and (max-width: 1024px) {
       font-size: 35px;
@@ -318,6 +320,8 @@
     text-align: center;
     top: 4rem;
     font-size: 46px;
+    right:0;
+    left: 0;
     @media only screen and (max-width: 1024px) {
       top: 2rem;
       font-size: 21px;
@@ -335,7 +339,7 @@
     background-size: cover;
     background-position: center;
     background-image: url('./../img/video-thumb.jpg');
-   
+
     i{
       position: absolute;
       top:50%;
