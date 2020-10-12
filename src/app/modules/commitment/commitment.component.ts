@@ -1,11 +1,13 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { CountAnimationDirective } from 'src/app/shared/directives/count-animation.directive';
 
 @Component({
   selector: 'app-commitment',
   templateUrl: './commitment.component.html',
 })
 export class CommitmentComponent implements OnInit {
+  @ViewChild('ca', {static: true}) countAnimation: CountAnimationDirective
   currentData
   dataChilren = [
     {
@@ -50,6 +52,7 @@ export class CommitmentComponent implements OnInit {
 
   getDataChild(year: number) {
     this.currentData = this.dataChilren.find(x => x.year === year);
+    this.countAnimation.changeNumber(this.currentData.numOfChild)
   }
 
   openModal(template: TemplateRef<any>) {
@@ -61,6 +64,6 @@ export class CommitmentComponent implements OnInit {
     this.modalRef = this.modalService.show(template,  Object.assign({initialState}, { class: 'modal-lg modal-dialog-centered' }))
   }
 
-  
+
 
 }
