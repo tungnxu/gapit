@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-commitment',
@@ -40,7 +41,8 @@ export class CommitmentComponent implements OnInit {
       numOfChild: 1300000000
     },
   ];
-  constructor() { }
+  modalRef: BsModalRef;
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.getDataChild(2025)
@@ -49,5 +51,16 @@ export class CommitmentComponent implements OnInit {
   getDataChild(year: number) {
     this.currentData = this.dataChilren.find(x => x.year === year);
   }
+
+  openModal(template: TemplateRef<any>) {
+    const initialState = {
+
+      backdrop: true,
+      ignoreBackdropClick: true,
+    };
+    this.modalRef = this.modalService.show(template,  Object.assign({initialState}, { class: 'modal-lg modal-dialog-centered' }))
+  }
+
+  
 
 }

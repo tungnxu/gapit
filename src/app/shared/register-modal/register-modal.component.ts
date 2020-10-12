@@ -17,6 +17,7 @@ export class RegisterModalComponent implements OnInit {
   title: string
   closeBtnName: string
   bsLoginModalRef: BsModalRef
+  hide = true
 
   registerForm: FormGroup
   loading = false

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  cmsUrl: 'https://tnx.educationhost.cloud/wp-json/',
+  cmsUrl: 'https://nucuoirangrotuonglaituoisang.com/wp-json/',
   apiUrl: 'https://hvn.gapit.com.vn/api',
 }
 

@@ -22,7 +22,7 @@
               </div>
           </div>
           <div class="form-group" hasError="password">
-            <input type="password" formControlName="password" placeholder="6 ký tự chữ cái, viết thường"
+            <input type="password" formControlName="password" placeholder="Mật khẩu tối thiểu 6 ký tự, viết thường"
               class="form-control" id="exampleInputPassword1">
               <div errorMessage>
                 <div class="invalid-feedback" *ifError="'required'" translate>
@@ -38,7 +38,9 @@
           <div class="form-group">
             <button [class.is-loading]="loading" type="submit"
               class="btn btn-primary btn-block">Xác nhận</button>
-            <button type="button" class="btn btn-clear btn-block">Quên mật khẩu</button>
+            <!-- <button type="button" class="btn btn-clear btn-block">Quên mật khẩu</button> -->
+            <div class="text-muted text-center my-3"><small>Chưa có tài khoản? <a (click)="openRegisterModal()" href="javascript:;">Đăng ký</a></small>
+            </div>
           </div>
         </form>
       </div>

@@ -22,12 +22,14 @@
     "@angular/router": "~10.1.4",
     "@ng-select/ng-select": "^5.0.7",
     "bootstrap": "^4.5.2",
+    "classlist.js": "^1.1.20150312",
     "jquery": "^3.5.1",
     "ngx-bootstrap": "^6.1.0",
     "ngx-slick-carousel": "^0.5.1",
     "rxjs": "~6.6.0",
     "slick-carousel": "^1.8.1",
     "tslib": "^2.0.0",
+    "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
