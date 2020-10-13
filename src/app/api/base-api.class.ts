@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
-import { QueryResultBase } from '../types/models'
+import { CategoryWP, QueryResultBase } from '../types/models'
 
 export abstract class BaseApi {
     protected baseUrl: string
@@ -43,5 +43,19 @@ export abstract class BaseApi {
             items: res.body
         }
         return of(result)
+    }
+
+    protected getWPCategoryGroup(res): Observable<CategoryWP[]> {
+        let group = res.reduce((r, a) => {
+            r[a.parent] = [...r[a.parent] || [], a];
+            return r;
+           }, {});
+    
+           const categories : CategoryWP[] = group[0].map(x => {
+            x._parent = group[x.id]
+            return x
+           } )
+      
+        return of(categories)
     }
 }

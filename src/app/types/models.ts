@@ -155,3 +155,37 @@ export interface ResultExam {
   rank: number;
   point: number;
 }
+
+
+export interface MaterialWP {
+  id: number
+  date: Date
+  date_gmt: Date
+  modified: Date
+  modified_gmt: Date
+  slug: string
+  status: string
+  type: string
+  link: string
+  title: ContentBase
+  content: ContentBase
+  excerpt: ContentBase
+  author: number
+  featured_media: number
+  comment_status: string
+  ping_status: string
+  sticky: boolean
+  template: string
+  format: string
+  meta: any[]
+  categories: number[]
+  tags: any[]
+}
+
+export interface MaterialListItemWP {
+  id: number
+  title: ContentBase
+  slug: string
+  categories: CategoryWP[]
+  data: any
+}

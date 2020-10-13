@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  cmsUrl: 'https://nucuoirangrotuonglaituoisang.com/wp-json/',
+  cmsUrl: 'http://localhost/colgate/wp-json/',
   apiUrl: 'https://hvn.gapit.com.vn/api',
 }
 
