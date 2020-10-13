@@ -145,3 +145,13 @@ export interface Student {
   student_info: StudentInfo;
   exams: Exam[];
 }
+
+export interface ResultExam {
+  id: number;
+  user_id: number;
+  name_exam: string;
+  description: string;
+  create_date: Date;
+  rank: number;
+  point: number;
+}

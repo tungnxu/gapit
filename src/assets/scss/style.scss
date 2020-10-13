@@ -8,6 +8,14 @@ button{
   outline: none !important;
 }
 
+.code-input{
+  -moz-appearance: textfield;
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 .text-14{
   font-size: 14px;
 }
