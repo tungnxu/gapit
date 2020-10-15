@@ -166,7 +166,6 @@ export interface MaterialWP {
   slug: string
   status: string
   type: string
-  link: string
   title: ContentBase
   content: ContentBase
   excerpt: ContentBase
@@ -187,5 +186,7 @@ export interface MaterialListItemWP {
   title: ContentBase
   slug: string
   categories: CategoryWP[]
+  thumbnailUrl: string
+  likeCount: number
   data: any
 }

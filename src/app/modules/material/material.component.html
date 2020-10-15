@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="category-accordion mt-5 pt-5">
-                    <accordion class="accordion" [isAnimated]="true">
+                    <accordion class="accordion" [isAnimated]="true" [closeOthers]="true">
 
-                        <accordion-group *ngFor="let category of materialCategories">
+                        <accordion-group [isOpen]="category.id === currentCategory.parent" *ngFor="let category of materialCategories">
                             <h2 accordion-heading class="mb-0">
                                 <button class="btn btn-link" type="button">
                                     {{category?.name}}
@@ -31,8 +31,10 @@
                     <div class="banner">
                         <div class="overlay"></div>
                         <div class="content">
-                            <h1>Tài nguyên giáo dục cho giáo viên</h1>
-                            <a class="btn btn-light btn-sm text-primary" href="#">Khám phá</a>
+                            <h6 class="text-uppercase">Tài nguyên theo {{currentParentCategory?.name}}</h6>
+                            <h1><i>{{currentCategory?.name}}</i></h1>
+                            <!-- <p>{{currentCategory?.description}}</p> -->
+                            <!-- <a class="btn btn-light btn-sm text-primary" href="#">Khám phá</a> -->
                         </div>
                     </div>
 
@@ -40,30 +42,34 @@
                         <div class="form-group row sort-form">
                             <label class="col-sm-4 col-form-label no-wrap">Sắp xếp theo</label>
                             <div class="col-sm-8">
-                                <select class="custom-select">
-                                    <option selected>Thứ hạng</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select  #mySelect class="custom-select" (change)='onOptionsSelected(mySelect.value)'>
+                                    <option value="" disabled selected>Tiêu chí</option>
+                                    <option value="title">Tên A-Z</option>
+                                    <option value="-title">Tên Z-A</option>
+                                    <option value="-likeCount">Hạng cao - thấp</option>
+                                    <option value="likeCount">Hạnh thấp - cao</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="resource-card-list px-3">
+                    <div class="resource-card-list px-3" style="min-height: 400px;">
+                        <ng-container *ngIf="!materials?.length && !loading" >
+                            <div style="min-height: 400px;" class="text-muted d-flex align-items-center justify-content-center">Chưa có tài nguyên nào !</div>
+                        </ng-container>
                         <div class="row">
-                            <div class=" col-lg-4 col-md-6" *ngFor="let item of materials?.items">
+                           
+                            <div class=" col-lg-4 col-md-6" *ngFor="let item of materials;trackBy: trackByFn">
                                 <div class="resource-card-item">
-                                    <div class="resource-thumbnail">
-                                        <img [src]="item?.data?.thumbnail">
-                                    </div>
+                                    <a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">  <div class="resource-thumbnail">
+                                       <img [src]="item?.thumbnailUrl">
+                                    </div></a>
                                     <div class="resource-card-des">
                                         <h6 class="text-primary text-uppercase">{{getCategoryByActivity(item).name}}</h6>
                                         <div class="title">{{item?.title?.rendered}}</div>
                                         <div class="bottom-card">
-                                            <span><i class="fa fa-smile-o" aria-hidden="true"></i> 700</span>
+                                            <div class="d-flex align-items-center"><img class="mr-2" width="18" src="assets/img/like.png" alt="like"> {{ item?.likeCount || 0}}</div>
                                             <div>{{getCategoryByAge(item).name}}</div>
-                                            <a class="action" title="Xem chi tiết" href="#"><i class="fa fa-angle-right"
-                                                    aria-hidden="true"></i></a>
+                                            <a class="action" title="Xem chi tiết" [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]"><i class="fa fa-angle-right" ></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -71,8 +77,8 @@
                            
 
                         </div>
-                        <div class="text-center py-4">
-                            <button class="btn btn-light text-primary">Tải thêm</button>
+                        <div class="text-center py-4" *ngIf="total > materials?.length">
+                            <button [class.is-loading]="loading" type="button" class="btn btn-light text-primary" (click)="loadMore()">Tải thêm</button>
                         </div>
                     </div>
                 </div>

@@ -45,7 +45,7 @@ export abstract class BaseApi {
         return of(result)
     }
 
-    protected getWPCategoryGroup(res): Observable<CategoryWP[]> {
+    protected getWPCategoryGroup(res): Observable<any> {
         let group = res.reduce((r, a) => {
             r[a.parent] = [...r[a.parent] || [], a];
             return r;
@@ -56,6 +56,6 @@ export abstract class BaseApi {
             return x
            } )
       
-        return of(categories)
+        return of({categories: categories, categoriesFlat: res })
     }
 }

@@ -12,40 +12,85 @@ import { CategoryWP, MaterialListItemWP, QueryResultBase } from 'src/app/types/m
 export class MaterialViewComponent implements OnInit {
 
   materialCategories: CategoryWP[]
-  materials: QueryResultBase<MaterialListItemWP>
+  materialCategoriesFlat: CategoryWP[]
+  materials: MaterialListItemWP[]
 
+  currentCategory: CategoryWP
+  currentParentCategory: CategoryWP
   categoryId: number
+  
+  quantity = 1
+  page = 1
+  total: number
+  loading: boolean
+
+  sort: string = "date"
 
   constructor(private materialCategoryApi: MaterialCategoryApi, private materialApi: MaterialApi, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.params
-      .pipe(switchMap(data => {
-        this.categoryId = data["categoryId"]
-        return this.materialApi.getMaterials({ offset: 0, per_page: 10, material_categories: data["categoryId"] })
-      }
-      ))
-      .subscribe(data => {
-        this.materials = data
+    this.materialCategories =  this.route.snapshot.data.cat.categories
+    this.materialCategoriesFlat = this.route.snapshot.data.cat.categoriesFlat
+    this.route.params.subscribe(data=>{
+      this.categoryId = data["categoryId"]
+      this.currentCategory = this.materialCategoriesFlat.find(c => c.id == this.categoryId)
+      this.currentParentCategory = this.materialCategoriesFlat.find(c => c.id ==  this.currentCategory.parent)
+      this.loading = true
+      this.fetch(this.page).subscribe(data => {
+        this.loading = false
+        this.materials = data.items as MaterialListItemWP[]
+        this.total = data.count
       })
-    // this.categoryId = this.route.snapshot.params.categoryId
-
-    this.materialCategoryApi.getAllCategories().subscribe(data => {
-      this.materialCategories = data
     })
 
-    // this.materialApi.getMaterials({offset: 0,per_page: 10, material_categories: this.categoryId }).subscribe(data => {
-    //   debugger
-    //   this.materials = data
-    // })
+    
+  }
+
+  private fetch(page) {
+    const skip = (page - 1) * this.quantity
+    return this.materialApi.getMaterials({ offset: skip, per_page: this.quantity, material_categories: this.categoryId }, this.sort)
+  }
+
+  loadMore() {
+    this.loading = true
+    this.page += 1
+    this.fetch(this.page).subscribe((data => {
+      this.loading = false
+      this.materials.push(...data.items)
+    }))
+  }
+
+  onOptionsSelected(value:string){
+    this.sort = value
+    this.page = 1
+    this.materials = []
+    this.loading = true
+    this.fetch(this.page).subscribe(data=>{
+        this.loading = false
+        this.materials = data.items as MaterialListItemWP[]
+        this.total = data.count
+    })
+  }
+
+  trackByFn(index, item) {
+    return item.id
   }
 
   getCategoryByAge(item: MaterialListItemWP): CategoryWP {
-    return item.categories.find(c => c.parent === 4)
+    return item.categories.find(c => c.parent === 3)
   }
 
   getCategoryByActivity(item: MaterialListItemWP): CategoryWP {
-    return item.categories.find(c => c.parent === 10)
+    return item.categories.find(c => c.parent === 4)
   }
+
+  getCategoryByType(item: MaterialListItemWP): CategoryWP {
+    return item.categories.find(c => c.parent === 2)
+  }
+
+  getCategoryByTarget(item: MaterialListItemWP): CategoryWP {
+    return item.categories.find(c => c.parent === 5)
+  }
+  
 
 }

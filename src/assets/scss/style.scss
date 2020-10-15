@@ -81,9 +81,9 @@ button{
 .logo {
   img {
     position: absolute;
-    top: -4px;
-    left: 0;
-    max-width: 120px;
+    top: -7px;
+    left: 14px;
+    max-width: 149px;
     @media only screen and (max-width: 800px) {
       max-width: 90px;
     }
@@ -107,11 +107,19 @@ button{
 
 footer{
   position: relative;
-  color: white;
-  margin-top: -37px;
-  font-size: 14px;
-  padding-top: 50px;
-  background-color: $gray-900;
+    color: white;
+    margin-top: -37px;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 700;
+    padding-top: 50px;
+  background-color: #333333;
+
+  .footer-cus{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+  }
   ul{
     margin: 2rem 0;
     padding: 0;
@@ -121,7 +129,10 @@ footer{
     li{
       margin: .5rem 0;
       a{
-        color: white !important;
+        color: white;
+        &:hover{
+          color: $secondary;
+        }
       }
     }
   }
@@ -154,7 +165,7 @@ footer{
 }
 
 .fix-container {
-  margin: 0 1.5rem;
+  margin: 0 2rem;
   @media only screen and (max-width: 800px) {
     margin: 0;
   }
@@ -332,3 +343,15 @@ footer{
   .bs-datepicker-container{
     padding: 0 !important;
   }
+
+  @keyframes fadein {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
