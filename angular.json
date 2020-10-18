@@ -32,7 +32,8 @@
               "src/styles.scss",
               "node_modules/slick-carousel/slick/slick.scss",
               "node_modules/slick-carousel/slick/slick-theme.scss",
-              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/plyr/dist/plyr.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

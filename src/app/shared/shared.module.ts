@@ -12,10 +12,11 @@ import { SearchResultModalComponent } from './search-result-modal/search-result-
 import { SubmitContestModalComponent } from './submit-contest-modal/submit-contest-modal.component';
 import { TemplateModalComponent } from './template-modal/template-modal.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 
 
 @NgModule({
-  declarations: [LoginModalComponent, RegisterModalComponent, CountAnimationDirective, TermModalComponent, SearchResultModalComponent, SubmitContestModalComponent, TemplateModalComponent],
+  declarations: [SanitizeHtmlPipe, LoginModalComponent, RegisterModalComponent, CountAnimationDirective, TermModalComponent, SearchResultModalComponent, SubmitContestModalComponent, TemplateModalComponent],
   imports: [
     LayoutsModule,
     CommonModule,
@@ -27,6 +28,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
   exports: [
     LayoutsModule,
     CountAnimationDirective,
+    SanitizeHtmlPipe
   ],
   entryComponents: [LoginModalComponent, RegisterModalComponent, TermModalComponent, SearchResultModalComponent, SubmitContestModalComponent, TemplateModalComponent]
 })

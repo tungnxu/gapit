@@ -18,7 +18,7 @@ export class MaterialCategoryApi extends BaseApi {
         this.setEndpoint(hostUrl, '/wp/v2/material_categories')
     }
 
-    queryCategories(params?: {_fields?:string, offset?: number; per_page?: number, search?: string}) {
+    queryCategories(params?: {_fields?:string, offset?: number; per_page?: number, search?: string, parent?: number}) {
         params._fields = 'id,name,slug,description,parent,taxonomy'
         return this.httpClient.get(this.createUrl(''), {observe: 'response', params: this.createParams(params)})
             .pipe(switchMap(res=> this.getWPQueryResult<CategoryWP>(res)))

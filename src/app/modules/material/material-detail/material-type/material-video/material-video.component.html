@@ -1,8 +1,7 @@
 <div class="resource-content gray-section pb-4">
     <div class="mask">
         <div class="resource-icon">
-            <!-- <img src="assets/img/watch.png" alt=""> -->
-            <img src="assets/img/reading.png" alt="">
+            <img src="assets/img/watch.png" alt="">
              <!-- <img src="assets/img/listen.png" alt=""> -->
               <!-- <img src="assets/img/write.png" alt=""> -->
         </div>
@@ -12,7 +11,7 @@
                 <h1>{{material?.title?.rendered}}</h1>
                 <p>Dành cho trẻ {{getCategoryByAge(material)?.name}}</p>
                 <div class="social-action-bar d-flex mt-3 pb-3">
-                    <button type="button" (click)="download(material?.data?.file_content)" class="btn  round-colgate btn-outline-light mr-3">Tải xuống</button>
+                    <!-- <button type="button" (click)="download(material?.data?.file_content)" class="btn btn-outline-light mr-3">Tải xuống</button> -->
                     <div class="social-info d-flex align-items-center">
                         <div class="like-info mr-2">
                             <img src="assets/img/like.png" alt="">
@@ -27,22 +26,13 @@
 
     </div>
     <div class="resource-activity-content mb-3 pb-5">
-       
-        <!-- Nội dung Slide -->
         <div class="container">
-            <div class="text-center" *ngIf="material?.data?.image_content?.length == 1">
-                <img width="75%" [src]="material?.data?.image_content[0]?.url" alt="img">
-            </div>
-            <ngx-slick-carousel *ngIf="material?.data?.image_content?.length > 1" class="carousel slide-commic-list slider" #slickModal="slick-carousel" [config]="slideConfig">
-                <div ngxSlickItem *ngFor="let img of material?.data?.image_content"  class="comic-item slide">
-                    <img width="100%" [src]="img?.url" alt="">
-                </div>
-            </ngx-slick-carousel>
+            <plyr style="display: block; width: 100%;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" ></plyr>
         </div>
     </div>
+    <div   *ngIf="material?.content?.rendered" class="container mb-5 pb-3 position-relative">
 
-    <div *ngIf="material?.content?.rendered" class="container mb-5 pb-3">
-        <div style="word-break: break-word;"  [innerHtml]="material?.content?.rendered"></div>
+        <div [innerHTML]="htmlVideo | safeHtml"></div>
     </div>
 
     <div class="container">

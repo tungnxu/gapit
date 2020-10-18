@@ -2,23 +2,20 @@
     <div class="container">
         <h2>Tài nguyên</h2>
         <nav class="nav-colgate nav nav-pills nav-justified">
-            <a class="nav-link active" href="#">Hàng đầu</a>
-            <a class="nav-link" (click)="getCategory(10)" href="javascript:;">Dành cho gia đình</a>
-            <a class="nav-link" (click)="getCategory(11)" href="javascript:;">Dành cho giáo viên</a>
-            <a class="nav-link" (click)="currentResourceList = null">Dành cho chuyên gia nha khoa</a>
-            <a class="nav-link" href="#">Dành cho tình nguyện viên</a>
+            <a class="nav-link active" [class.active]="currentCat == null" (click)="getBest()" href="javascript:;">Hàng đầu</a>
+            <a class="nav-link" [class.active]="currentCat?.id == cat?.id" *ngFor="let cat of whoCategoryList" (click)="getCategory(cat)" href="javascript:;">{{cat?.name}}</a>
         </nav>
 
         <ng-container *ngIf="currentResourceList?.length > 0">
             <ngx-slick-carousel   (init)="slickInit($event)"    #slickModal="slick-carousel"   class="carousel list-resource-card slider" [config]="slideConfig">
                 <div ngxSlickItem *ngFor="let slide of currentResourceList" class="resource-card-wrapper">
                     <div class="resource-card">
-                        <div class="resource-thumbnail">
+                        <a class="action" [routerLink]="['/material/detail',slide?.slug, getCategoryByType(slide)?.slug, slide?.id]" title="{{slide?.title?.rendered}}"><div class="resource-thumbnail">
                             <img [src]="slide?.thumbnailUrl">
-                        </div>
+                        </div> </a>
                         <div class="resource-card-des">
-                            <div class="title">{{slide?.title}}</div>
-                            <a class="action" title="Xem chi tiết" [routerLink]="slide?.link"><i class="fa fa-angle-right"
+                            <div class="title">{{slide?.title?.rendered}}</div>
+                            <a class="action" [routerLink]="['/material/detail',slide?.slug, getCategoryByType(slide)?.slug, slide?.id]" title="{{slide?.title?.rendered}}"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></a>
                         </div>
                     </div>

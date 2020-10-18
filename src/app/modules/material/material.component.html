@@ -1,4 +1,4 @@
-<section class="resource-list fix-container">
+<section class="resource-list fix-container" style="max-width: 1440px;margin:0 auto;">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
@@ -46,8 +46,8 @@
                                     <option value="" disabled selected>Tiêu chí</option>
                                     <option value="title">Tên A-Z</option>
                                     <option value="-title">Tên Z-A</option>
-                                    <option value="-likeCount">Hạng cao - thấp</option>
-                                    <option value="likeCount">Hạnh thấp - cao</option>
+                                    <option value="likeCount">Hạng cao - thấp</option>
+                                    <option value="-likeCount">Hạng thấp - cao</option>
                                 </select>
                             </div>
                         </div>
@@ -65,9 +65,9 @@
                                     </div></a>
                                     <div class="resource-card-des">
                                         <h6 class="text-primary text-uppercase">{{getCategoryByActivity(item).name}}</h6>
-                                        <div class="title">{{item?.title?.rendered}}</div>
+                                        <div class="title"><a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">{{item?.title?.rendered}}</a></div>
                                         <div class="bottom-card">
-                                            <div class="d-flex align-items-center"><img class="mr-2" width="18" src="assets/img/like.png" alt="like"> {{ item?.likeCount || 0}}</div>
+                                            <div class="d-flex align-items-center"><img class="mr-2" width="18" src="assets/img/like.png" alt="like"><span style="font-size: 16px"> {{ item?.likeCount || 0}}</span></div>
                                             <div>{{getCategoryByAge(item).name}}</div>
                                             <a class="action" title="Xem chi tiết" [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]"><i class="fa fa-angle-right" ></i></a>
                                         </div>

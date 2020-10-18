@@ -2,84 +2,38 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <app-material-standard></app-material-standard>
-                <div class="resource-card-list px-3 container mt-4">
+                <ng-container [ngSwitch]="materialType">
+                <ng-container *ngSwitchCase="'material'">
+                    <app-material-standard [material]="material"></app-material-standard>
+                </ng-container>
+                <ng-container *ngSwitchCase="'video'">
+                    <app-material-video [material]="material"></app-material-video>
+                </ng-container>
+                <ng-container *ngSwitchCase="'music'">
+                    <app-material-music [material]="material"></app-material-music>
+                </ng-container>
+               
+          </ng-container>
+            
+                <div *ngIf="moreMaterial" class="resource-card-list px-3 container mt-5">
                     <h4 class="mb-3">Nhiều tài nguyên hơn</h4>
                     <div class="row">
-                        <div class=" col-lg-3 col-md-6">
+                        <div *ngFor="let item of moreMaterial" class=" col-lg-3 col-md-6">
                             <div class="resource-card-item">
-                                <div class="resource-thumbnail">
-                                    <img src="assets/img/t-1.jpg">
-                                </div>
+                                <a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">  <div class="resource-thumbnail">
+                                   <img [src]="item?.thumbnailUrl">
+                                </div></a>
                                 <div class="resource-card-des">
-                                    <h6 class="text-primary text-uppercase">KIỂM TRA</h6>
-                                    <div class="title">Hướng dẫn cho Giáo viên Chương trình Giáo dục Sức khỏe Răng
-                                        miệng cho Pre-K</div>
+                                    <h6 class="text-primary text-uppercase">{{getCategoryByActivity(item).name}}</h6>
+                                    <div class="title"> <a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">{{item?.title?.rendered}}</a></div>
                                     <div class="bottom-card">
-                                        <span><i class="fa fa-smile-o" aria-hidden="true"></i> 700</span>
-                                        <div>Từ 2-7 tuổi</div>
-                                        <a class="action" title="Xem chi tiết" href="#"><i class="fa fa-angle-right"
-                                                aria-hidden="true"></i></a>
+                                        <div class="d-flex align-items-center"><img class="mr-2" width="18" src="assets/img/like.png" alt="like"> <span style="font-size: 16px">{{ item?.likeCount || 0}}</span> </div>
+                                        <div>{{getCategoryByAge(item).name}}</div>
+                                        <a class="action" title="Xem chi tiết" [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]"><i class="fa fa-angle-right" ></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class=" col-lg-3 col-md-6">
-                            <div class="resource-card-item">
-                                <div class="resource-thumbnail">
-                                    <img src="assets/img/t-2.jpg">
-                                </div>
-                                <div class="resource-card-des">
-                                    <h6 class="text-primary text-uppercase">KIỂM TRA</h6>
-                                    <div class="title">Hướng dẫn cho Giáo viên Chương trình Giáo dục Sức khỏe Răng
-                                        miệng cho Pre-K</div>
-                                    <div class="bottom-card">
-                                        <span><i class="fa fa-smile-o" aria-hidden="true"></i> 700</span>
-                                        <div>Từ 2-7 tuổi</div>
-                                        <a class="action" title="Xem chi tiết" href="#"><i class="fa fa-angle-right"
-                                                aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-lg-3 col-md-6">
-                            <div class="resource-card-item">
-                                <div class="resource-thumbnail">
-                                    <img src="assets/img/t-3.jpg">
-                                </div>
-                                <div class="resource-card-des">
-                                    <h6 class="text-primary text-uppercase">KIỂM TRA</h6>
-                                    <div class="title">Hướng dẫn cho Giáo viên Chương trình Giáo dục Sức khỏe Răng
-                                        miệng cho Pre-K</div>
-                                    <div class="bottom-card">
-                                        <span><i class="fa fa-smile-o" aria-hidden="true"></i> 700</span>
-                                        <div>Từ 2-7 tuổi</div>
-                                        <a class="action" title="Xem chi tiết" href="#"><i class="fa fa-angle-right"
-                                                aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" col-lg-3 col-md-6">
-                            <div class="resource-card-item">
-                                <div class="resource-thumbnail">
-                                    <img src="assets/img/t-1.jpg">
-                                </div>
-                                <div class="resource-card-des">
-                                    <h6 class="text-primary text-uppercase">KIỂM TRA</h6>
-                                    <div class="title">Hướng dẫn cho Giáo viên Chương trình Giáo dục Sức khỏe Răng
-                                        miệng cho Pre-K</div>
-                                    <div class="bottom-card">
-                                        <span><i class="fa fa-smile-o" aria-hidden="true"></i> 700</span>
-                                        <div>Từ 2-7 tuổi</div>
-                                        <a class="action" title="Xem chi tiết" href="#"><i class="fa fa-angle-right"
-                                                aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                
-                
                     </div>
                 
                 </div>

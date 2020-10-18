@@ -291,8 +291,14 @@ footer{
 
 }
 
+.round-colgate{
+  border-radius: 20px 0 20px 20px;
+}
 
 .btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   &.is-loading{
     opacity: .7;
     pointer-events: none;
@@ -355,3 +361,25 @@ footer{
     }
   }
   
+
+  .plyr--full-ui input[type=range] {
+    color: $primary !important;
+  }
+  
+  .plyr__control--overlaid {
+    background: $primary !important;
+  }
+  
+  .plyr--video .plyr__control.plyr__tab-focus,
+  .plyr--video .plyr__control:hover,
+  .plyr--video .plyr__control[aria-expanded=true] {
+    background: $primary !important;
+  }
+  
+  .plyr__control.plyr__tab-focus {
+    box-shadow: 0 0 0 5px $primary !important;
+  }
+  
+  .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
+    background: $primary !important;
+  }

@@ -22,7 +22,7 @@ export class MaterialApi extends BaseApi {
     params._fields = 'id,title,slug,categories,material_categories,data,thumbnailUrl,likeCount,featured_media,date'
     if(sort){
       const sortParam = {
-        'filter[orderby]': sort,
+        'filter[orderby]': sort.startsWith('-') ? sort.substring(1) : sort,
         'order': sort.startsWith('-') ? 'desc': 'asc'
       }
       params = {...params, ...sortParam}
@@ -32,8 +32,12 @@ export class MaterialApi extends BaseApi {
   }
 
   getMaterialById(id: string) {
-    const params = { _fields: 'id,title,content,modified,status,categories,tags,material_categories,data, thumbnailUrl' }
+    const params = { _fields: 'id,title,content,modified,status,categories,tags,material_categories,data, thumbnailUrl,likeCount' }
     return this.httpClient.get<MaterialWP>(this.createUrl(id), { params: this.createParams(params) })
+  }
+
+  likeMaterial(id: number){
+    return this.httpClient.get<number>(this.createUrl(`${id}/like`))
   }
 
 }

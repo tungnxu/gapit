@@ -179,6 +179,9 @@ export interface MaterialWP {
   meta: any[]
   categories: number[]
   tags: any[]
+
+  data: any
+  likeCount: number
 }
 
 export interface MaterialListItemWP {

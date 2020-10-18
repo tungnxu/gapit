@@ -1,6 +1,6 @@
 .gray-section {
   border-radius: 38px;
-  background: #eeeeee;
+  background: #f3f3f3;
   margin: 0 1rem;
   @media only screen and (max-width: 600px) {
     margin: 0 ;
@@ -184,9 +184,20 @@
     border-radius: 30px;
     max-width: 140px;
     overflow: hidden;
+    transition: 250ms ease;
+    &:hover{
+      .resource-thumbnail{
+      img{
+        transform: scale(1.3);
+      }}
+      .resource-card-des{
+        color: $primary;
+      }
+    }
     .resource-thumbnail{
       max-width: 140px;
       img{
+        transition: 250ms ease;
         width: 100%;
         transform: scale(1.2);
     }
@@ -199,6 +210,8 @@
       position: relative;
       margin-top: -20px;
       text-align: center;
+      color: black;
+
     }
 
   }

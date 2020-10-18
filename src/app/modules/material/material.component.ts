@@ -19,7 +19,7 @@ export class MaterialViewComponent implements OnInit {
   currentParentCategory: CategoryWP
   categoryId: number
   
-  quantity = 1
+  quantity = 9
   page = 1
   total: number
   loading: boolean

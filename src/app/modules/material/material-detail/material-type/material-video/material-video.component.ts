@@ -1,22 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { PlyrComponent } from 'ngx-plyr';
 import { MaterialApi } from 'src/app/api/material.api';
 import { download } from 'src/app/shared/common';
 import { CategoryWP, MaterialWP } from 'src/app/types/models';
 
 @Component({
-  selector: 'app-material-standard',
-  templateUrl: './material-standard.component.html',
+  selector: 'app-material-video',
+  templateUrl: './material-video.component.html',
 })
-export class MaterialStandardComponent implements OnInit {
+export class MaterialVideoComponent implements OnChanges {
   @Input() material: MaterialWP
 
   rateMessage: string
+  htmlVideo: string
 
-  slideConfig = {
-    'dots': true,
-    'arrows': true,
-    'variableWidth': true,
-  };
+  @ViewChild(PlyrComponent)  plyr: PlyrComponent;
+  player: Plyr;
+  videoSources: any
+ 
   constructor(private materialApi: MaterialApi) { }
 
   getCategoryByAge(item): CategoryWP {
@@ -28,8 +29,17 @@ export class MaterialStandardComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.htmlVideo = this.material.content.rendered
+    this.videoSources = [
+      {
+        src: this.material.data.video_youtube_link,
+        provider: 'youtube',
+      },
+    ];
+    
   }
+
 
   download(url){
     download(url)

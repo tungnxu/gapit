@@ -7,15 +7,21 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { MaterialDetailComponent } from './material-detail/material-detail.component';
 import { MaterialStandardComponent } from './material-detail/material-type/material-standard/material-standard.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MaterialVideoComponent } from './material-detail/material-type/material-video/material-video.component';
+import { MaterialMusicComponent } from './material-detail/material-type/material-music/material-music.component';
+import { PlyrModule } from 'ngx-plyr';
 
 
 @NgModule({
-  declarations: [MaterialViewComponent, MaterialDetailComponent, MaterialStandardComponent],
+  declarations: [MaterialViewComponent, MaterialDetailComponent, MaterialStandardComponent, MaterialVideoComponent, MaterialMusicComponent],
   imports: [
     CommonModule,
     MaterialRoutingModule,
     SharedModule,
-    AccordionModule
+    AccordionModule,
+    SlickCarouselModule,
+    PlyrModule
   ]
 })
 export class MaterialModule { }
