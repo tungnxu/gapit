@@ -9,6 +9,7 @@
       background-position: center;
       background-size: cover;
       background-image: url("./../img/smile.jpg");
+      // background-image: linear-gradient(to right, #760d12, #9d1219, #ed1b24);
       .content {
         color: white;
         position: absolute;
@@ -18,13 +19,13 @@
       }
       .overlay {
         position: absolute;
-        width: 70%;
+        width: 100%;
         bottom: 0;
         height: 100%;
         left: 0;
         right: 0;
         z-index: 1;
-        background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.6));
+         background: linear-gradient(to right, #ae0c14,transparent, transparent);
       }
     }
   }
@@ -83,7 +84,13 @@
     border-radius: 20px 0 0 0;
     padding: 1rem 2rem;
     .title{
-      font-size: 14px;
+      font-size: 16px;
+      a{
+        color: inherit;
+        &:hover{
+          color: $primary;
+        }
+      }
     }
     .bottom-card{
       padding: 0rem 2rem;
@@ -168,20 +175,25 @@
           list-style: none;
           padding: 0;
           .cat-item{
-            padding: .5rem 0;
+            // padding: .5rem 0;
             padding-left: 2rem;
+            padding: .3rem .5rem .3rem 2rem;
+            margin-bottom: 4px;
+            border-radius: 5px;
+            transition: 150ms ease;
+            &:hover{
+              background-color: $gray-400;
+            }
             a{
               text-decoration: none !important;
               color: $gray-900;
+              width: 100%;
+              display: inline-block;
             }
 
             &.active {
               background-color: #99D7DB;
-              padding: .3rem .5rem .3rem 2rem;
-              border-radius: 5px;
-              &:before{
-
-              }
+              
               a{
                 color: $secondary;
               }
@@ -204,11 +216,23 @@
     background-position: 50%;
     background-size: cover;
     background: #a9261f;
-    border-radius: 0 0 173% 42%;
+    // border-radius: 0 0 173% 42%;
       // background-image: url("./../img/amask.png");
       @media only screen and (max-width: 800px) {
         border-radius: 0;
       }
+
+   .curve{
+      background-image: url("./../img/curve.webp");
+      position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    z-index: 0;
+    width: 100%;
+    background-position: bottom;
+   }   
    .resource-icon{
     position: absolute;
     right: 5rem;
@@ -226,6 +250,8 @@
       .content {
         color: white;
         width: 60%;
+        position: relative;
+        z-index: 1;
         @media only screen and (max-width: 800px) {
           width: 90%;
         }
@@ -235,9 +261,27 @@
 
   .resource-activity-content{
     position: relative;
-    margin-top: -8rem;
+    margin-top: -12rem;
     @media only screen and (max-width: 800px) {
-      margin-top: 0rem;
+      margin-top: -5rem;
+    }
+
+    .music-content{
+      position: relative;
+        border-radius: 32px 0;
+        background-color: #fff;
+        overflow: hidden;
+        box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.2);
+        margin: 0 15px;
+        font-size: 18px;
+      .music-content-header{
+        display: flex;
+        justify-content: space-between;
+        background-color: $secondary;
+        align-items: center;
+        height: 64px;
+        color: white;
+      }
     }
   }
 
@@ -245,7 +289,7 @@
     position: relative;
     color: white;
     width: 100%;
-    min-height: 250px;
+    min-height: 200px;
     background: #8f1f1d;
     border-radius: 30px;
     background-repeat: no-repeat;
@@ -286,7 +330,7 @@
   }
   .slide-commic-list{
     .comic-item{
-      width: 400px;
+      width: 500px;
       height: auto;
       margin-right: 3rem;
     }
@@ -295,18 +339,21 @@
 
     }
     .slick-prev{
-      left: 0px !important;
+      left: 0px !important;z-index: 99;
     }
     .slick-next {
-      left: 180px !important;
+      // left: 180px !important;z-index: 99;
+
     }
     .slick-arrow{
       top:unset !important;
+      z-index: 99;
     }
 
     .slick-dots{
-      width: 191px;
-      bottom: -29px !important;
+      z-index: 98;
+      // width: 191px;
+      bottom: -35px !important;
       justify-content: center;
       display: inline-flex !important;
     }
