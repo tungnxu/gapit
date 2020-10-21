@@ -193,3 +193,10 @@ export interface MaterialListItemWP {
   likeCount: number
   data: any
 }
+
+export interface PaintingListItemWP {
+  id: number
+  title: ContentBase
+  data: any
+  thumbnailUrl: string
+}

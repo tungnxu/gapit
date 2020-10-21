@@ -24,8 +24,14 @@ const routes: Routes = [
         path: 'commitment',
         loadChildren: () => import('./modules/commitment/commitment.module').then(m => m.CommitmentModule)
       },
-      { path: 'material', 
-      loadChildren: () => import('./modules/material/material.module').then(m => m.MaterialModule) },
+      {
+        path: 'material',
+        loadChildren: () => import('./modules/material/material.module').then(m => m.MaterialModule)
+      },
+      {
+        path: 'gallery',
+        loadChildren: () => import('./modules/painting/painting.module').then(m => m.PaintingModule)
+      },
 
     ]
   },
