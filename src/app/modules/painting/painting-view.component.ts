@@ -42,6 +42,19 @@ export class PaintingViewComponent implements OnInit {
     // })
   }
 
+  trackByFn(index, item) {
+    return item.id
+  }
+
+  loadMore() {
+    this.loading = true
+    this.page += 1
+    this.fetch(this.page).subscribe((data => {
+      this.loading = false
+      this.paintings.push(...data.items)
+    }))
+  }
+
   private fetch(page) {
     const skip = (page - 1) * this.quantity
     return this.paintingApi.getPaintings({ offset: skip, per_page: this.quantity })

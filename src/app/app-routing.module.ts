@@ -28,12 +28,12 @@ const routes: Routes = [
         path: 'material',
         loadChildren: () => import('./modules/material/material.module').then(m => m.MaterialModule)
       },
-      {
-        path: 'gallery',
-        loadChildren: () => import('./modules/painting/painting.module').then(m => m.PaintingModule)
-      },
 
     ]
+  },
+  {
+    path: 'gallery',
+    loadChildren: () => import('./modules/painting/painting.module').then(m => m.PaintingModule)
   },
   // {
   //   path: '**',
