@@ -198,5 +198,30 @@ export interface PaintingListItemWP {
   id: number
   title: ContentBase
   data: any
+  slug: string
   thumbnailUrl: string
+}
+
+export interface PaintingWP {
+  id: number
+  slug: string
+  status: string
+  title: ContentBase
+  content: ContentBase
+  meta: any[]
+  categories: number[]
+  tags: any[]
+
+  data: PaintingData
+  nextId: number
+  previousId: number
+}
+
+export interface PaintingData {
+  age: string;
+  full_name: string;
+  avatar: string;
+  painting: string;
+  school_name: string;
+  favorite_food: string;
 }

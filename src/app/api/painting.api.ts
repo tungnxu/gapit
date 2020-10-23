@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { PaintingListItemWP } from '../types/models';
+import { PaintingListItemWP, PaintingWP } from '../types/models';
 import { BaseApi } from './base-api.class';
 import { cmsUrl } from './base-url.class';
 
@@ -31,13 +31,8 @@ export class PaintingApi extends BaseApi {
       .pipe(switchMap(res => this.getWPQueryResult<PaintingListItemWP>(res)))
   }
 
-  // getPaintingById(id: string) {
-  //   const params = { _fields: 'id,title,content,modified,status,categories,tags,painting_categories,data, thumbnailUrl,likeCount' }
-  //   return this.httpClient.get<PaintingWP>(this.createUrl(id), { params: this.createParams(params) })
-  // }
-
-  likePainting(id: number){
-    return this.httpClient.get<number>(this.createUrl(`${id}/like`))
+  getPaintingById(id: string) {
+    const params = { _fields: 'id,title,content,modified,status,categories,tags,painting_categories,data, thumbnailUrl, previousId, nextId' }
+    return this.httpClient.get<PaintingWP>(this.createUrl(id), { params: this.createParams(params) })
   }
-
 }

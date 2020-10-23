@@ -3,16 +3,16 @@
         <div class="art-main">
             <div class="wrapper-content">
             <nav class="navbar d-flex navbar-expand-lg navbar-light border-bottom py-4">
-                <a href=""><i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> Phòng trưng bày nghệ thuật Colgate My Bright Smile ™</a>
+                <a [routerLink]="['/gallery']"><i class="fa fa-chevron-left mr-2" aria-hidden="true"></i> Phòng trưng bày nghệ thuật Colgate My Bright Smile ™</a>
             </nav>
             <div class="art-content d-flex justify-content-center align-items-center flex-column">
                 <div class="my-image">
-                    <img src="assets/img/artpix.jpg" alt="" srcset="">
+                    <img [src]="painting?.data?.painting" alt="painting" >
                 </div>
                 <div class="tool my-3 d-flex justify-content-center">
-                    <a class="action" title="Xem chi tiết" href="http://"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-                    <a class="action" title="Xem chi tiết" href="http://"><i class="fa fa-download" aria-hidden="true"></i></a>
-                    <a class="action" title="Xem chi tiết" href="http://"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <a class="action" [class.hide]="painting?.previousId == 0"  title="Xem chi tiết" [routerLink]="['/gallery','preview-painting', painting?.previousId]" title="Trước đó"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+                    <a class="action" [href]="painting?.data?.painting" [attr.download]="getFileNameURL(painting?.data?.painting)"><i class="fa fa-download" aria-hidden="true"></i></a>
+                    <a class="action" [class.hide]="painting?.nextId == 0"  title="Xem chi tiết" [routerLink]="['/gallery','next-painting', painting?.nextId]" title="Tiếp theo"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
                 </div>
             </div>
           
@@ -30,26 +30,27 @@
               </div>
 
               <div class="profile d-flex align-items-center">
-                <img class="mr-2" width="100px" src="assets/img/avatar.jpg" alt="" srcset="">
+                  <div class="avatar-container mr-2">
+                    <img height="100%" [src]="painting?.data?.avatar" alt="avatar" >
+                  </div>
                 <div>
-                    <h6><small class="text-primary text-uppercase"><b>Age 7</b></small></h6>
-                    <div>Muhan Li</div>
+                    <h6><small class="text-primary text-uppercase"><b>{{painting?.data?.age}} tuổi</b></small></h6>
+                    <div>{{painting?.data?.full_name}}</div>
                 </div>
               </div>
 
-              <div class="profile-meta">
+              <div class="profile-meta" *ngIf="painting?.data?.school_name">
                 <h6><small class="text-primary text-uppercase">School</small></h6>
-                <p>Haigang District Jianshelu Primary School, Qinhuangdao, China</p>
+                <p>{{painting?.data?.school_name}}</p>
               </div>
 
-              <div class="profile-meta">
+              <div class="profile-meta" *ngIf="painting?.data?.favorite_food">
                 <h6><small class="text-primary text-uppercase">Favorite Dinner Food</small></h6>
-                <p>Dumplings</p>
+                <p>{{painting?.data?.favorite_food}}</p>
               </div>
 
               <div class="border-bottom mb-3"></div>
-              <div class="profile-meta profile-content">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Excepturi blanditiis reprehenderit saepe beatae error dolor et, minus autem, qui ducimus perspiciatis distinctio quis, consequatur doloremque rem deleniti eos veritatis! Iusto?</p>
+              <div *ngIf="painting?.content?.rendered" class="profile-meta profile-content" [innerHTML]="painting?.content?.rendered">
               </div>
         </div>
     </div>

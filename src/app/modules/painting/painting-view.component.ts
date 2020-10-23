@@ -30,16 +30,8 @@ export class PaintingViewComponent implements OnInit {
     this.yearCat = this.paintingCategories.find(x => x.id === 28)
     this.countryCat  = this.paintingCategories.find(x => x.id === 27)
     this.fetch(this.page).subscribe(data => {
-      debugger
       this.paintings = data.items as PaintingListItemWP[]
     })
-    // this.postApi.getPosts({offset: 0,per_page: 10 }).subscribe((res: QueryResultBase<PostWP>) => {
-    //   this.posts = res.items
-    // })
-
-    // this.categoryApi.getAllCategories().subscribe((res: CategoryWP[]) => {
-    //   this.categories = res
-    // })
   }
 
   trackByFn(index, item) {
