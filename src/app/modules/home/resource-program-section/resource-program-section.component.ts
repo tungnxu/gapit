@@ -24,14 +24,22 @@ export class ResourceProgramSectionComponent implements OnInit {
       imageUrl: 'assets/img/p-2.jpg',
       link: '#',
       buttonTitle: 'Bắt đầu'
+    },
+    {
+      bigTitle: 'Thư viện tranh',
+      smallTitle: 'Thư viện trưng bày cuộc thi vẽ tranh Colgate Bright Smiles, Bright Futures',
+      hasLable: false,
+      imageUrl: 'assets/img/p-3.jpg',
+      link: '/gallery',
+      buttonTitle: 'Khám phá'
     }
   ]
- 
-  slideConfig = { 
+
+  slideConfig = {
     'dots': false,
     'infinite': true,
     'variableWidth': true
-  };
+  }
   constructor() { }
 
   ngOnInit(): void {

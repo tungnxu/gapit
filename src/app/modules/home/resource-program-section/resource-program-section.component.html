@@ -18,11 +18,11 @@
                 <div class="content">
                     <h3>{{slide?.bigTitle}}</h3>
                     <p>{{slide?.smallTitle}}</p>
-                    <a class="btn btn-light btn-round" routerLink="slide?.link" >{{slide?.buttonTitle}}</a>
+                    <a class="btn btn-light btn-round" [routerLink]="slide?.link" >{{slide?.buttonTitle}}</a>
                 </div>
             </div>
         </ngx-slick-carousel>
-        
+
 
         <!-- <div class="programs slider">
             <div class="program-item">
