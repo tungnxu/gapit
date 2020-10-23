@@ -43,7 +43,7 @@
                                 <div *ngFor="let item of paintings;trackBy: trackByFn" class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="resource-gallery-item">
                                         <div class="resource-thumbnail">
-                                            <img [src]="item?.thumbnailUrl">
+                                           <a [routerLink]="['/gallery',item?.slug, item?.id]" title="{{item?.title?.rendered}}"> <img height="100%" [src]="item?.thumbnailUrl"></a>
                                         </div>
                                         <div class="resource-card-des">
                                             <div>{{item?.title?.rendered}}</div>
