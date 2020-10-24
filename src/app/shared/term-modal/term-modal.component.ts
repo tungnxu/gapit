@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { PageApi } from 'src/app/api/page.api';
+import { PostWP } from 'src/app/types/models';
 
 @Component({
   selector: 'app-term-modal',
@@ -10,12 +11,12 @@ import { PageApi } from 'src/app/api/page.api';
 })
 export class TermModalComponent implements OnInit {
   bsSubmitContestModalRef: BsModalRef;
-  content$ : Observable<string>
+  content$ : Observable<PostWP>
   constructor(public bsModalRef: BsModalRef,
     private pageApi: PageApi) { }
 
   ngOnInit(): void {
-    this.content$ = this.pageApi.getPageContentById(3)
+    this.content$ = this.pageApi.getPageContentById(115)
   }
 
 }

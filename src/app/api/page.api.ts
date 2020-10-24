@@ -21,7 +21,6 @@ export class PageApi extends BaseApi {
   getPageContentById(pageId: number) {
     // params._fields = 'id,excerpt,title,modified,status,slug,categories'
     return this.httpClient.get<PostWP>(this.createUrl(`${pageId}`))
-      .pipe(map(res => res.content.rendered))
   }
 
 }

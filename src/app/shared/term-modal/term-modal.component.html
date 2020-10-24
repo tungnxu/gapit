@@ -1,6 +1,6 @@
 <div class="modal-body p-4">
-  <h3 class="text-primary text-center mt-4">Điều khoản của chương trình</h3>
-  <div class="box-term p-3 mb-3" [innerHTML]="content$ | async">
+  <h3 class="text-primary text-center mt-4">{{(content$ | async)?.title?.rendered}}</h3>
+  <div class="box-term p-3 mb-3" [innerHTML]="(content$ | async)?.content?.rendered">
   </div>
 
   <div class="text-center mt-3">
