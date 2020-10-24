@@ -109,6 +109,10 @@ button{
   border-radius: 0 0 52px 0;
   overflow: hidden;
   z-index: 1;
+  @media only screen and (max-width: 800px) {
+    background: #eeeeee;
+
+  }
   .follow{
     position: absolute;
     right:0;
