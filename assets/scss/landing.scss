@@ -107,10 +107,10 @@
         font-size: 14px;
       }
       .action{
-        padding: 3px 0px 3px 3px;
         display: block;
         width: 32px;
         height: 32px;
+        line-height: 32px;
         background-color: $primary;
         text-align: center;
         color: white;
@@ -119,6 +119,9 @@
         bottom:1rem;
         font-size: 22px;
         right: 10px;
+        i{
+          line-height: 32px;
+        }
       }
     }
   }
@@ -164,15 +167,18 @@
       right: 0;
       color: white;
       .action{
-        padding: 3px 0px 3px 3px;
         display: block;
         width: 32px;
         height: 32px;
+        line-height: 32px;
         background-color: white;
         text-align: center;
         color: $primary;
         border-radius: 50%;
         font-size: 22px;
+        i{
+          line-height: 32px;
+        }
       }
     }
   }
