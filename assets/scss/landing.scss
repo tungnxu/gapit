@@ -25,6 +25,9 @@
   // overflow: hidden;
   border-radius: 0 0 46px 0;
   position: relative;
+  @media only screen and (max-width: 800px){
+    height: 520px;
+  }
   &.commit{
     background-image: url('./../img/commit.jpg');
   }
@@ -61,7 +64,7 @@
       @media only screen and (max-width: 800px){
         left: 2rem;
         h1{
-          font-size: 2rem;
+          font-size: 1.5rem;
         }
       }
   }
@@ -75,7 +78,7 @@
   margin-top: 1rem;
   .resource-card-wrapper{
     width: 215px;
-    padding: 1rem 1rem 1rem 5px;
+    padding: 1rem 2rem 1rem 5px;
     outline: none;
   }
   .resource-card{
@@ -262,6 +265,9 @@
       left: 0;
       right: 0;
       color: white;
+      @media only screen and (max-width: 800px){
+        width: 98vw;
+      }
     }
   }
 }
@@ -291,7 +297,7 @@
   }
   .content{
     position: absolute;
-    padding: 1rem 4rem;
+    padding: 1rem 2rem;
     bottom: 1rem;
     left: 0;
     right: 0;
@@ -304,7 +310,10 @@
 }
 
 .nav-colgate{
+  overflow: auto;
+  flex-wrap: nowrap;
   .nav-link{
+    white-space: nowrap;
     flex-basis: unset;
     flex-grow: unset;
     padding: .5rem 1rem .5rem 0;
@@ -326,6 +335,7 @@
 }
 
 .section-count{
+  min-height: 400px;
   position: relative;
   color: white;
   font-weight: bold;
@@ -352,7 +362,8 @@
     left: 0;
     @media only screen and (max-width: 1024px) {
       top: 2rem;
-      font-size: 21px;
+      font-size: 2rem;
+      padding: 0 3rem;
     }
   }
 }
@@ -361,6 +372,7 @@
   border-radius: 0 0 30px 0;
   overflow: hidden;
   .video-thumb{
+    cursor: pointer;
     position: relative;
     width: 100%;
     height: 500px;

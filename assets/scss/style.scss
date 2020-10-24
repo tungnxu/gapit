@@ -14,8 +14,12 @@ button{
     -webkit-appearance: none;
     margin: 0;
   }
+
 }
 
+.text-bold{
+  font-weight: 600;
+}
 .text-14{
   font-size: 14px;
 }
@@ -94,7 +98,7 @@ button{
     left: 14px;
     max-width: 149px;
     @media only screen and (max-width: 800px) {
-      max-width: 90px;
+      max-width: 112px;
     }
     z-index: 2;
   }
