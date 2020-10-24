@@ -35,6 +35,7 @@ const routes: Routes = [
     path: 'gallery',
     loadChildren: () => import('./modules/painting/painting.module').then(m => m.PaintingModule)
   },
+  { path: 'stuff-registration', loadChildren: () => import('./page/page.module').then(m => m.PageModule) },
   // {
   //   path: '**',
   //   component: NotFoundComponent

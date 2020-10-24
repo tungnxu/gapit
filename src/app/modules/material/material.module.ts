@@ -11,10 +11,11 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MaterialVideoComponent } from './material-detail/material-type/material-video/material-video.component';
 import { MaterialMusicComponent } from './material-detail/material-type/material-music/material-music.component';
 import { PlyrModule } from 'ngx-plyr';
+import { MaterialGameComponent } from './material-detail/material-type/material-game/material-game.component';
 
 
 @NgModule({
-  declarations: [MaterialViewComponent, MaterialDetailComponent, MaterialStandardComponent, MaterialVideoComponent, MaterialMusicComponent],
+  declarations: [MaterialViewComponent, MaterialDetailComponent, MaterialStandardComponent, MaterialVideoComponent, MaterialMusicComponent, MaterialGameComponent],
   imports: [
     CommonModule,
     MaterialRoutingModule,

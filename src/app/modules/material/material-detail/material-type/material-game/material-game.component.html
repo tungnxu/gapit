@@ -1,0 +1,63 @@
+<div class="resource-content gray-section pb-4">
+    <div class="mask">
+        <div class="resource-icon">
+            <!-- <img src="assets/img/watch.png" alt=""> -->
+            <!-- <img src="assets/img/reading.png" alt=""> -->
+             <!-- <img src="assets/img/listen.png" alt=""> -->
+              <img src="assets/img/write.png" alt="">
+        </div>
+        <div class="container">
+            <div class="content">
+                <h6 class="text-uppercase">Tài nguyên giáo dục</h6>
+                <h1>{{material?.title?.rendered}}</h1>
+                <p>Dành cho trẻ {{getCategoryByAge(material)?.name}}</p>
+                <div class="social-action-bar d-flex mt-3 pb-3">
+                    <button type="button" (click)="download(material?.data?.file_content)" class="btn  round-colgate btn-outline-light mr-3">Tải xuống</button>
+                    <div class="social-info d-flex align-items-center">
+                        <div class="like-info mr-2">
+                            <img src="assets/img/like.png" alt="">
+                        </div>
+                        <h6><small>{{material?.likeCount || 0}} người <br>thích điều này</small></h6>
+                    </div>
+                </div>
+
+                <div *ngIf="material?.content?.rendered" class="container mb-5 pb-3">
+                    <div style="word-break: break-word;"  [innerHtml]="material?.content?.rendered"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="curve"></div>
+
+    </div>
+    <div class="resource-activity-content mb-3 pb-5">
+       
+        <!-- Nội dung Slide -->
+        <div class="container">
+            <div class="text-center" *ngIf="material?.data?.image_game">
+                <img width="76%" [src]="material?.data?.image_game" alt="img">
+            </div>
+        </div>
+    </div>
+
+   
+
+    <div class="container">
+        <div class="feed-back px-5 d-flex justify-content-center flex-column   mb-3">
+            <h4><i>Bài viết này hữu ích không ?</i></h4>
+            <div class="d-flex">
+                <button type="button" (click)="likeContent()" class="btn-like flex-column text-center mr-3">
+                    <img  class="mb-2" src="assets/img/like.png" alt="">
+                    <small><b>Thích</b></small>
+                </button>
+                <button type="button" (click)="dislikeContent()" class="btn-like flex-column text-center mr-3">
+                    <img class="mb-2" src="assets/img/dislike.png" alt="">
+                    <small><b>Tạm được</b></small>
+                </button>
+            </div>
+            <div class="my-3" *ngIf="rateMessage">{{rateMessage}}</div>
+        </div>
+
+    </div>
+
+</div>

@@ -32,7 +32,15 @@ export class ResourceProgramSectionComponent implements OnInit {
       imageUrl: 'assets/img/p-3.jpg',
       link: '/gallery',
       buttonTitle: 'Khám phá'
-    }
+    },
+    {
+      bigTitle: 'Đăng ký dụng cụ học tập',
+      smallTitle: 'Bạn muốn trở thành tình nguyện viên của Colgate Bright Smiles, Bright Futures? Bắt đầu bằng cách điền vào biểu mẫu quan tâm tình nguyện của chúng tôi.',
+      hasLable: false,
+      imageUrl: 'assets/img/side.jpg',
+      link: '/stuff-registration',
+      buttonTitle: 'Đăng ký'
+    },
   ]
 
   slideConfig = {
