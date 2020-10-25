@@ -51,7 +51,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(to top, rgb(0 0 0 / 71%) 24%, transparent);
+    background-image: linear-gradient(to top, rgb(0 0 0 / 51%) 24%,transparent,  transparent);
     width: 100%;
     height: 100%;
   }
@@ -79,7 +79,7 @@
   margin-top: 1rem;
   .resource-card-wrapper{
     width: 215px;
-    padding: 1rem 2rem 1rem 5px;
+    padding: 1rem 1.4rem 1rem 5px;
     outline: none;
   }
   .resource-card{
@@ -88,6 +88,31 @@
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0px 3px 6px rgba(0 ,0 ,0 , .18);
+    animation: fadein ease-out 350ms;
+  transition: transform 150ms ease-out;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    box-shadow: 0px 5px 9px 0 #d5d8de;
+    opacity: 0;
+    transition: opacity 150ms ease-out;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    &:after {
+      opacity: 1;
+    }
+  }
     .resource-thumbnail{
       height: 182px;
       width: 100%;
@@ -109,6 +134,13 @@
       padding: .5rem 1rem;
       .title{
         font-size: 14px;
+        padding: 8px 0px;
+        a{
+          color: inherit;
+          &:hover{
+            color: $primary;
+          }
+        }
       }
       .action{
         display: block;
