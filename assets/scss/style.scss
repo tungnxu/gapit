@@ -422,3 +422,8 @@ footer{
   .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
     background: $primary !important;
   }
+
+  .plyr__video-embed iframe {
+    // pointer-events: all !important;
+    // z-index: 9;
+  }

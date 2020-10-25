@@ -24,6 +24,7 @@
   background-image: url('./../img/hero-img.jpg');
   // overflow: hidden;
   border-radius: 0 0 46px 0;
+  overflow: hidden;
   position: relative;
   @media only screen and (max-width: 800px){
     height: 520px;
@@ -50,7 +51,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(to right,rgba(0, 0, 0, 0.64) 30%,  transparent  );
+    background-image: linear-gradient(to top,rgba(0, 0, 0, 0.54) 30%,  transparent  );
     width: 100%;
     height: 100%;
   }
@@ -266,7 +267,7 @@
       right: 0;
       color: white;
       @media only screen and (max-width: 800px){
-        width: 98vw;
+        width: 88vw;
       }
     }
   }
@@ -312,6 +313,12 @@
 .nav-colgate{
   overflow: auto;
   flex-wrap: nowrap;
+  &.nav-year{
+    justify-content: space-around;
+    @media only screen and (max-width: 800px){
+      justify-content: flex-start;
+    }
+  }
   .nav-link{
     white-space: nowrap;
     flex-basis: unset;
@@ -335,12 +342,26 @@
 }
 
 .section-count{
-  min-height: 400px;
+  min-height: 460px;
   position: relative;
   color: white;
   font-weight: bold;
   display: flex;
   justify-content: center;
+  .count-bg{
+    overflow: hidden;
+    height: 100%;
+    border-radius: 0px 0px 20px 0;
+    display: flex;
+    align-items: flex-end;
+    background-color: #d3010e;
+    @media only screen and (max-width: 1024px) {
+      height: 450px;
+      img{
+        transform: scale(1.6);
+      }
+    }
+  }
   h1 {
     position: absolute;
     text-align: center;
@@ -349,8 +370,9 @@
     left: 0;
     font-size: 80px;
     @media only screen and (max-width: 1024px) {
-      font-size: 35px;
-      bottom: 2rem;
+      font-size: 2.8rem;
+      bottom: unset;
+      top:9.5rem;
     }
   }
   h2{
@@ -361,9 +383,10 @@
     right:0;
     left: 0;
     @media only screen and (max-width: 1024px) {
-      top: 2rem;
-      font-size: 2rem;
-      padding: 0 3rem;
+      top: 1rem;
+      font-size: 1.9rem;
+      margin: 0 3rem;
+      background: #d3010e;
     }
   }
 }
@@ -402,16 +425,37 @@
 }
 
 .smile{
-  position: relative;
-    width: 100%;
-    height: 800px;
-    background-position: center;
-    background-size: cover;
     background-image: url('./../img/smile.jpg');
+
+    position: relative;
+    border-radius: 0px 0px 30px 0px;
+    overflow: hidden;
+    width: 100%;
+    height: 734px;
+    background-position: center left;
+    background-size: cover;
+    @media only screen and (max-width: 1024px) {
+      max-height: 334px;
+    }
     .content{
       color: white;
       position: absolute;
-      right: 4rem;
+      right: 10rem;
       top:4rem;
+      @media only screen and (max-width: 1024px) {
+        bottom:2rem;
+        top:unset;
+        left: 1rem;
+        right: unset;
+      }
+    }
+    .overlay{
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      height: 80%;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, .8));
     }
 }

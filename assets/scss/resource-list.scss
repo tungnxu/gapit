@@ -222,6 +222,7 @@
       // background-image: url("./../img/amask.png");
       @media only screen and (max-width: 800px) {
         border-radius: 0;
+        min-height: 478px;
       }
 
    .curve{
@@ -241,9 +242,9 @@
     top: 5rem;
     width: 407px;
     @media only screen and (max-width: 800px) {
-      width: 141px;
-      right: 1rem;
-      top: 2rem;
+      right: -50%;
+      opacity: .3;
+      top: -3rem;
     }
     img{
       width: 100%;
@@ -256,6 +257,10 @@
         z-index: 1;
         @media only screen and (max-width: 800px) {
           width: 90%;
+          margin-top: 3rem;
+          h1{
+            font-size: 1.8rem;
+          }
         }
         margin-top: 10rem;
       }
@@ -265,7 +270,15 @@
     position: relative;
     margin-top: -12rem;
     @media only screen and (max-width: 800px) {
-      margin-top: -5rem;
+      margin-top: -10rem;
+    }
+
+    .single-img{
+      max-width: 76%;
+      @media only screen and (max-width: 800px) {
+        max-width: 100%;
+
+      }
     }
 
     .music-content{
@@ -276,6 +289,9 @@
         box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.2);
         margin: 0 15px;
         font-size: 18px;
+        @media only screen and (max-width: 800px) {
+          margin: 0;
+        }
       .music-content-header{
         display: flex;
         justify-content: space-between;
@@ -297,9 +313,11 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-image: url("./../img/feedback.png");
+    padding: 4rem 0;
   }
 
   .btn-like{
+    white-space: nowrap;
     display: flex;
     justify-content: center;
     align-items: center;
