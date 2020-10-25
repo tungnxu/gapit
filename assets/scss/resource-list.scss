@@ -256,10 +256,10 @@
         position: relative;
         z-index: 1;
         @media only screen and (max-width: 800px) {
-          width: 90%;
+          width: 100%;
           margin-top: 3rem;
           h1{
-            font-size: 1.8rem;
+            font-size: 1.6rem;
           }
         }
         margin-top: 10rem;
@@ -299,6 +299,17 @@
         align-items: center;
         height: 64px;
         color: white;
+        padding: 0 3rem;
+        @media only screen and (max-width: 800px) {
+          padding: 0 1.5rem;
+        }
+      }
+
+      .music-content-main{
+        padding:  .5rem  2rem;
+        @media only screen and (max-width: 800px) {
+          padding: .5rem .5rem;
+        }
       }
     }
   }
