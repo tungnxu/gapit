@@ -51,7 +51,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(to top,rgba(0, 0, 0, 0.34) 30%,  transparent  );
+    background-image: linear-gradient(to top, rgb(0 0 0 / 71%) 24%, transparent);
     width: 100%;
     height: 100%;
   }
@@ -190,9 +190,9 @@
 
 .resource-activity{
   .resource-activity-item{
-    margin-bottom: 1rem;
     border-radius: 30px;
-    max-width: 140px;
+    width: 140px;
+    margin-right: 22px;
     overflow: hidden;
     transition: 250ms ease;
     &:hover{
@@ -237,6 +237,10 @@
     width: 700px;
     border-radius: 30px 0 30px 0;
     margin-right: 1.5rem;
+    @media only screen and (max-width: 800px){
+     height: 645px;
+     margin-right: .5rem;
+    }
     &:hover{
       .thumbnail{
         transform: scale(1.1);
@@ -247,7 +251,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      height: auto;
+      @media only screen and (max-width: 800px){
+        height: 100%;
+        width: auto;
+      }
 
+      img{
+        width: 100%;
+        height: auto;
+        @media only screen and (max-width: 800px){
+          height: 100%;
+          width: auto;
+        }
+      }
     }
     .overlay{
       position: absolute;
@@ -256,7 +274,12 @@
       height: 100%;
       left: 0;
       right: 0;
-      background: linear-gradient(to left,transparent, rgba(0, 0, 0, .8));
+      background: linear-gradient(to left,transparent, rgba(0, 0, 0, .7));
+
+      @media only screen and (max-width: 800px){
+        width: 100%;
+        background: linear-gradient(to bottom,transparent, rgba(0, 0, 0, .7));
+      }
     }
     .content{
       position: absolute;
