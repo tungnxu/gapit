@@ -2,85 +2,17 @@
     <div class="container">
         <h4 class="mb-4">Tài nguyên theo hoạt động</h4>
         <div class="resource-activity">
-            <div class="row">
-                <div class="col-6 col-md-3 col-lg">
-                    <a [routerLink]="['/material/by-activity/16']">
-                    <div class="resource-activity-item">
-                        <div class="resource-thumbnail">
-                            <img src="assets/img/a-1.jpg">
-                        </div>
-                        <div class="resource-card-des">
-                            Màu sắc
-                        </div>
-                    </div></a>
-                </div>
-                <div class="col-6 col-md-3 col-lg">
-                    <a [routerLink]="['/material/by-activity/17']">
-                    <div class="resource-activity-item">
-                        <div class="resource-thumbnail">
-                            <img src="assets/img/a-2.jpg">
-                        </div>
-                        <div class="resource-card-des">
-                            Lắng nghe
-                        </div>
-                    </div></a>
-                </div>
-                <div class="col-6 col-md-3 col-lg">
-                    <a [routerLink]="['/material/by-activity/18']">
-                    <div class="resource-activity-item">
-                        <div class="resource-thumbnail">
-                            <img src="assets/img/a-3.jpg">
-                        </div>
-                        <div class="resource-card-des">
-                            Chơi
-                        </div>
-                    </div></a>
-                </div>
-                <div class="col-6 col-md-3 col-lg">
-                    <a [routerLink]="['/material/by-activity/19']">
-                    <div class="resource-activity-item">
-                        <div class="resource-thumbnail">
-                            <img src="assets/img/a-4.jpg">
-                        </div>
-                        <div class="resource-card-des">
-                            Kiểm tra
-                        </div>
-                    </div></a>
-                </div>
-                <div class="col-6 col-md-3 col-lg">
-                    <a [routerLink]="['/material/by-activity/20']">
-                    <div class="resource-activity-item">
-                        <div class="resource-thumbnail">
-                            <img src="assets/img/a-5.jpg">
-                        </div>
-                        <div class="resource-card-des">
-                            Đọc
-                        </div>
-                    </div></a>
-                </div>
-                <div class="col-6 col-md-3 col-lg">
-                    <a [routerLink]="['/material/by-activity/21']">
-                    <div class="resource-activity-item">
-                        <div class="resource-thumbnail">
-                            <img src="assets/img/a-6.jpg">
-                        </div>
-                        <div class="resource-card-des">
-                            Hát
-                        </div>
-                    </div></a>
-                </div>
-                <div class="col-6 col-md-3 col-lg">
-                    <a [routerLink]="['/material/by-activity/22']">
-                    <div class="resource-activity-item">
-                        <div class="resource-thumbnail">
-                            <img src="assets/img/a-7.jpg">
-                        </div>
-                        <div class="resource-card-des">
-                            Xem
-                        </div>
-                    </div></a>
-                </div>
-            </div>
+            <ngx-slick-carousel    #slickModal="slick-carousel"   class="carousel slider" [config]="slideConfig">
+                    <a  ngxSlickItem *ngFor="let slide of activityList" [routerLink]="slide?.link">
+                        <div class="resource-activity-item">
+                            <div class="resource-thumbnail">
+                                <img [src]="slide?.image">
+                            </div>
+                            <div class="resource-card-des">
+                                {{slide?.title}}
+                            </div>
+                        </div></a>
+            </ngx-slick-carousel>
         </div>
     </div>
 </div>

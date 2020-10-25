@@ -33,8 +33,10 @@ export class MaterialViewComponent implements OnInit {
     this.materialCategoriesFlat = this.route.snapshot.data.cat.categoriesFlat
     this.route.params.subscribe(data=>{
       this.categoryId = data["categoryId"]
-      this.currentCategory = this.materialCategoriesFlat.find(c => c.id == this.categoryId)
-      this.currentParentCategory = this.materialCategoriesFlat.find(c => c.id ==  this.currentCategory.parent)
+      if (this.categoryId){
+        this.currentCategory = this.materialCategoriesFlat.find(c => c.id == this.categoryId)
+        this.currentParentCategory = this.materialCategoriesFlat.find(c => c.id ==  this.currentCategory.parent)
+      }
       this.loading = true
       this.fetch(this.page).subscribe(data => {
         this.loading = false
@@ -48,7 +50,10 @@ export class MaterialViewComponent implements OnInit {
 
   private fetch(page) {
     const skip = (page - 1) * this.quantity
-    return this.materialApi.getMaterials({ offset: skip, per_page: this.quantity, material_categories: this.categoryId }, this.sort)
+    if(this.categoryId){
+      return this.materialApi.getMaterials({ offset: skip, per_page: this.quantity, material_categories: this.categoryId }, this.sort)
+    }
+    return this.materialApi.getMaterials({ offset: skip, per_page: this.quantity }, this.sort)
   }
 
   loadMore() {

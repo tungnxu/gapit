@@ -2,10 +2,9 @@
   <div class="container-fluid">
       <div class="main-header commit">
           <div class="overlay"></div>
-          <img class="logo-smile" src="assets/img/logo-label.png" alt="logo-label">
           <div class="header-content ">
               <h1>Cam kết của chúng tôi trong việc giáo dục sức khỏe răng miệng</h1>
-              <a class="btn btn-sm btn-light" href="">Xem các video Tổng quan</a>
+              <a class="btn btn-sm btn-light" href="javascript:;"  (click)="openModal(template)">Xem các video Tổng quan</a>
           </div>
       </div>
   </div>
@@ -21,18 +20,20 @@
       </div>
   </div>
 
-  <div class="section-outside ">
+  <div class="mb-3 ">
       <div class="container-fluid section-count">
-          <img width="100%" src="assets/img/commit-2.jpg">
+          <div class="count-bg">
+          <img width="100%" style=" object-fit: cover;" src="assets/img/commit-2.jpg">
           <h2>Tiếp cận hàng tỷ trẻ em trên khắp thế giới</h2>
           <h1 countAnimation #ca="countAnimation"></h1>
+        </div>
       </div>
   </div>
 
   <div class="section-outside pt-0">
       <div class="container-fluid">
-          <nav class="nav-colgate nav nav-pills nav-justified justify-content-around">
-              <a [class.active]="item === currentData" *ngFor="let item of dataChilren; last as last" (click)="getDataChild(item.year)" class="nav-link " href="javascript:;">{{item?.year}} {{last? 'mục tiêu':''}}</a>
+          <nav class="nav-colgate nav-year nav nav-pills nav-justified">
+              <a [class.active]="item === currentData" *ngFor="let item of dataChilren; last as last" (click)="getDataChild(item.year)" class="nav-link text-bold" href="javascript:;">{{item?.year}} {{last? 'mục tiêu':''}}</a>
           </nav>
 
       </div>
@@ -71,7 +72,7 @@
                   ngày
                   càng lớn và nền tảng để thành công - đó là Sức mạnh của Nụ cười rạng rỡ.</p>
           </div>
-          <a class="btn btn-light" href="#">Xem tất cả các chương trình cộng đồng của chúng tôi</a>
+          <a class="btn btn-light" target="_self" [routerLink]="['/']" fragment="program">Xem tất cả các chương trình cộng đồng của chúng tôi</a>
       </div>
   </div>
   <div class="section-outside pt-0">
@@ -83,7 +84,7 @@
                   </div>
               </div>
               <div class="col-md text-white d-flex justify-content-center align-items-center" style="background-color: #8F1F1D;height: 500px;">
-                  <div class="video-des w-50  ">
+                  <div class="video-des">
                       <h3>Làm rạng rỡ cộng đồng của chúng ta Một nụ cười tại một thời điểm</h3>
                       <p>Hãy đến thăm một số cộng đồng, trẻ em, nha sĩ và tình nguyện viên, những người đã giúp tạo nên thành công cho xe van Colgate Bright Smiles, Bright Futures® của chúng tôi, và tận mắt nghe cách khám răng đơn giản có thể giúp trẻ có một tương lai khỏe mạnh và tươi sáng.</p>
                       <button class="btn btn-light" (click)="openModal(template)">Xem video</button>
@@ -93,18 +94,21 @@
       </div>
   </div>
   <div class="section-outside pt-0">
-      <div class="smile">
+      <div class="container-fluid">
+      <div class="smile ">
+          <div class="overlay"></div>
           <div class="content">
-              <h1>Xây dựng nụ cười<br> trong hơn 200 năm</h1>
+              <h3 class="mb-4">Xây dựng nụ cười<br> trong hơn 200 năm</h3>
               <a class="btn btn-light" href="#">Câu chuyện của chúng tôi</a>
           </div>
       </div>
+    </div>
   </div>
 
 </section>
 
 <ng-template #template>
     <div class="modal-body">
-        <iframe width="100%" height="415" src="https://www.youtube-nocookie.com/embed/yA_arKOlslk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="youtube-modal"src="https://www.youtube.com/embed/6F2iLFwsZ4g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </ng-template>

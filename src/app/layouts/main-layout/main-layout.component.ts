@@ -65,7 +65,7 @@ export class MainLayoutComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
     };
-    this.bsTermModalRef = this.modalService.show(TermModalComponent, Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
+    this.bsTermModalRef = this.modalService.show(TermModalComponent, Object.assign({initialState}, { class: 'modal-lg modal-dialog-centered' }));
     this.bsTermModalRef.content.closeBtnName = 'Close';
   }
 

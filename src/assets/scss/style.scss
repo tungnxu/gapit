@@ -14,8 +14,12 @@ button{
     -webkit-appearance: none;
     margin: 0;
   }
+
 }
 
+.text-bold{
+  font-weight: 600;
+}
 .text-14{
   font-size: 14px;
 }
@@ -94,7 +98,7 @@ button{
     left: 14px;
     max-width: 149px;
     @media only screen and (max-width: 800px) {
-      max-width: 90px;
+      max-width: 112px;
     }
     z-index: 2;
   }
@@ -105,6 +109,10 @@ button{
   border-radius: 0 0 52px 0;
   overflow: hidden;
   z-index: 1;
+  @media only screen and (max-width: 800px) {
+    background: #eeeeee;
+
+  }
   .follow{
     position: absolute;
     right:0;
@@ -413,4 +421,35 @@ footer{
 
   .plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
     background: $primary !important;
+  }
+
+  .plyr__video-embed iframe {
+    // pointer-events: all !important;
+    // z-index: 9;
+  }
+
+  .youtube-modal{
+    width: 100%;
+    height: 500px;
+    border: none;
+    outline: none;
+    @media only screen and (max-width: 800px){
+      height: 200px;
+    }
+  }
+
+  
+  .youtube-modal-main{
+    width: 100%;
+    height: 550px;
+    border: none;
+    outline: none;
+    @media only screen and (max-width: 800px){
+      height: 200px;
+    }
+  }
+
+  table, th, td {
+    border: 1px solid #cdcdcd;
+    padding: 8px;
   }

@@ -12,7 +12,7 @@
                 <h1>{{material?.title?.rendered}}</h1>
                 <p>Dành cho trẻ {{getCategoryByAge(material)?.name}}</p>
                 <div class="social-action-bar d-flex mt-3 pb-3">
-                    <button type="button" (click)="download(material?.data?.file_content)" class="btn  round-colgate btn-outline-light mr-3">Tải xuống</button>
+                    <button type="button"  (click)="download(material?.data?.file_content)" class="btn  round-colgate btn-outline-light mr-3">Tải xuống</button>
                     <div class="social-info d-flex align-items-center">
                         <div class="like-info mr-2">
                             <img src="assets/img/like.png" alt="">
@@ -31,7 +31,7 @@
         <!-- Nội dung Slide -->
         <div class="container">
             <div class="text-center" *ngIf="material?.data?.image_content?.length == 1">
-                <img width="75%" [src]="material?.data?.image_content[0]?.url" alt="img">
+                <img class="single-img" [src]="material?.data?.image_content[0]?.url" alt="img">
             </div>
             <ngx-slick-carousel *ngIf="material?.data?.image_content?.length > 1" class="carousel slide-commic-list slider" #slickModal="slick-carousel" [config]="slideConfig">
                 <div ngxSlickItem *ngFor="let img of material?.data?.image_content"  class="comic-item slide">

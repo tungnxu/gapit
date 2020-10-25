@@ -25,15 +25,27 @@
         <div class="curve"></div>
 
     </div>
-    <div class="resource-activity-content mb-3 pb-5">
+    <div class="resource-activity-content mb-3  pb-5">
         <div class="container">
-            <plyr style="display: block; width: 100%;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" ></plyr>
+            <div class="row mt-5">
+                <div class="col-sm-9"> <iframe *ngIf="youtubeLink" class="youtube-modal-main" [attr.src]="youtubeLink"> </iframe>
+                    <div   *ngIf="material?.content?.rendered" class="mb-5 py-3 position-relative">
+
+                        <div [innerHTML]="htmlVideo | safeHtml"></div>
+                    </div></div>
+                <div class="col-sm-3">
+                    <h6>VIDEO LIÊN QUAN</h6>
+                    <div class="related-video mb-3" *ngFor="let item of moreMaterial?.slice(0, 3)">
+                        <a class="mb-2 d-block" [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]">
+                            <img class="    object-fit: cover;" width="100%" height="135px" [src]="item?.thumbnailUrl" alt="">
+                        </a>
+                        <div>{{item?.title?.rendered}}</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div   *ngIf="material?.content?.rendered" class="container mb-5 pb-3 position-relative">
-
-        <div [innerHTML]="htmlVideo | safeHtml"></div>
-    </div>
+   
 
     <div class="container">
         <div class="feed-back px-5 d-flex justify-content-center flex-column   mb-3">

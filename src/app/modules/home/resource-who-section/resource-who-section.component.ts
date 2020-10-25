@@ -18,7 +18,7 @@ export class ResourceWhoSectionComponent implements OnInit {
 
   slideConfig = {
     'dots': false,
-    'infinite': true,
+    'infinite': false,
     'variableWidth': true
   };
   constructor(private materialApi: MaterialApi, private categoryMaterial: MaterialCategoryApi) { }
@@ -47,7 +47,6 @@ export class ResourceWhoSectionComponent implements OnInit {
   }
 
   getCategory(cat) {
-    debugger
     this.currentCat = cat
     if (this.slickModal) {
       this.slickModal.unslick()

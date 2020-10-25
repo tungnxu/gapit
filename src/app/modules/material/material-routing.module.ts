@@ -9,6 +9,9 @@ import { MaterialViewComponent } from './material.component';
 const routes: Routes = [
   {
     path: '',
+    resolve: {
+      cat: MaterialCategoryResolveService
+    },
     component: MaterialViewComponent
   },
   {

@@ -29,13 +29,14 @@
         <!-- Nội dung Slide -->
         <div class="container">
            <div class="music-content">
-               <div class="music-content-header px-5">
+               <div class="music-content-header">
                    <h5 class="m-0">Lời bài hát</h5>
                    <h6 class="m-0"><a class="text-white" href="javascript:;" (click)="download(material?.data?.lyric_pdf)"><i class="fa fa-cloud-download" aria-hidden="true"></i> Tải lời bài hát</a></h6>
                </div>
-               <div class="music-content-main p-4">
+               <div class="music-content-main">
                     <div [innerHTML]="htmlMusic | safeHtml"></div>
-                    <plyr style="display: block; width: 100%;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" ></plyr>
+                    <iframe *ngIf="youtubeLink" class="youtube-modal-main" [attr.src]="youtubeLink">
+                    </iframe>
                  </div>
            </div>
         </div>

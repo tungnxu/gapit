@@ -21,21 +21,21 @@
                     </div>
                 </div>
 
-                <div *ngIf="material?.content?.rendered" class="container mb-5 pb-3">
-                    <div style="word-break: break-word;"  [innerHtml]="material?.content?.rendered"></div>
-                </div>
+               
 
             </div>
         </div>
         <div class="curve"></div>
 
     </div>
-    <div class="resource-activity-content mb-3 pb-5">
-       
+    <div class="resource-activity-content mb-3 ">
+        <div *ngIf="material?.content?.rendered" class="container  text-white">
+            <div style="word-break: break-word;"  [innerHtml]="material?.content?.rendered"></div>
+        </div>
         <!-- Nội dung Slide -->
         <div class="container">
             <div class="text-center" *ngIf="material?.data?.image_game">
-                <img width="76%" [src]="material?.data?.image_game" alt="img">
+                <img class="single-img" [src]="material?.data?.image_game" alt="img">
             </div>
         </div>
     </div>

@@ -12,35 +12,43 @@ export class CommitmentComponent implements OnInit {
   dataChilren = [
     {
       year: 2012,
-      numOfChild: 100000
-    },
-    {
-      year: 2013,
-      numOfChild: 130000
-    },
-    {
-      year: 2014,
-      numOfChild: 320000
-    },
-    {
-      year: 2015,
       numOfChild: 700000
     },
     {
+      year: 2013,
+      numOfChild: 750000
+    },
+    {
+      year: 2014,
+      numOfChild: 800000
+    },
+    {
+      year: 2015,
+      numOfChild: 850000
+    },
+    {
       year: 2016,
-      numOfChild: 1000000
+      numOfChild: 900000
     },
     {
       year: 2017,
-      numOfChild: 1800000
+      numOfChild: 950000
     },
     {
       year: 2018,
-      numOfChild: 4800000
+      numOfChild: 1000000
+    },
+    {
+      year: 2019,
+      numOfChild: 1200000
+    },
+    {
+      year: 2020,
+      numOfChild: 1300000
     },
     {
       year: 2025,
-      numOfChild: 1300000000
+      numOfChild: 2000000
     },
   ];
   modalRef: BsModalRef;

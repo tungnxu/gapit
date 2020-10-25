@@ -19,7 +19,6 @@ export class MaterialDetailComponent implements OnInit {
   ngOnInit(): void {
     // this.material = this.route.snapshot.data.material
     this.route.data.subscribe(data => {
-      debugger
     this.materialType = this.route.snapshot.params.type  
       this.material = data.material
       this.materialApi.getMaterials({ offset: 0, per_page: 5, material_categories:  this.getCategoryByType(this.material).id }, '-likeCount')
