@@ -305,27 +305,6 @@ footer{
 }
 
 .request-content{
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    
-  }
-   
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: rgb(184, 184, 184); 
-    border-radius: 10px;
-
-  }
-  
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgb(158, 158, 158); 
-  }
   height: calc( 100vh - 73px);
   overflow: auto;
 
@@ -338,11 +317,6 @@ footer{
     @media only screen and (max-width: 1024px) {
       padding: 1rem;
       max-width: 100%;
-    }
-
-    &.outside{
-      background-color: white;
-      padding: 1rem 0;
     }
   }
 }
