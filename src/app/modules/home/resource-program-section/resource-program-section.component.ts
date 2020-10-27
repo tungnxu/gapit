@@ -37,7 +37,7 @@ export class ResourceProgramSectionComponent implements OnInit {
       bigTitle: 'Đăng ký dụng cụ học tập',
       smallTitle: 'Bạn muốn trở thành tình nguyện viên của Colgate Bright Smiles, Bright Futures? Bắt đầu bằng cách điền vào biểu mẫu quan tâm tình nguyện của chúng tôi.',
       hasLable: false,
-      imageUrl: 'assets/img/side.jpg',
+      imageUrl: 'assets/img/p-4.jpg',
       link: '/stuff-registration',
       buttonTitle: 'Đăng ký'
     },
@@ -46,7 +46,18 @@ export class ResourceProgramSectionComponent implements OnInit {
   slideConfig = {
     'dots': false,
     'infinite': true,
-    'variableWidth': true
+    'variableWidth': true,
+    'responsive': [
+      
+      {
+        'breakpoint': 600,
+        'settings': {
+          'slidesToShow': 1,
+          'slidesToScroll': 1,
+          'variableWidth': false,
+        }
+      },
+    ]
   }
   constructor() { }
 

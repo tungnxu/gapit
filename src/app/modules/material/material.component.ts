@@ -18,7 +18,9 @@ export class MaterialViewComponent implements OnInit {
   currentCategory: CategoryWP
   currentParentCategory: CategoryWP
   categoryId: number
-  
+
+  bannerUrl: string = './assets/img/bg-resource-all.jpg'
+
   quantity = 9
   page = 1
   total: number
@@ -29,13 +31,15 @@ export class MaterialViewComponent implements OnInit {
   constructor(private materialCategoryApi: MaterialCategoryApi, private materialApi: MaterialApi, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.materialCategories =  this.route.snapshot.data.cat.categories
+    this.materialCategories = this.route.snapshot.data.cat.categories
     this.materialCategoriesFlat = this.route.snapshot.data.cat.categoriesFlat
-    this.route.params.subscribe(data=>{
+    this.route.params.subscribe(data => {
       this.categoryId = data["categoryId"]
-      if (this.categoryId){
+      if (this.categoryId) {
         this.currentCategory = this.materialCategoriesFlat.find(c => c.id == this.categoryId)
-        this.currentParentCategory = this.materialCategoriesFlat.find(c => c.id ==  this.currentCategory.parent)
+        this.currentParentCategory = this.materialCategoriesFlat.find(c => c.id == this.currentCategory.parent)
+        debugger
+        this.getBannerImage()
       }
       this.loading = true
       this.fetch(this.page).subscribe(data => {
@@ -45,12 +49,32 @@ export class MaterialViewComponent implements OnInit {
       })
     })
 
-    
+
+  }
+
+  private getBannerImage() {
+    switch (+this.categoryId) {
+      case 26:
+        this.bannerUrl = './assets/img/f-dentist.jpg'
+        break;
+      case 24:
+        this.bannerUrl = './assets/img/f-family.jpg'
+        break;
+      case 23:
+        this.bannerUrl = './assets/img/f-teacher.jpg'
+        break;
+      case 25:
+        this.bannerUrl = './assets/img/f-volunteer.jpg'
+        break;
+      default:
+        this.bannerUrl =  './assets/img/bg-resource-all.jpg'
+        break;
+    }
   }
 
   private fetch(page) {
     const skip = (page - 1) * this.quantity
-    if(this.categoryId){
+    if (this.categoryId) {
       return this.materialApi.getMaterials({ offset: skip, per_page: this.quantity, material_categories: this.categoryId }, this.sort)
     }
     return this.materialApi.getMaterials({ offset: skip, per_page: this.quantity }, this.sort)
@@ -65,15 +89,15 @@ export class MaterialViewComponent implements OnInit {
     }))
   }
 
-  onOptionsSelected(value:string){
+  onOptionsSelected(value: string) {
     this.sort = value
     this.page = 1
     this.materials = []
     this.loading = true
-    this.fetch(this.page).subscribe(data=>{
-        this.loading = false
-        this.materials = data.items as MaterialListItemWP[]
-        this.total = data.count
+    this.fetch(this.page).subscribe(data => {
+      this.loading = false
+      this.materials = data.items as MaterialListItemWP[]
+      this.total = data.count
     })
   }
 
@@ -96,6 +120,6 @@ export class MaterialViewComponent implements OnInit {
   getCategoryByTarget(item: MaterialListItemWP): CategoryWP {
     return item.categories.find(c => c.parent === 5)
   }
-  
+
 
 }

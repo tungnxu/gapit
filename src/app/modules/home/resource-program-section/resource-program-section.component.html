@@ -12,7 +12,7 @@
         <ngx-slick-carousel class="carousel programs slider" #slickModal="slick-carousel"  (beforeChange)="beforeChange($event)" [config]="slideConfig">
             <div ngxSlickItem *ngFor="let slide of slideProgram" class="program-item">
                 <div class="thumbnail">
-                    <img width="100%" [src]="slide?.imageUrl ">
+                    <img [src]="slide?.imageUrl ">
                 </div>
                 <div class="overlay"></div>
                 <div class="content">

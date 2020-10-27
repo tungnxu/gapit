@@ -15,7 +15,7 @@
                             <img [src]="slide?.thumbnailUrl">
                         </div> </a>
                         <div class="resource-card-des">
-                            <div class="title">{{slide?.title?.rendered}}</div>
+                            <div class="title"> <a  [routerLink]="['/material/detail',slide?.slug, getCategoryByType(slide)?.slug, slide?.id]" title="{{slide?.title?.rendered}}">{{slide?.title?.rendered}}</a></div>
                             <a class="action" [routerLink]="['/material/detail',slide?.slug, getCategoryByType(slide)?.slug, slide?.id]" title="{{slide?.title?.rendered}}"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></a>
                         </div>

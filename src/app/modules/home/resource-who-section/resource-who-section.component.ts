@@ -48,13 +48,13 @@ export class ResourceWhoSectionComponent implements OnInit {
 
   getCategory(cat) {
     this.currentCat = cat
-    if (this.slickModal) {
-      this.slickModal.unslick()
-
-    }
-    this.currentResourceList = []
+   
     this.materialApi.getMaterials({ offset: 0, per_page: 8, material_categories: this.currentCat.id })
       .subscribe(data => {
+        if (this.slickModal) {
+          this.slickModal.unslick()
+        }
+        this.currentResourceList = []
         this.currentResourceList = (data.items as MaterialListItemWP[])
       })
   }

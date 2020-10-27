@@ -13,7 +13,22 @@
   display: block;
   min-height: $font-size-base * $line-height-base;
   padding-left: $custom-control-gutter + $custom-control-indicator-size;
+  
 }
+.custom-control-colgate{
+  position: relative;
+  .small-label{
+    position: absolute;
+    left: 1rem;
+    top: -10px;
+    font-size: 13px;
+    background-image: linear-gradient(180deg,#f8f9fa,#fff);
+    padding: .05rem .3rem;
+    border-radius: 11px;
+    color: $gray-600;
+  }
+}
+
 
 .custom-control-inline {
   display: inline-flex;

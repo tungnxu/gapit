@@ -28,10 +28,11 @@
             </div>
             <div class="col-md-9">
                 <div class="resource-content gray-section">
-                    <div class="banner">
+                    <div class="banner" [style.background-image]="'url('+ bannerUrl +')'">
                         <div class="overlay"></div>
                         <div class="content">
-                            <h6 class="text-uppercase">Tài nguyên theo {{currentParentCategory?.name}}</h6>
+                            <h5 *ngIf="!currentParentCategory" class="text-uppercase">Tài nguyên giáo dục</h5>
+                            <h6 *ngIf="currentParentCategory" class="text-uppercase">Tài nguyên theo {{currentParentCategory?.name}}</h6>
                             <h1><i>{{currentCategory?.name}}</i></h1>
                             <!-- <p>{{currentCategory?.description}}</p> -->
                             <!-- <a class="btn btn-light btn-sm text-primary" href="#">Khám phá</a> -->
