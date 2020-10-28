@@ -58,7 +58,7 @@
                             <div style="min-height: 400px;" class="text-muted d-flex align-items-center justify-content-center">Chưa có tài nguyên nào !</div>
                         </ng-container>
                         <div class="row">
-                           
+
                             <div class=" col-lg-4 col-md-6" *ngFor="let item of materials;trackBy: trackByFn">
                                 <div class="resource-card-item">
                                     <a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">  <div class="resource-thumbnail">
@@ -69,13 +69,13 @@
                                         <div class="title"><a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">{{item?.title?.rendered}}</a></div>
                                         <div class="bottom-card">
                                             <div class="d-flex align-items-center"><img class="mr-2" width="18" src="assets/img/like.png" alt="like"><span style="font-size: 16px"> {{ item?.likeCount || 0}}</span></div>
-                                            <div>{{getCategoryByAge(item).name}}</div>
+                                            <div *ngIf="getCategoryByAge(item)">{{getCategoryByAge(item)?.name}}</div>
                                             <a class="action" title="Xem chi tiết" [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]"><i class="fa fa-angle-right" ></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                           
+
 
                         </div>
                         <div class="text-center py-4" *ngIf="total > materials?.length">
