@@ -1,4 +1,4 @@
-<section class="resource-detail fix-container">
+﻿<section class="resource-detail fix-container">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -19,9 +19,10 @@
           </ng-container>
             
                 <div *ngIf="moreMaterial" class="resource-card-list px-3 container mt-5">
-                    <h4 class="mb-3">Nhiều tài nguyên hơn</h4>
+                    <h4 class="mb-3">Các tài liệu khác</h4>
                     <div class="row">
-                        <div *ngFor="let item of moreMaterial" class=" col-lg-3 col-md-6">
+                        <ng-container *ngFor="let item of moreMaterial; index as i">
+                        <div *ngIf="i < 4"  class=" col-lg-3 col-md-6">
                             <div class="resource-card-item">
                                 <a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">  <div class="resource-thumbnail">
                                    <img [src]="item?.thumbnailUrl">
@@ -31,12 +32,13 @@
                                     <div class="title"> <a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">{{item?.title?.rendered}}</a></div>
                                     <div class="bottom-card">
                                         <div class="d-flex align-items-center"><img class="mr-2" width="18" src="assets/img/like.png" alt="like"> <span style="font-size: 16px">{{ item?.likeCount || 0}}</span> </div>
-                                        <div>{{getCategoryByAge(item).name}}</div>
+                                        <div>{{getCategoryByAge(item)?.name}}</div>
                                         <a class="action" title="Xem chi tiết" [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]"><i class="fa fa-angle-right" ></i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </ng-container>
                     </div>
                 
                 </div>

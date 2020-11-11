@@ -9,15 +9,15 @@ import { MainSlide } from 'src/app/types/models';
 export class LandingSlideComponent implements OnInit {
   slideLanding: MainSlide[] = [
     {
-      bigTitle: 'Tạo nụ cười rạng rỡ, tương lai tươi sáng thông qua giáo dục sức khỏe răng miệng',
-      smallTitle: 'GIÁO DỤC SỨC KHỎE HAY',
+      bigTitle: 'Chương trình Nha Học Đường Colgate "Nụ cười rạng rỡ, Tương lai tươi sáng" đến với trẻ em trên toàn thế giới',
+      smallTitle: 'GIÁO DỤC SỨC KHỎE RĂNG MIỆNG',
       hasLable: true,
       imageUrl: 'assets/img/hero-img.jpg',
       link: '#'
     },
     {
-      bigTitle: 'Tạo nụ cười rạng rỡ, tương lai tươi sáng thông qua giáo dục sức khỏe răng miệng',
-      smallTitle: 'Tiêu đề slide nhỏ',
+      bigTitle: 'Chương trình Nha Học Đường Colgate "Nụ cười rạng rỡ, Tương lai tươi sáng" đến với trẻ em trên toàn thế giới',
+      smallTitle: 'GIÁO DỤC SỨC KHỎE RĂNG MIỆNG',
       hasLable: false,
       imageUrl: 'assets/img/smile.jpg',
       link: '#'

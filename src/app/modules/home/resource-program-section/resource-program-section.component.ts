@@ -10,35 +10,43 @@ export class ResourceProgramSectionComponent implements OnInit {
   currentSlide: number = 0
   slideProgram: MainSlide[] = [
     {
-      bigTitle: 'Kiểm tra & Phòng ngừa Nha khoa',
-      smallTitle: 'Với hai ghế nha khoa cỡ trẻ em trên tàu, Colgate\'s Bright Smiles, Bright Futures® sẽ sàng lọc hai trẻ em cùng một lúc.',
+      bigTitle: 'Chuyến xe nha lưu động',
+      smallTitle: 'Chúng tôi giáo dục và khám răng cho 10 triệu trẻ em mỗi năm, bao gồm cả tư vấn điều trị khi cần thiết.',
       hasLable: true,
       imageUrl: 'assets/img/p-1.jpg',
       link: '#',
-      buttonTitle: 'Lên lịch'
+      buttonTitle: 'Hành trình'
     },
     {
       bigTitle: 'Tình nguyện viên',
-      smallTitle: 'Bạn muốn trở thành tình nguyện viên của Colgate Bright Smiles, Bright Futures? Bắt đầu bằng cách điền vào biểu mẫu quan tâm tình nguyện của chúng tôi.',
+      smallTitle: 'Bạn muốn hỗ trợ hay đồng hành cùng sứ mệnh" Nụ cười rạng rỡ, Tương lai tươi sáng" của Colgate? Hãy đăng ký trở thành tình nguyện viên bằng cách điền vào biểu mẫu.',
       hasLable: false,
       imageUrl: 'assets/img/p-2.jpg',
       link: '#',
       buttonTitle: 'Bắt đầu'
     },
+    // {
+    //   bigTitle: 'Thư viện tranh',
+    //   smallTitle: 'Thư viện trưng bày cuộc thi vẽ tranh Colgate Bright Smiles, Bright Futures',
+    //   hasLable: false,
+    //   imageUrl: 'assets/img/p-3.jpg',
+    //   link: '/gallery',
+    //   buttonTitle: 'Khám phá'
+    // },
     {
-      bigTitle: 'Thư viện tranh',
-      smallTitle: 'Thư viện trưng bày cuộc thi vẽ tranh Colgate Bright Smiles, Bright Futures',
-      hasLable: false,
-      imageUrl: 'assets/img/p-3.jpg',
-      link: '/gallery',
-      buttonTitle: 'Khám phá'
-    },
-    {
-      bigTitle: 'Đăng ký dụng cụ học tập',
-      smallTitle: 'Bạn muốn trở thành tình nguyện viên của Colgate Bright Smiles, Bright Futures? Bắt đầu bằng cách điền vào biểu mẫu quan tâm tình nguyện của chúng tôi.',
+      bigTitle: 'Bộ Giáo Cụ Trực Quang ',
+      smallTitle: 'Hãy truyền cảm hứng để trẻ nở những nụ cười rạng rỡ thông qua bộ giáo cụ trực quan gồm các trò chơi chăm sóc răng miệng thú vị, cùng các mẫu sản phẩm Colgate, và hơn thế nữa!',
       hasLable: false,
       imageUrl: 'assets/img/p-4.jpg',
       link: '/stuff-registration',
+      buttonTitle: 'Đăng ký'
+    },
+    {
+      bigTitle: 'Mẫu sản phẩm ',
+      smallTitle: '',
+      hasLable: false,
+      imageUrl: 'assets/img/p-4.jpg',
+      link: 'colgatepalmolive.com',
       buttonTitle: 'Đăng ký'
     },
   ]
