@@ -1,6 +1,6 @@
 <div class="section-outside" id="program">
     <div class="container">
-        <h2>Các chương trình</h2>
+        <h2>Các Chương trình</h2>
         <nav class="nav-colgate nav nav-pills nav-justified">
             <a  *ngFor="let item of slideProgram;index as i" [class.active]="i === currentSlide" (click)="slickModal.slickGoTo(i)" class="nav-link" href="javascript:;">{{item?.bigTitle}}</a>
             <!-- <a class="nav-link" href="#">Tình nguyện viên</a>

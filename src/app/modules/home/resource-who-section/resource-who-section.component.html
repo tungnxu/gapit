@@ -1,8 +1,8 @@
 <div class="resource-section">
     <div class="container">
-        <h2>Tài Liệu Giáo Dục</h2>
+        <h2>Tài Liệu/ Thư Viện Tài Liệu</h2>
         <nav class="nav-colgate nav nav-pills nav-justified">
-            <a class="nav-link text-bold" [class.active]="currentCat == null" (click)="getBest()" href="javascript:;">Hàng đầu</a>
+            <a class="nav-link text-bold" [class.active]="currentCat == null" (click)="getBest()" href="javascript:;">Tải nhiều</a>
             <a class="nav-link text-bold" [class.active]="currentCat?.id == cat?.id" *ngFor="let cat of whoCategoryList" (click)="getCategory(cat)" href="javascript:;">{{cat?.name}}</a>
         </nav>
 
@@ -24,7 +24,7 @@
             </ngx-slick-carousel>
         </ng-container>
         </div>
-        <a [routerLink]="'/material'" class="btn btn-light">Tất cả tài liệu giáo dục <i class="fa fa-angle-right fa-2x ml-2 "  aria-hidden="true"></i></a>
+        <a [routerLink]="'/material'" class="btn btn-light">Xem tất cả tài liệu <i class="fa fa-angle-right fa-2x ml-2 "  aria-hidden="true"></i></a>
        
     </div>
 </div>

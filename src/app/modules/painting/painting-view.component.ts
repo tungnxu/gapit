@@ -18,10 +18,14 @@ export class PaintingViewComponent implements OnInit {
 
   paintings: PaintingListItemWP[]
 
-  quantity = 9
+  quantity = 18
   page = 1
   total: number
   loading: boolean
+
+  search: string = ''
+  year: string
+  country: string
 
   constructor(private route: ActivatedRoute, private paintingApi: PaintingApi) { }
 
@@ -31,6 +35,7 @@ export class PaintingViewComponent implements OnInit {
     this.countryCat  = this.paintingCategories.find(x => x.id === 27)
     this.fetch(this.page).subscribe(data => {
       this.paintings = data.items as PaintingListItemWP[]
+      this.total = data.count
     })
   }
 
@@ -49,15 +54,42 @@ export class PaintingViewComponent implements OnInit {
 
   private fetch(page) {
     const skip = (page - 1) * this.quantity
-    return this.paintingApi.getPaintings({ offset: skip, per_page: this.quantity })
+    return this.paintingApi.getPaintings({ offset: skip, per_page: this.quantity }, this.year, this.country, this.search)
   }
 
   onYearSelected(value:string){
-    console.log(value)
+    this.year = value
+    this.page = 1
+    this.paintings = []
+    this.loading = true
+    this.fetch(this.page).subscribe(data => {
+      this.loading = false
+      this.paintings = data.items as PaintingListItemWP[]
+      this.total = data.count
+    })
   }
 
   onCountrySelected(value:string){
-    console.log(value)
+    this.country = value
+    this.page = 1
+    this.paintings = []
+    this.loading = true
+    this.fetch(this.page).subscribe(data => {
+      this.loading = false
+      this.paintings = data.items as PaintingListItemWP[]
+      this.total = data.count
+    })
   }
 
+  onSearch(value:string) {
+    this.search = value
+    this.page = 1
+    this.paintings = []
+    this.loading = true
+    this.fetch(this.page).subscribe(data => {
+      this.loading = false
+      this.paintings = data.items as PaintingListItemWP[]
+      this.total = data.count
+    })
+  }
 }

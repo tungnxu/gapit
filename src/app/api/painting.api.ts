@@ -18,15 +18,39 @@ export class PaintingApi extends BaseApi {
     this.setEndpoint(hostUrl, '/wp/v2/paintings')
   }
 
-  getPaintings(params?: { _fields?: string, offset?: number; per_page?: number, search?: string, Painting_categories?: number }, sort?: string) {
+  getPaintings(params?: { _fields?: string, offset?: number; per_page?: number, search?: string, painting_categories?: number },  year?: string, country?: string, keyword?: string, sort?: string) {
     params._fields = 'id,title,slug,categories,painting_categories,data,thumbnailUrl,likeCount,featured_media,date'
-    if(sort){
-      const sortParam = {
-        'filter[orderby]': sort.startsWith('-') ? sort.substring(1) : sort,
-        'order': sort.startsWith('-') ? 'desc': 'asc'
+    // if(sort){
+    //   const sortParam = {
+    //     'filter[orderby]': sort.startsWith('-') ? sort.substring(1) : sort,
+    //     'order': sort.startsWith('-') ? 'desc': 'asc'
+    //   }
+    //   params = {...params, ...sortParam}
+    // }
+
+    debugger
+    if(year){
+      const categoriesParam = {
+        'painting_categories': +year
       }
-      params = {...params, ...sortParam}
+      params = {...params, ...categoriesParam}
     }
+
+    if(country){
+      const countryParam = {
+        'painting_categories': +country
+      }
+      params = {...params, ...countryParam}
+    }
+
+    
+    if(keyword){
+      const searchParam = {
+        'search': keyword
+      }
+      params = {...params, ...searchParam}
+    }
+
     return this.httpClient.get(this.createUrl(''), { observe: 'response', params: this.createParams(params) })
       .pipe(switchMap(res => this.getWPQueryResult<PaintingListItemWP>(res)))
   }

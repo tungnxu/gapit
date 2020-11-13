@@ -10,25 +10,31 @@
 
                     <div class="toolbar m-3 d-flex">
                         <div class="form-group row mr-4">
-                            <select  #myCountrySelect class="custom-select" (change)='onCountrySelected(myCountrySelect.value)'>
-                                <option value="" disabled selected>{{countryCat?.name}}</option>
-                                <option value="title" *ngFor="let item of countryCat?._parent">{{item?.name}}</option>
+                            <select  #myCountrySelect class="custom-select colgate" (change)='onCountrySelected(myCountrySelect.value)'>
+                                <option value="" selected>{{countryCat?.name}}</option>
+                                <option [value]="item?.id" *ngFor="let item of countryCat?._parent">{{item?.name}}</option>
                             </select>
                         </div>
 
                         <div class="form-group row ">
-                            <select  #myYearSelect class="custom-select" (change)='onYearSelected(myYearSelect.value)'>
-                                <option value="" disabled selected>{{yearCat?.name}}</option>
-                                <option value="title" *ngFor="let item of yearCat?._parent">{{item?.name}}</option>
+                            <select  #myYearSelect class="custom-select colgate" (change)='onYearSelected(myYearSelect.value)'>
+                                <option value="" selected>{{yearCat?.name}}</option>
+                                <option [value]="item?.id" *ngFor="let item of yearCat?._parent">{{item?.name}}</option>
                             </select>
                         </div>
 
 
                         <div class="mr-auto"></div>
+                        <div class="form-group row search-form">
+                            <input placeholder="Tìm theo tiêu đề" #searchKey class="form-control" type="text" name="search" id="search" [(value)]="search" (keydown.enter)="onSearch(searchKey.value)">
+                            <a [hidden]="search == ''" class="clear-action" href="javascript:;" (click)="onSearch('')"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            <a  class="search-action" href="javascript:;" (click)="onSearch(searchKey.value)"><i class="fa fa-search" aria-hidden="true"></i></a>
+                        </div>
+
                         <!-- <div class="form-group row sort-form">
                             <label class="col-sm-4 col-form-label no-wrap">Sắp xếp theo</label>
                             <div class="col-sm-8">
-                                <select class="custom-select">
+                                <select class="custom-select colgate">
                                     <option selected>Thứ hạng</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
@@ -39,6 +45,9 @@
                     </div>
                     <div class="resource-card-list px-3">
                         <div class="resource-activity">
+                            <ng-container *ngIf="!paintings?.length && !loading" >
+                                <div style="min-height: 400px;" class="text-muted d-flex align-items-center justify-content-center">Không tìm thấy dữ liệu !</div>
+                            </ng-container>
                             <div class="row">
                                 <div *ngFor="let item of paintings;trackBy: trackByFn" class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="resource-gallery-item">
@@ -46,8 +55,8 @@
                                            <a [routerLink]="['/gallery',item?.slug, item?.id]" title="{{item?.title?.rendered}}"> <img height="100%" [src]="item?.thumbnailUrl"></a>
                                         </div>
                                         <div class="resource-card-des">
-                                            <div>{{item?.title?.rendered}}</div>
-                                            <div><span>{{item?.data?.age}}</span> Tuổi</div>
+                                            <div class="paint-title" innerHtml="{{item?.title?.rendered}}"></div>
+                                            <div *ngIf="item?.data?.age"><span>{{item?.data?.age}}</span> Tuổi</div>
                                         </div>
                                     </div>
                                 </div>

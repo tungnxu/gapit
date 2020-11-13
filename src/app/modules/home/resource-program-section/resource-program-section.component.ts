@@ -15,7 +15,7 @@ export class ResourceProgramSectionComponent implements OnInit {
       hasLable: true,
       imageUrl: 'assets/img/p-1.jpg',
       link: '#',
-      buttonTitle: 'Hành trình'
+      buttonTitle: 'Hành trình di chuyển của Xe Nha Lưu Động'
     },
     {
       bigTitle: 'Tình nguyện viên',
@@ -23,16 +23,16 @@ export class ResourceProgramSectionComponent implements OnInit {
       hasLable: false,
       imageUrl: 'assets/img/p-2.jpg',
       link: '#',
-      buttonTitle: 'Bắt đầu'
+      buttonTitle: 'Đăng ký'
     },
-    // {
-    //   bigTitle: 'Thư viện tranh',
-    //   smallTitle: 'Thư viện trưng bày cuộc thi vẽ tranh Colgate Bright Smiles, Bright Futures',
-    //   hasLable: false,
-    //   imageUrl: 'assets/img/p-3.jpg',
-    //   link: '/gallery',
-    //   buttonTitle: 'Khám phá'
-    // },
+    {
+      bigTitle: 'Thư viện tranh',
+      smallTitle: 'Thư viện trưng bày cuộc thi vẽ tranh Colgate Bright Smiles, Bright Futures',
+      hasLable: false,
+      imageUrl: 'assets/img/p-3.jpg',
+      link: '/gallery',
+      buttonTitle: 'Khám phá'
+    },
     {
       bigTitle: 'Bộ Giáo Cụ Trực Quang ',
       smallTitle: 'Hãy truyền cảm hứng để trẻ nở những nụ cười rạng rỡ thông qua bộ giáo cụ trực quan gồm các trò chơi chăm sóc răng miệng thú vị, cùng các mẫu sản phẩm Colgate, và hơn thế nữa!',
@@ -47,7 +47,7 @@ export class ResourceProgramSectionComponent implements OnInit {
       hasLable: false,
       imageUrl: 'assets/img/p-4.jpg',
       link: 'colgatepalmolive.com',
-      buttonTitle: 'Đăng ký'
+      buttonTitle: 'Áp phích'
     },
   ]
 
