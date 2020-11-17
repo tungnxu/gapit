@@ -12,7 +12,7 @@ export class LandingSlideComponent implements OnInit {
       bigTitle: 'Chương trình Nha Học Đường Colgate "Nụ cười rạng rỡ, Tương lai tươi sáng" đến với trẻ em trên toàn thế giới',
       smallTitle: 'GIÁO DỤC SỨC KHỎE RĂNG MIỆNG',
       hasLable: true,
-      imageUrl: 'assets/img/hero-img.jpg',
+      imageUrl: 'assets/img/colgate-draw.jpg',
       link: '#'
     },
     {
@@ -30,7 +30,7 @@ export class LandingSlideComponent implements OnInit {
     'slidesToShow': 1,
     'slidesToScroll': 1,
     'arrows': false,
-    'autoplay': true,
+    'autoplay': false,
     'autoplaySpeed': 2000,
     'fade': true,
     'cssEase': 'linear'

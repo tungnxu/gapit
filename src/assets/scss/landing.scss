@@ -34,15 +34,15 @@
   }
   .logo-smile {
     position: absolute;
-    bottom: 3rem;
-    right: 4rem;
+    bottom: 8rem;
+    right: 6rem;
     max-width: 250px;
     z-index: 2;
 
     @media only screen and (max-width: 800px){
-      bottom: 1rem;
-    right: 1rem;
-    max-width: 88px;
+      bottom: 12rem;
+      right: 1rem;
+      max-width: 134px;
     }
   }
   .overlay {
@@ -51,21 +51,31 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(to top, rgb(0 0 0 / 51%) 24%,transparent,  transparent);
+    background-image: linear-gradient(to top, rgb(0 0 0 / 32%) 24%,transparent,  transparent);
     width: 100%;
     height: 100%;
   }
   .header-content{
       z-index: 3;
       position: absolute;
-      bottom: 7rem;
-      left: 10rem;
+      bottom: 6rem;
+      left: 9rem;
       color: white;
       max-width: 600px ;
+      font-style: italic;
+      h1{
+        font-size: 2rem;
+        line-height: 1.5;
+      }
       @media only screen and (max-width: 800px){
-        left: 2rem;
+        left: 0;
+        bottom: 2rem;
+        padding: 0 4rem 0px 1rem;
+        h6{
+          font-size: 13px;
+        }
         h1{
-          font-size: 1.5rem;
+          font-size: 1.3rem;
         }
       }
   }

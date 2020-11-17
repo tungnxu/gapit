@@ -1,6 +1,6 @@
 <div class="resource-section">
     <div class="container">
-        <h2>Tài Liệu/ Thư Viện Tài Liệu</h2>
+        <h4>Tài Liệu/ Thư Viện Tài Liệu</h4>
         <nav class="nav-colgate nav nav-pills nav-justified">
             <a class="nav-link text-bold" [class.active]="currentCat == null" (click)="getBest()" href="javascript:;">Tải nhiều</a>
             <a class="nav-link text-bold" [class.active]="currentCat?.id == cat?.id" *ngFor="let cat of whoCategoryList" (click)="getCategory(cat)" href="javascript:;">{{cat?.name}}</a>
