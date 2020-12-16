@@ -10,7 +10,7 @@
             <div class="content">
                 <h6 class="text-uppercase">Tài nguyên giáo dục</h6>
                 <h1>{{material?.title?.rendered}}</h1>
-                <p>Dành cho trẻ {{getCategoryByAge(material)?.name}}</p>
+                <p *ngIf="getCategoryByAge(material)?.name">Dành cho trẻ {{getCategoryByAge(material)?.name}}</p>
                 <div *ngIf="material?.data?.subtitle" class="text-white">
                   <p>{{material?.data?.subtitle}}</p>
                 </div>

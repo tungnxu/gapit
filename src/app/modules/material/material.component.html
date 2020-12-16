@@ -65,7 +65,7 @@
                                        <img [src]="item?.thumbnailUrl">
                                     </div></a>
                                     <div class="resource-card-des">
-                                        <h6 class="text-primary text-uppercase">{{getCategoryByActivity(item).name}}</h6>
+                                        <h6 class="text-primary text-uppercase">{{getCategoryByActivity(item)?.name}}</h6>
                                         <div class="title"><a [routerLink]="['/material/detail',item?.slug, getCategoryByType(item)?.slug, item?.id]" title="{{item?.title?.rendered}}">{{item?.title?.rendered}}</a></div>
                                         <div class="bottom-card">
                                             <div class="d-flex align-items-center"><img class="mr-2" width="18" src="assets/img/like.png" alt="like"><span style="font-size: 16px"> {{ item?.likeCount || 0}}</span></div>

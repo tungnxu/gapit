@@ -261,7 +261,7 @@
    }
       .content {
         color: white;
-        width: 60%;
+        width: 66%;
         position: relative;
         z-index: 1;
         @media only screen and (max-width: 800px) {
@@ -270,6 +270,10 @@
           h1{
             font-size: 1.6rem;
           }
+        }
+
+        h1{
+          font-size: 2.4rem;
         }
         margin-top: 10rem;
       }
