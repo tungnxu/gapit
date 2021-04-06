@@ -11,14 +11,14 @@
             <div class="d-flex flex-column align-items-end" *ngIf="currentUser?.student?.student_info">
                 <div *ngIf="currentUser?.student"><small>Xin chào, </small> <b class="text-secondary">{{currentUser?.student?.student_info?.student_name}}</b></div>
                 <small>Số bài dự thi đã gửi: {{currentUser?.student?.exams?.length}}/2 bài </small>
-                
+
             </div>
         </ng-container>
         <ng-container *ngIf="!currentUser">
             <button type="button" class="btn mx-1 btn-sm btn-primary" (click)="openRegisterModal()">Đăng ký</button>
             <button type="button" class="btn mx-1 btn-sm  btn-outline-primary" (click)="openLoginModal()" >Đăng nhập</button>
         </ng-container>
-        
+
         <div class="btn-group" dropdown>
             <button id="button-basic" dropdownToggle type="button" class="btn btn-clear text-primary"
                     aria-controls="dropdown-basic">
@@ -33,7 +33,7 @@
               <li role="menuitem" *ngIf="currentUser"><a class="dropdown-item text-primary" href="javascript:;" (click)="logout()">Đăng xuất</a></li>
             </ul>
           </div>
-      
+
 
     </div>
 
@@ -167,3 +167,6 @@
         </div>
     </div>
 </footer>
+
+
+

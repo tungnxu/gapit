@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LoginModalComponent } from 'src/app/shared/login-modal/login-modal.component';
+import { PromotionModalComponent } from 'src/app/shared/promotion-modal/promotion-modal.component';
 import { RegisterModalComponent } from 'src/app/shared/register-modal/register-modal.component';
 import { SearchResultModalComponent } from 'src/app/shared/search-result-modal/search-result-modal.component';
 import { SubmitContestModalComponent } from 'src/app/shared/submit-contest-modal/submit-contest-modal.component';
@@ -23,12 +24,20 @@ export class MainLayoutComponent implements OnInit {
   bsSubmitContestModalRef: BsModalRef;
   bsTemplateModalRef: BsModalRef;
 
+  promotionModalRef:  BsModalRef;
+
   currentUser: User
   constructor(private modalService: BsModalService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.getNewToken()
     this.authService.currentUser.subscribe(userData => {
+      if(!this.currentUser){
+        setTimeout(() => {
+        this.openPromotionModal()
+
+        }, 1000);
+      }
       this.currentUser = userData
     })
   }
@@ -97,6 +106,15 @@ export class MainLayoutComponent implements OnInit {
     };
     this.bsTemplateModalRef = this.modalService.show(TemplateModalComponent, Object.assign(initialState, { class: 'modal-xl modal-dialog-centered' }));
     this.bsTemplateModalRef.content.closeBtnName = 'Close';
+  }
+
+  openPromotionModal() {
+    const initialState = {
+      animated: true,
+      backdrop: true,
+      ignoreBackdropClick: false,
+    };
+    this.promotionModalRef = this.modalService.show(PromotionModalComponent, Object.assign(initialState, { class: 'modal-md modal-pro-800 modal-dialog-centered' }));
   }
 
 }
