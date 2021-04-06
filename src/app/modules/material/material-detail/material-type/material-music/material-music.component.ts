@@ -68,4 +68,9 @@ export class MaterialMusicComponent implements OnChanges {
     const code = event.detail.code; if(code == 1) this.player.play();
   }
 
+  styleText(text) : string{
+    text = text.replace(/<br\s*\/?>/g,'\n');
+    return text
+  }
+
 }

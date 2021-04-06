@@ -41,4 +41,9 @@ export class MaterialGameComponent implements OnInit {
     this.rateMessage = "Cảm ơn bạn đã đánh giá nội dung này !"
   }
 
+  styleText(text) : string{
+    text = text.replace(/<br\s*\/?>/g,'\n');
+    return text
+  }
+
 }

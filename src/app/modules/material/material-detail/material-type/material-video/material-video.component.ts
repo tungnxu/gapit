@@ -73,4 +73,9 @@ export class MaterialVideoComponent implements OnChanges {
     return item.categories.find(c => c.parent === 2)
   }
 
+  styleText(text) : string{
+    text = text.replace(/<br\s*\/?>/g,'\n');
+    return text
+  }
+
 }

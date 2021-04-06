@@ -9,10 +9,10 @@
         <div class="container">
             <div class="content">
                 <h6 class="text-uppercase">Tài nguyên giáo dục</h6>
-                <h1>{{material?.title?.rendered}}</h1>
-                <p *ngIf="getCategoryByAge(material)?.name">Dành cho trẻ {{getCategoryByAge(material)?.name}}</p>
+                <h1>{{styleText(material?.title?.rendered)}}</h1>
+                <p *ngIf="getCategoryByAge(material)?.name && !material?.data?.subtitle">Dành cho trẻ {{getCategoryByAge(material)?.name}}</p>
                 <div *ngIf="material?.data?.subtitle" class="text-white">
-                  <p>{{material?.data?.subtitle}}</p>
+                  <p style="white-space: pre-line;">{{material?.data?.subtitle}}</p>
                 </div>
                 <div class="social-action-bar d-flex mt-3 pb-3">
                     <button type="button"  (click)="download(material?.data?.file_content)" class="btn  round-colgate btn-outline-light mr-3">Tải xuống</button>

@@ -7,7 +7,7 @@
         <div class="container">
             <div class="content">
                 <h6 class="text-uppercase">Tài nguyên giáo dục</h6>
-                <h1>{{material?.title?.rendered}}</h1>
+                <h1>{{styleText(material?.title?.rendered)}}</h1>
                 <p *ngIf="getCategoryByAge(material)?.name">Dành cho trẻ {{getCategoryByAge(material)?.name}}</p>
                 <div class="social-action-bar d-flex mt-3 pb-3">
                     <a [href]="material?.data?.file_music" [download]="getFileNameURL(material?.data?.file_music)" class="btn btn-outline-light round-colgate mr-3">Tải xuống bài hát</a>
