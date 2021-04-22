@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -27,16 +28,13 @@ export class MainLayoutComponent implements OnInit {
   promotionModalRef:  BsModalRef;
 
   currentUser: User
-  constructor(private modalService: BsModalService, private authService: AuthService) {}
+  constructor(private modalService: BsModalService, private authService: AuthService, private _http: HttpClient) {}
 
   ngOnInit(): void {
     this.authService.getNewToken()
     this.authService.currentUser.subscribe(userData => {
-      if(!this.currentUser){
-        setTimeout(() => {
+      if(!userData){
         this.openPromotionModal()
-
-        }, 1000);
       }
       this.currentUser = userData
     })
@@ -116,5 +114,4 @@ export class MainLayoutComponent implements OnInit {
     };
     this.promotionModalRef = this.modalService.show(PromotionModalComponent, Object.assign(initialState, { class: 'modal-md modal-pro-800 modal-dialog-centered' }));
   }
-
 }

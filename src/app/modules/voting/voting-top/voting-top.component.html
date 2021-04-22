@@ -1,0 +1,22 @@
+<section class="voting-top">
+    <div class="container">
+        <h2 class="text-center">TOP BÌNH CHỌN</h2>
+
+        <div class="voting-top-list">
+            <ngx-slick-carousel class="carousel slider" #slickModal="slick-carousel" [config]="slideConfig">
+                <div ngxSlickItem *ngFor="let item of votePaintings" class="slide-item slide voting-top-item">
+                    <div class="voting-top-title">{{item.title}}</div>
+                    <div class="vote-image">
+                        <img width="100%" height="100%" class="logo-smile" [src]="item?.imageUrl" alt="logo-label">
+                    </div>
+                    <div class="vote-info d-flex">
+                        <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i>
+                        <div class="vote-info-like">
+                            {{item.like}}
+                        </div>
+                    </div>
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+</section>

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --aot --build-optimizer --vendor-chunk=true --source-map=false",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^10.1.4",
+    "@angular/animations": "^10.2.4",
     "@angular/common": "~10.1.4",
     "@angular/compiler": "~10.1.4",
     "@angular/core": "~10.1.4",
@@ -27,6 +27,7 @@
     "ngx-bootstrap": "^6.1.0",
     "ngx-plyr": "^4.0.0",
     "ngx-slick-carousel": "^0.5.1",
+    "ngx-toastr": "^13.2.1",
     "plyr": "^3.6.2",
     "rxjs": "~6.6.0",
     "slick-carousel": "^1.8.1",

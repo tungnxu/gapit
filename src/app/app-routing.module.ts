@@ -28,6 +28,10 @@ const routes: Routes = [
         path: 'material',
         loadChildren: () => import('./modules/material/material.module').then(m => m.MaterialModule)
       },
+      {
+        path: 'voting',
+        loadChildren: () => import('./modules/voting/voting.module').then(m => m.VotingModule)
+      },
 
     ]
   },

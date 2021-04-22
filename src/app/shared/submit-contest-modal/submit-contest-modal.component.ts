@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { StudentApi } from 'src/app/api/student.api';
@@ -27,7 +28,8 @@ export class SubmitContestModalComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private studentApi: StudentApi, 
     private authService:AuthService,
-    private localStorageService: LocalStorageService) { }
+    private localStorageService: LocalStorageService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.submitContestForm = this.formBuilder.group({
@@ -69,6 +71,10 @@ export class SubmitContestModalComponent implements OnInit {
       this.authService.generateUserInfo()
       this.loading = false
       this.bsModalRef.hide()
+      this.toastr.info('Bạn đã gửi bài thành công ! ', '', {
+        timeOut: 6000,
+        positionClass: 'toast-top-center',
+      });
     }
 
     const error = (error) => {

@@ -225,3 +225,10 @@ export interface PaintingData {
   school_name: string;
   favorite_food: string;
 }
+
+export interface VotePainting {
+  id: number;
+  title:string;
+  imageUrl: string;
+  like: number;
+}

@@ -30,15 +30,11 @@ export class PromotionModalComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,) { }
 
   ngOnInit() {
 
   }
-
-  get f() { return this.promotionForm.controls }
-
-
 
   openRegisterModal() {
     this.bsModalRef.hide()
