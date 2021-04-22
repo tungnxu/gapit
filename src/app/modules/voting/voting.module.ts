@@ -6,10 +6,11 @@ import { VotingComponent } from './voting.component';
 import { VotingTopComponent } from './voting-top/voting-top.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { VotingListComponent } from './voting-list/voting-list.component';
 
 
 @NgModule({
-  declarations: [VotingComponent, VotingTopComponent],
+  declarations: [VotingComponent, VotingTopComponent, VotingListComponent],
   imports: [
     CommonModule,
     VotingRoutingModule,

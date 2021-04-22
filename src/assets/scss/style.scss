@@ -520,6 +520,23 @@ footer{
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
+    .slick-prev {
+      left: 0 !important;
+      right: unset !important;
+    
+    }
+    
+    .slick-next {
+      right: 0 !important;
+    }
+    
+    .slick-arrow{
+      top: 50% !important;
+      &:before{
+        color: $gray-500 !important;
+      }
+    }
+    
     .voting-top-item{
       position: relative;
       background-color: $primary;
@@ -601,6 +618,15 @@ footer{
 
 
      
+    }
+  }
+
+
+  .voting-list{
+    .voting-list{
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
     }
   }
 }
