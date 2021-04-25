@@ -627,6 +627,46 @@ footer{
       position: relative;
       max-width: 1000px;
       margin: 0 auto;
+      .vote-item{
+        margin-bottom: 3rem;
+        .vote-item-image{
+          border: 1px solid $primary;
+          border-radius: 5px;
+          padding: .5rem;
+          .vote-image{
+            overflow: hidden;
+            border-radius: 5px;
+            height: 220px;
+            img{
+              object-fit: cover;
+            }
+          }
+
+          .vote-info{
+            color: $primary;
+            margin-top: .5rem;
+            i{
+              font-size: 30px;
+            }
+            .vote-info-like{
+              font-size: 22px;
+              text-align: center;
+            }
+          }
+        }
+
+        .vote-item-info{
+          color: $gray-700;
+        }
+      }
     }
   }
+}
+
+.modal-gift{
+.modal-content{
+  background-color: unset;
+  border-radius: 10px;
+  overflow: hidden;
+}
 }

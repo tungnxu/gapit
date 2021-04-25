@@ -7,6 +7,7 @@ import { VotingTopComponent } from './voting-top/voting-top.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { VotingListComponent } from './voting-list/voting-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,6 +15,8 @@ import { VotingListComponent } from './voting-list/voting-list.component';
   imports: [
     CommonModule,
     VotingRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     SlickCarouselModule
   ]

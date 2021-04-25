@@ -14,10 +14,11 @@ import { TemplateModalComponent } from './template-modal/template-modal.componen
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 import { PromotionModalComponent } from './promotion-modal/promotion-modal.component';
+import { GiftModalComponent } from './gift-modal/gift-modal.component';
 
 
 @NgModule({
-  declarations: [SanitizeHtmlPipe, LoginModalComponent, RegisterModalComponent, CountAnimationDirective, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent],
+  declarations: [SanitizeHtmlPipe, LoginModalComponent,GiftModalComponent, RegisterModalComponent, CountAnimationDirective, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent],
   imports: [
     LayoutsModule,
     CommonModule,
@@ -31,6 +32,6 @@ import { PromotionModalComponent } from './promotion-modal/promotion-modal.compo
     CountAnimationDirective,
     SanitizeHtmlPipe
   ],
-  entryComponents: [LoginModalComponent, RegisterModalComponent, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent]
+  entryComponents: [LoginModalComponent, RegisterModalComponent,GiftModalComponent, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent]
 })
 export class SharedModule { }

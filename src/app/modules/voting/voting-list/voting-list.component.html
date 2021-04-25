@@ -1,90 +1,141 @@
-<section class="voting-list">
+<section class="voting-list mt-5">
     <div class="container">
-        <h2 class="text-center">BÀI DỰ THI</h2>
+        <h2 class="text-center mb-4">BÀI DỰ THI</h2>
 
         <div class="voting-list">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="vote-item">
-                        <div class="vote-item-image">
-                            <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
+                        <div class="vote-item-image mb-2">
+                            <div class="vote-image">
+                                <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
+                            </div>
+                            <div class="vote-info d-flex align-items-center">
+                                <i class="fa fa-thumbs-up mr-2 " aria-hidden="true"></i>
+                                <div class="vote-info-like w-100">
+                                   4545
+                                </div>
+                            </div>
                         </div>
-                        <div class="vote-item-info">
-                            <h4 class="vote-item-title">4 mùa của em</h4>
-                            <p class="vote-item-author">Nguyễn Minh Khôi</p>
+                        <div class="vote-item-info text-center">
+                            <h4 class="vote-item-title mb-0">4 mùa của em</h4>
+                            <p class="vote-item-author mb-2">Nguyễn Minh Khôi</p>
                             <div class="vote-action d-flex justify-content-center">
-                                <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
+                                <button class="btn btn-primary mr-2" title="Bình chọn" type="button" (click)="openModal()"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
+                                <button class="btn btn-primary " title="Chia sẻ" type="button" (click)="fb($event)"> <i class="fa fa-share" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="vote-item">
+                        <div class="vote-item-image mb-2">
+                            <div class="vote-image">
+                                <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
+                            </div>
+                            <div class="vote-info d-flex align-items-center">
+                                <i class="fa fa-thumbs-up mr-2 " aria-hidden="true"></i>
+                                <div class="vote-info-like w-100">
+                                   4545
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vote-item-info text-center">
+                            <h4 class="vote-item-title mb-0">4 mùa của em</h4>
+                            <p class="vote-item-author mb-2">Nguyễn Minh Khôi</p>
+                            <div class="vote-action d-flex justify-content-center">
+                                <button class="btn btn-sm btn-primary mr-2" type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
                                 <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-share" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="vote-item">
-                        <div class="vote-item-image">
-                            <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
+                        <div class="vote-item-image mb-2">
+                            <div class="vote-image">
+                                <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
+                            </div>
+                            <div class="vote-info d-flex align-items-center">
+                                <i class="fa fa-thumbs-up mr-2 " aria-hidden="true"></i>
+                                <div class="vote-info-like w-100">
+                                   4545
+                                </div>
+                            </div>
                         </div>
-                        <div class="vote-item-info">
-                            <h4 class="vote-item-title">4 mùa của em</h4>
-                            <p class="vote-item-author">Nguyễn Minh Khôi</p>
+                        <div class="vote-item-info text-center">
+                            <h4 class="vote-item-title mb-0">4 mùa của em</h4>
+                            <p class="vote-item-author mb-2">Nguyễn Minh Khôi</p>
                             <div class="vote-action d-flex justify-content-center">
-                                <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
+                                <button class="btn btn-sm btn-primary mr-2" type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
                                 <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-share" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-sm-3">
+                
+                <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="vote-item">
-                        <div class="vote-item-image">
-                            <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
-                        </div>
-                        <div class="vote-item-info">
-                            <h4 class="vote-item-title">4 mùa của em</h4>
-                            <p class="vote-item-author">Nguyễn Minh Khôi</p>
-                            <div class="vote-action d-flex justify-content-center">
-                                <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
-                                <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-share" aria-hidden="true"></i></button>
+                        <div class="vote-item-image mb-2">
+                            <div class="vote-image">
+                                <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
+                            </div>
+                            <div class="vote-info d-flex align-items-center">
+                                <i class="fa fa-thumbs-up mr-2 " aria-hidden="true"></i>
+                                <div class="vote-info-like w-100">
+                                   4545
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="vote-item">
-                        <div class="vote-item-image">
-                            <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
-                        </div>
-                        <div class="vote-item-info">
-                            <h4 class="vote-item-title">4 mùa của em</h4>
-                            <p class="vote-item-author">Nguyễn Minh Khôi</p>
+                        <div class="vote-item-info text-center">
+                            <h4 class="vote-item-title mb-0">4 mùa của em</h4>
+                            <p class="vote-item-author mb-2">Nguyễn Minh Khôi</p>
                             <div class="vote-action d-flex justify-content-center">
-                                <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
-                                <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-share" aria-hidden="true"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="vote-item">
-                        <div class="vote-item-image">
-                            <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
-                        </div>
-                        <div class="vote-item-info">
-                            <h4 class="vote-item-title">4 mùa của em</h4>
-                            <p class="vote-item-author">Nguyễn Minh Khôi</p>
-                            <div class="vote-action d-flex justify-content-center">
-                                <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
+                                <button class="btn btn-sm btn-primary mr-2" type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
                                 <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-share" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
               
+
+                
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="vote-item">
+                        <div class="vote-item-image mb-2">
+                            <div class="vote-image">
+                                <img width="100%" height="100%" class="logo-smile" src="assets/img/artpix.jpg" alt="logo-label">
+                            </div>
+                            <div class="vote-info d-flex align-items-center">
+                                <i class="fa fa-thumbs-up mr-2 " aria-hidden="true"></i>
+                                <div class="vote-info-like w-100">
+                                   4545
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vote-item-info text-center">
+                            <h4 class="vote-item-title mb-0">4 mùa của em</h4>
+                            <p class="vote-item-author mb-2">Nguyễn Minh Khôi</p>
+                            <div class="vote-action d-flex justify-content-center">
+                                <button class="btn btn-sm btn-primary mr-2" type="button"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
+                                <button class="btn btn-sm btn-primary " type="button"> <i class="fa fa-share" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+              
+
+            
+
+                
+              
             </div>
         </div>
     </div>
 </section>
+
+
