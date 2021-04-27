@@ -154,6 +154,7 @@ export interface ResultExam {
   create_date: Date;
   rank: number;
   point: number;
+  image: string;
 }
 
 
@@ -231,4 +232,14 @@ export interface VotePainting {
   title:string;
   imageUrl: string;
   like: number;
+}
+
+
+export interface VoteItem {
+  Name: string;
+  StudentName: string;
+  NumberOfLikes: number;
+  NumberOfShare: number;
+  Image: string;
+  CreatedAt: Date;
 }

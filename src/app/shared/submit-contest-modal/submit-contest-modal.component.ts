@@ -35,7 +35,7 @@ export class SubmitContestModalComponent implements OnInit {
     this.submitContestForm = this.formBuilder.group({
       exam_name: ['', Validators.required],
       description: [''],
-      file: ['', Validators.required],
+      file: ['', Validators.required ],
       email: ['', Validators.required],
       isParent: [false]
     })
@@ -61,6 +61,13 @@ export class SubmitContestModalComponent implements OnInit {
     
     const form = new FormData()
     const fileName = (this.f.file.value as any)['name'] || 'unknownfile'
+    const fileSize = (this.f.file.value as any)['size']
+
+    if(fileSize > 5000000){
+      this.error = 'File tải vượt quá dung lượng 5MB'
+      return
+    }
+
     form.append('file', this.f.file.value, fileName)
     form.append('exam_name', this.f.exam_name.value)
     form.append('email', this.f.email.value)

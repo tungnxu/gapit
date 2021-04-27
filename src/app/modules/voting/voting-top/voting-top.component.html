@@ -5,14 +5,14 @@
         <div class="voting-top-list">
             <ngx-slick-carousel class="carousel slider" #slickModal="slick-carousel" [config]="slideConfig">
                 <div ngxSlickItem *ngFor="let item of votePaintings" class="slide-item slide voting-top-item">
-                    <div class="voting-top-title">{{item.title}}</div>
+                    <div class="voting-top-title">{{item.Name}}</div>
                     <div class="vote-image">
-                        <img width="100%" height="100%" class="logo-smile" [src]="item?.imageUrl" alt="logo-label">
+                        <img width="100%" height="100%" class="logo-smile" [src]="'https://hvn.gapit.com.vn/' +item?.Image" alt="logo-label">
                     </div>
                     <div class="vote-info d-flex">
                         <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i>
                         <div class="vote-info-like">
-                            {{item.like}}
+                            {{item.NumberOfLikes}}
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { VotePainting } from 'src/app/types/models';
+import { VoteApi } from 'src/app/api/vote.api';
+import { VoteItem, VotePainting } from 'src/app/types/models';
 
 @Component({
   selector: 'app-voting-top',
@@ -7,51 +8,7 @@ import { VotePainting } from 'src/app/types/models';
   styleUrls: ['./voting-top.component.scss']
 })
 export class VotingTopComponent implements OnInit {
-  votePaintings: VotePainting[] = [
-    {
-      id: 1,
-      title: 'Ngựa hồng',
-      imageUrl: 'assets/img/artpix.jpg',
-      like: 3534
-    },
-    {
-      id: 2,
-      title: '4 mùa tươi đẹp',
-      imageUrl: 'assets/img/artpix.jpg',
-      like: 234
-    },
-    {
-      id: 3,
-      title: 'sư tử vàng',
-      imageUrl: 'assets/img/artpix.jpg',
-      like: 546
-    },
-    {
-      id: 4,
-      title: 'Yêu hòa bình',
-      imageUrl: 'assets/img/artpix.jpg',
-      like: 3453
-    },
-    {
-      id: 5,
-      title: 'Chiến dịch phòng chống corona',
-      imageUrl: 'assets/img/artpix.jpg',
-      like: 4564
-    },
-    {
-      id: 6,
-      title: 'Chiến dịch phòng chống corona',
-      imageUrl: 'assets/img/artpix.jpg',
-      like: 4564
-    },
-    {
-      id: 7,
-      title: 'Chiến dịch phòng chống corona',
-      imageUrl: 'assets/img/artpix.jpg',
-      like: 4564
-    },
-   
-  ]
+  votePaintings: VoteItem[] = []
 
   slideConfig = {
     'centerMode': true,
@@ -91,9 +48,12 @@ export class VotingTopComponent implements OnInit {
   // ];
   // slideConfig = {'slidesToShow': 4, 'slidesToScroll': 4};
 
-  constructor() { }
+  constructor(private voteApi: VoteApi) { }
 
   ngOnInit(): void {
+    this.voteApi.getListVotes().subscribe( (data: VoteItem[]) =>{
+      this.votePaintings = data
+    })
   }
 
 }
