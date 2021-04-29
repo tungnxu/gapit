@@ -28,7 +28,7 @@ export class VotingListComponent implements OnInit {
   loadingVote: boolean
 
   votedExams : any[] = []
-  
+
   constructor(private modalService: BsModalService,private formBuilder: FormBuilder, private voteApi: VoteApi, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
@@ -65,18 +65,20 @@ export class VotingListComponent implements OnInit {
     })
   }
 
-  openModal() {
+  openModal(examid : any) {
 
     const initialState = {
       animated: true,
       backdrop: true,
       ignoreBackdropClick: false,
+      title: 'Modal with component',
+      examid: examid
     };
-    const promotionModalRef = this.modalService.show(GiftModalComponent, Object.assign(initialState, { class: 'modal-md modal-dialog-centered modal-gift' , animated: true}));
+    this.modalService.show(GiftModalComponent,  {initialState, class: 'modal-md modal-dialog-centered modal-gift' , animated: true});
   }
 
   fb(e) {
-    let url = 'www.google.com';
+    let url = 'https://nucuoirangrotuonglaituoisang.com/voting';
     e.preventDefault();
     var facebookWindow = window.open(
       'https://www.facebook.com/sharer/sharer.php?u='+ url ,
@@ -96,19 +98,22 @@ export class VotingListComponent implements OnInit {
       fPaint.isLiked = true
       this.votedExams.push(examid)
       this.localStorageService.set('vE', JSON.stringify(this.votedExams))
-      this.openModal()
+      this.openModal(examid)
     })
   }
 
   dislikePainting(examid){
-    this.voteApi.dislikePainting(examid).subscribe((res: VoteResponse) =>{
-      const fPaint = this.lstPainting.find(x => x.ExamId == examid)
-      fPaint.NumberOfLikes = res.NumberOfLikes
-      fPaint.isLiked = false
-      const index = this.votedExams.findIndex(obj => obj.id == examid)
-      this.votedExams.splice(index,1)
-      this.localStorageService.set('vE', JSON.stringify(this.votedExams))
-    })
+    if(confirm('Bạn có chắc muốn bỏ bình chọn bài thi này ?')){
+      this.voteApi.dislikePainting(examid).subscribe((res: VoteResponse) =>{
+        const fPaint = this.lstPainting.find(x => x.ExamId == examid)
+        fPaint.NumberOfLikes = res.NumberOfLikes
+        fPaint.isLiked = false
+        const index = this.votedExams.findIndex(obj => obj.id == examid)
+        this.votedExams.splice(index,1)
+        this.localStorageService.set('vE', JSON.stringify(this.votedExams))
+      })
+    }
+
   }
 
 }

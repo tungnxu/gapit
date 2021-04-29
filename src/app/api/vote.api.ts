@@ -41,4 +41,9 @@ export class VoteApi extends BaseApi {
     const command = {examId: examId, type: 'share'}
     return this.httpClient.post<VoteResponse>(this.createUrl('Voting'), command)
   }
+
+  takeGift(examid: any,phone:string, email:string){
+    const command = {examid: examid, phone: phone, email: email}
+    return this.httpClient.post<VoteResponse>(this.createUrl('gift'), command)
+  }
 }

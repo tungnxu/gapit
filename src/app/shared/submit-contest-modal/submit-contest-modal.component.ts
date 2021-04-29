@@ -25,8 +25,8 @@ export class SubmitContestModalComponent implements OnInit {
   user$ : Observable<User>
 
   constructor( public bsModalRef: BsModalRef ,
-    private formBuilder: FormBuilder, 
-    private studentApi: StudentApi, 
+    private formBuilder: FormBuilder,
+    private studentApi: StudentApi,
     private authService:AuthService,
     private localStorageService: LocalStorageService,
     private toastr: ToastrService) { }
@@ -36,7 +36,7 @@ export class SubmitContestModalComponent implements OnInit {
       exam_name: ['', Validators.required],
       description: [''],
       file: ['', Validators.required ],
-      email: ['', Validators.required],
+      email: [''],
       isParent: [false]
     })
 
@@ -58,7 +58,7 @@ export class SubmitContestModalComponent implements OnInit {
       return
     }
 
-    
+
     const form = new FormData()
     const fileName = (this.f.file.value as any)['name'] || 'unknownfile'
     const fileSize = (this.f.file.value as any)['size']

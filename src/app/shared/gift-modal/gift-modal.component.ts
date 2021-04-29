@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal'
 import { first } from 'rxjs/operators'
+import { VoteApi } from 'src/app/api/vote.api'
 import { AuthService } from 'src/app/core/services/auth.service'
 import { JWTTokenService } from 'src/app/core/services/jwt-token.service'
 import { LocalStorageService } from 'src/app/core/services/local-storage.service'
@@ -15,6 +16,7 @@ import { RegisterModalComponent } from '../register-modal/register-modal.compone
 })
 export class GiftModalComponent implements OnInit {
   title: string
+  examid:any
   closeBtnName: string
   bsRegisterModalRef: BsModalRef;
 
@@ -24,14 +26,17 @@ export class GiftModalComponent implements OnInit {
   returnUrl: string
   error = ''
 
+  isSuccess:boolean
+
   constructor(
     public bsModalRef: BsModalRef,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private voteApi: VoteApi) { }
 
   ngOnInit() {
     this.giftForm = this.formBuilder.group({
-      phone: ['', Validators.pattern],
-      email: ['', Validators.email],
+      phone: [null, Validators.pattern],
+      email: [null, Validators.email],
     })
   }
 
@@ -45,9 +50,15 @@ export class GiftModalComponent implements OnInit {
       return
     }
 
+    if(!this.f.phone.value && !this.f.email.value ){
+      this.error = 'Vui lòng điền số điện thoại hoặc email'
+      return
+    }
+
+
     const next = (data) => {
+      this.isSuccess = true
       this.loading = false
-      this.bsModalRef.hide()
     }
 
     const error = (error) => {
@@ -55,7 +66,7 @@ export class GiftModalComponent implements OnInit {
       this.loading = false
     }
     this.loading = true
-    // this.authService.login(this.f.username.value, this.f.password.value).subscribe(next, error)
+    this.voteApi.takeGift(this.examid, this.f.phone.value, this.f.email.value).subscribe(next, error)
 
   }
 

@@ -3,12 +3,19 @@
       <span aria-hidden="true">&times;</span>
     </button>
 <h6 class="text-center mb-3">CẢM ƠN BẠN ĐÃ THAM GIA BÌNH CHỌN CHO TÁC PHẨM</h6>
-<div class="info row">
+<div *ngIf="this.isSuccess" class="text-center text-white">
+  Chúng tôi đã nhận được yêu cầu của bạn. Phần quà sẽ được gửi tới bạn qua thông tin mà bạn đã cung cấp !
+</div>
+<div *ngIf="!this.isSuccess" class="info row">
   <div class="col-sm-5">
       <p style="letter-spacing: 1px;">Hãy để lại thông tin, <strong>COLGATE</strong> sẽ gửi tặng<br>bạn 1 món quà nhé</p>
+    <small class="text-white">(Điền số điện thoại hoặc Email)</small>
+
   </div>
   <div class="col-sm-7">
-      <form  [formGroup]="giftForm" (ngSubmit)="onSubmit()">
+
+      <form   [formGroup]="giftForm" (ngSubmit)="onSubmit()">
+
           <div class="form-group mb-2" hasError="phone">
               <input type="text" class="form-control" formControlName="phone" placeholder="Số điện thoại" name="phone" id="phone"   pattern="((0|84)[3|5|7|8|9][0-9]{8})">
               <div errorMessage>
@@ -28,7 +35,9 @@
           <div class="text-center">
               <button type="submit" class="btn btn-sm btn-light py-1">GỬI</button>
           </div>
+          <small *ngIf="error" class="text-white">{{this.error}}</small>
       </form>
+
   </div>
 </div>
 </div>
