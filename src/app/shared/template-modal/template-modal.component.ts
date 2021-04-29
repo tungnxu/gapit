@@ -99,7 +99,7 @@ export class TemplateModalComponent implements OnInit {
       student_address: ['', Validators.required],
       parent_name: ['', Validators.required],
       parent_phone: ['', [Validators.required, Validators.pattern]],
-      parent_email: ['',  [Validators.required, Validators.email]],
+      parent_email: ['',  [Validators.email]],
       school_name: ['', Validators.required],
       school_class: ['', Validators.required],
       school_address: ['', Validators.required],

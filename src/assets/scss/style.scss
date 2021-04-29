@@ -412,6 +412,14 @@ footer{
     }
   }
 
+  label {
+    &.required {
+      &:after {
+        content: " *";
+        color: #eb4052;
+      }
+    }
+  }
   .bs-datepicker-container{
     padding: 0 !important;
   }
@@ -629,6 +637,7 @@ footer{
       margin: 0 auto;
       .vote-item{
         margin-bottom: 3rem;
+        animation: fadein ease-out 350ms;
         .vote-item-image{
           border: 1px solid $primary;
           border-radius: 5px;
@@ -638,7 +647,7 @@ footer{
             border-radius: 5px;
             height: 220px;
             img{
-              object-fit: cover;
+              object-fit: contain;
             }
           }
 
@@ -669,4 +678,33 @@ footer{
   border-radius: 10px;
   overflow: hidden;
 }
+}
+
+.voting-header{
+  position: relative;
+  h1{
+    position: absolute;
+    left: 10rem;
+    top:25%;
+    @media only screen and (max-width: 1200px){
+      display: none;
+    }
+  }
+  .logo-smile{
+    position: absolute;
+    right: 15rem;
+    bottom: 3rem;
+    width: 200px;
+    @media only screen and (max-width: 1200px){
+      right: 3rem;
+      bottom: 2rem;
+      width: 150px;
+    }
+
+    @media only screen and (max-width: 768px){
+      right: 1rem;
+      bottom: 1rem;
+      width: 80px;
+    }
+  }
 }

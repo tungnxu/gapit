@@ -242,4 +242,17 @@ export interface VoteItem {
   NumberOfShare: number;
   Image: string;
   CreatedAt: Date;
+  ExamId: string;
+  isLiked: boolean;
+}
+
+export interface VoteResponse {
+  examId: string;
+  NumberOfLikes: number;
+  NumberOfShare: number;
+}
+
+export interface QueryVote {
+  total: number;
+  data: VoteItem[];
 }

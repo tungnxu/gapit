@@ -30,8 +30,8 @@ export class GiftModalComponent implements OnInit {
 
   ngOnInit() {
     this.giftForm = this.formBuilder.group({
-      phone: ['', Validators.required],
-      email: ['', Validators.required],
+      phone: ['', Validators.pattern],
+      email: ['', Validators.email],
     })
   }
 

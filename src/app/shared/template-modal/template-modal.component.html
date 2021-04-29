@@ -16,7 +16,7 @@
                     <div id="step1" class="step-1">
                         <h6 class="text-uppercase">Thông tin học sinh</h6>
                         <div class=" row align-items-start" hasError="student_name">
-                            <label for="student_name" class="col-sm-4 col-form-label"><small>Họ và tên:</small></label>
+                            <label for="student_name" class="col-sm-4 col-form-label required"><small>Họ và tên:</small></label>
                             <div class="col-sm-8">
                                 <input type="text" formControlName="student_name" class="form-control form-control-sm"
                                     id="student_name">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class=" row align-items-start" hasError="student_date_of_birth">
-                            <label for="student_date_of_birth" class="col-sm-4 col-form-label"><small>Ngày
+                            <label for="student_date_of_birth" class="col-sm-4 col-form-label required"><small>Ngày
                                     sinh:</small></label>
                             <div class="col-sm-8">
                                 <input readonly type="text" formControlName="student_date_of_birth"
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class=" row align-items-start" hasError="student_address">
-                            <label for="student_address" class="col-sm-4 col-form-label"><small>Địa chỉ:</small></label>
+                            <label for="student_address" class="col-sm-4 col-form-label required"><small>Địa chỉ:</small></label>
                             <div class="col-sm-8">
                                 <input type="text" formControlName="student_address"
                                     placeholder="Số nhà, ngõ, quận huyện" class="form-control form-control-sm"
@@ -56,7 +56,7 @@
 
                         <div class=" row align-items-start" hasError="student_province_id">
                             <label for="student_province_id"
-                                class="col-sm-4 col-form-label"><small>Tỉnh:</small></label>
+                                class="col-sm-4 col-form-label required"><small>Tỉnh:</small></label>
                             <div class="col-sm-8">
                                 <ng-select [items]="provinces" formControlName="student_province_id" bindLabel="text"
                                     bindValue="value" (change)="onProvinceChanged($event)"> </ng-select>
@@ -70,7 +70,7 @@
 
                         <div class=" row align-items-start" hasError="student_district_id">
                             <label for="student_district_id"
-                                class="col-sm-4 col-form-label"><small>Huyện/Quận:</small></label>
+                                class="col-sm-4 col-form-label required"><small>Huyện/Quận:</small></label>
                             <div class="col-sm-8">
                                 <ng-select [items]="district" formControlName="student_district_id" bindLabel="text"
                                     bindValue="value"> </ng-select>
@@ -84,7 +84,7 @@
 
                         <h6 class="text-uppercase mt-3">Thông tin bố mẹ/ người giám hộ</h6>
                         <div class=" row align-items-start" hasError="student_district_id">
-                            <label for="parent_name" class="col-sm-4 col-form-label"><small>Họ và tên:</small></label>
+                            <label for="parent_name" class="col-sm-4 col-form-label required"><small>Họ và tên:</small></label>
                             <div class="col-sm-8">
                                 <input type="text" formControlName="parent_name" class="form-control form-control-sm"
                                     id="parent_name">
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                         <div class=" row align-items-start" hasError="parent_phone">
-                            <label for="parent_phone" class="col-sm-4 col-form-label"><small>Số điện
+                            <label for="parent_phone" class="col-sm-4 col-form-label required"><small>Số điện
                                     thoại:</small></label>
                             <div class="col-sm-8">
                                 <input type="tel" formControlName="parent_phone" class="form-control form-control-sm"
@@ -119,9 +119,6 @@
                                 <input type="email" formControlName="parent_email" placeholder="example@gmail.com"
                                     class="form-control form-control-sm" id="parent_email">
                                     <div errorMessage>
-                                        <div class="invalid-feedback" *ifError="'required'" translate>
-                                            Vui lòng điền email tên bố mẹ/người giám hộ
-                                        </div>
                                         <div class="invalid-feedback" *ifError="'email'" translate>
                                             Sai định dạng email
                                         </div>
@@ -131,7 +128,7 @@
 
                         <h6 class="text-uppercase mt-3">Thông tin trường học</h6>
                         <div class=" row align-items-start" hasError="school_name">
-                            <label for="school_name" class="col-sm-4 col-form-label"><small>Tên trường
+                            <label for="school_name" class="col-sm-4 col-form-label required"><small>Tên trường
                                     học:</small></label>
                             <div class="col-sm-8">
                                 <input type="text"  class="form-control form-control-sm"  formControlName="school_name" (input)="onInputChange($event)" id="school_name" list="dynmicUserIds">
@@ -147,7 +144,7 @@
                             </div>
                         </div>
                         <div class=" row align-items-start" hasError="school_class">
-                            <label for="school_class" class="col-sm-4 col-form-label"><small>Lớp:</small></label>
+                            <label for="school_class" class="col-sm-4 col-form-label required"><small>Lớp:</small></label>
                             <div class="col-sm-8">
                                 <input type="text" formControlName="school_class" class="form-control form-control-sm"
                                     id="school_class">
@@ -159,7 +156,7 @@
                             </div>
                         </div>
                         <div class=" row align-items-start" hasError="school_address">
-                            <label for="school_address" class="col-sm-4 col-form-label"><small>Địa chỉ:</small></label>
+                            <label for="school_address" class="col-sm-4 col-form-label required"><small>Địa chỉ:</small></label>
                             <div class="col-sm-8">
                                 <input type="text" formControlName="school_address" class="form-control form-control-sm"
                                     id="school_address">
@@ -172,7 +169,7 @@
                         </div>
 
                         <div class=" row align-items-start" hasError="school_province_id">
-                            <label for="school_province_id" class="col-sm-4 col-form-label"><small>Tỉnh:</small></label>
+                            <label for="school_province_id" class="col-sm-4 col-form-label required"><small>Tỉnh:</small></label>
                             <div class="col-sm-8">
                                 <ng-select [items]="schoolProvinces" formControlName="school_province_id"
                                     bindLabel="text" bindValue="value" (change)="onSchoolProvinceChanged($event)">
@@ -187,7 +184,7 @@
 
                         <div class=" row align-items-start" hasError="school_district_id">
                             <label for="school_district_id"
-                                class="col-sm-4 col-form-label"><small>Huyện/Quận:</small></label>
+                                class="col-sm-4 col-form-label required"><small>Huyện/Quận:</small></label>
                             <div class="col-sm-8">
                                 <ng-select [items]="schoolDistrict" formControlName="school_district_id"
                                     bindLabel="text" bindValue="value"> </ng-select>

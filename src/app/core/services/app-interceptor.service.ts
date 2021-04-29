@@ -31,7 +31,7 @@ export class AppInterceptor implements HttpInterceptor {
     })
 
     return next.handle(req).pipe(
-      timeout(3000),
+      timeout(12000),
       tap(
         event => {
           status = '';
@@ -53,7 +53,7 @@ export class AppInterceptor implements HttpInterceptor {
           error: err
         }
         if(req.url.includes('hvn.gapit.com.vn')){
-          this.logDetails(info);
+          // this.logDetails(info);
         }
       })
   )
