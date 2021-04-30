@@ -21,6 +21,7 @@ export class SubmitContestModalComponent implements OnInit {
   submitted = false
   returnUrl: string
   error = ''
+  success = ''
 
   user$ : Observable<User>
 
@@ -75,13 +76,15 @@ export class SubmitContestModalComponent implements OnInit {
 
     const next = (student) => {
       this.localStorageService.set('student', JSON.stringify(student))
+      console.log(student)
       this.authService.generateUserInfo()
       this.loading = false
-      this.bsModalRef.hide()
-      this.toastr.info('Bạn đã gửi bài thành công ! ', '', {
-        timeOut: 6000,
-        positionClass: 'toast-top-center',
-      });
+      this.success = 'Bài dự thi đã được gửi thành công. Mã tác phẩm: ' 
+      // this.bsModalRef.hide()
+      // this.toastr.info('Bạn đã gửi bài thành công ! ', '', {
+      //   timeOut: 6000,
+      //   positionClass: 'toast-top-center',
+      // });
     }
 
     const error = (error) => {
