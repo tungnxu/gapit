@@ -77,7 +77,7 @@ export class TemplateModalComponent implements OnInit {
       }
       )
     ).subscribe(data => {
-      console.log(data)
+      // console.log(data)
       this.schoolList1 = data
     })
 

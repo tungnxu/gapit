@@ -15,10 +15,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 import { PromotionModalComponent } from './promotion-modal/promotion-modal.component';
 import { GiftModalComponent } from './gift-modal/gift-modal.component';
+import { NotiModalComponent } from './noti-modal/noti-modal.component';
 
 
 @NgModule({
-  declarations: [SanitizeHtmlPipe, LoginModalComponent,GiftModalComponent, RegisterModalComponent, CountAnimationDirective, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent],
+  declarations: [SanitizeHtmlPipe, NotiModalComponent, LoginModalComponent,GiftModalComponent, RegisterModalComponent, CountAnimationDirective, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent],
   imports: [
     LayoutsModule,
     CommonModule,
@@ -32,6 +33,6 @@ import { GiftModalComponent } from './gift-modal/gift-modal.component';
     CountAnimationDirective,
     SanitizeHtmlPipe
   ],
-  entryComponents: [LoginModalComponent, RegisterModalComponent,GiftModalComponent, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent]
+  entryComponents: [LoginModalComponent, NotiModalComponent, RegisterModalComponent,GiftModalComponent, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent]
 })
 export class SharedModule { }

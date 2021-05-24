@@ -7,7 +7,7 @@ import { switchMap } from 'rxjs/operators';
 import { StudentApi } from 'src/app/api/student.api';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { User } from 'src/app/types/models';
+import { Student, User } from 'src/app/types/models';
 
 @Component({
   selector: 'app-submit-contest-modal',
@@ -74,12 +74,13 @@ export class SubmitContestModalComponent implements OnInit {
     form.append('email', this.f.email.value)
     form.append('description', this.f.description.value)
 
-    const next = (student) => {
+    const next = (student: Student) => {
       this.localStorageService.set('student', JSON.stringify(student))
-      console.log(student)
+      // console.log(student)
       this.authService.generateUserInfo()
       this.loading = false
-      this.success = 'Bài dự thi đã được gửi thành công. Mã tác phẩm: ' 
+      const idExam = student?.exams?.length == 1 ? student?.exams[0]?.id : student?.exams[1]?.id
+      this.success = 'Bài dự thi đã được gửi thành công. Mã tác phẩm: ' + idExam + '\nEmail/sms xác nhận sẽ được gửi lại trong vòng 24h-48h.'
       // this.bsModalRef.hide()
       // this.toastr.info('Bạn đã gửi bài thành công ! ', '', {
       //   timeOut: 6000,

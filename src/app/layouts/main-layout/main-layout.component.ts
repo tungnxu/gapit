@@ -3,6 +3,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LoginModalComponent } from 'src/app/shared/login-modal/login-modal.component';
+import { NotiModalComponent } from 'src/app/shared/noti-modal/noti-modal.component';
 import { PromotionModalComponent } from 'src/app/shared/promotion-modal/promotion-modal.component';
 import { RegisterModalComponent } from 'src/app/shared/register-modal/register-modal.component';
 import { SearchResultModalComponent } from 'src/app/shared/search-result-modal/search-result-modal.component';
@@ -40,6 +41,10 @@ export class MainLayoutComponent implements OnInit {
     })
   }
 
+  get codeExam(){
+    return this.currentUser?.student?.exams?.map(x => x.id).toString()
+  }
+
   logout(){
     this.authService.logout()
   }
@@ -53,6 +58,16 @@ export class MainLayoutComponent implements OnInit {
     }
     this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign({initialState}, { class: 'modal-xl modal-dialog-centered' }));
     this.bsRegisterModalRef.content.closeBtnName = 'Close';
+
+  }
+
+  openNotiModal(){
+    const initialState = {
+      animated: true,
+      backdrop: true,
+      ignoreBackdropClick: false,
+    };
+    this.modalService.show(NotiModalComponent,  {initialState, class: 'modal-md modal-dialog-centered modal-gift' , animated: true});
   }
 
   openLoginModal() {
@@ -87,23 +102,28 @@ export class MainLayoutComponent implements OnInit {
   }
 
   openSubmitContestModal(){
-    const initialState = {
+    // const initialState = {
 
-      backdrop: true,
-      ignoreBackdropClick: true,
-    };
-    this.bsSubmitContestModalRef = this.modalService.show(SubmitContestModalComponent, Object.assign(initialState, { class: 'modal-md modal-dialog-centered' }));
-    this.bsSubmitContestModalRef.content.closeBtnName = 'Close';
+    //   backdrop: true,
+    //   ignoreBackdropClick: true,
+    // };
+    // this.bsSubmitContestModalRef = this.modalService.show(SubmitContestModalComponent, Object.assign(initialState, { class: 'modal-md modal-dialog-centered' }));
+    // this.bsSubmitContestModalRef.content.closeBtnName = 'Close';
+
+    this.openNotiModal()
   }
 
   openTemplateModal(){
-    const initialState = {
+    // const initialState = {
 
-      backdrop: true,
-      ignoreBackdropClick: true,
-    };
-    this.bsTemplateModalRef = this.modalService.show(TemplateModalComponent, Object.assign(initialState, { class: 'modal-xl modal-dialog-centered' }));
-    this.bsTemplateModalRef.content.closeBtnName = 'Close';
+    //   backdrop: true,
+    //   ignoreBackdropClick: true,
+    // };
+    // this.bsTemplateModalRef = this.modalService.show(TemplateModalComponent, Object.assign(initialState, { class: 'modal-xl modal-dialog-centered' }));
+    // this.bsTemplateModalRef.content.closeBtnName = 'Close';
+
+    this.openNotiModal()
+
   }
 
   openPromotionModal() {

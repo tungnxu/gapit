@@ -20,7 +20,6 @@ export class ErrorDirective implements DoCheck {
     private templateRef: TemplateRef<ErrorDirectiveContext>,
     private viewContainerRef: ViewContainerRef
   ) {
-    console.log('error')
   }
 
   ngDoCheck() {

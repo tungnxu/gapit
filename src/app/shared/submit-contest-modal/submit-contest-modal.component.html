@@ -7,9 +7,11 @@
         <div class="student-info text-14 text-muted mt-4" >
             <p class="m-0">Bạn: {{(user$ | async)?.student?.student_info?.student_name}}</p>
         </div>
-        <h4 class="text-primary mt-2">Gửi bài dự thi {{ (user$ | async)?.student?.exams.length === 0 ? 'đầu tiên' : 'thứ 2' }}</h4>
+        <h4 *ngIf="!success" class="text-primary mt-2">Gửi bài dự thi {{ (user$ | async)?.student?.exams.length === 0 ? 'đầu tiên' : 'thứ 2' }}</h4>
 
         <h6 class="text-uppercase">Thông tin bài dự thi</h6>
+        <ng-container *ngIf="!success">
+
         <div class=" row align-items-start"  hasError="exam_name">
             <label for="exam_name" class="col-sm-4 col-form-label"><small>Tiêu
                     đề:</small></label>
@@ -69,9 +71,11 @@
         </div>
 
         <div class="form-group mt-3">
-            <button type="submit" class="btn btn-primary btn-block">GỬI BÀI</button>
+            <button [class.is-loading]="loading"  type="submit" class="btn btn-primary btn-block">GỬI BÀI</button>
         </div>
         <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
-        <div *ngIf="success" class="alert alert-info my-3 mb-0">{{success}}</div>
+        </ng-container>
+
+        <div *ngIf="success" style=" white-space: pre-line; font-size: 14px;" class="alert alert-info my-3 mb-0">{{success}}</div>
     </form>
 </div>
