@@ -22,8 +22,8 @@ export class VoteApi extends BaseApi {
     return this.httpClient.get<VoteItem[]>(this.createUrl(`topten`), { params: this.createParams(params)})
   }
 
-  getListVotes(skip: number, take: number){
-    const params = {skip: skip, take: take}
+  getListVotes(skip: number, take: number, examId?: string){
+    const params = {skip: skip, take: take, examId: examId}
     return this.httpClient.get<QueryVote>(this.createUrl(`List`), { params: this.createParams(params)})
   }
 

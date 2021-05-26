@@ -636,12 +636,29 @@ footer{
       max-width: 1000px;
       margin: 0 auto;
       .vote-item{
-        margin-bottom: 3rem;
+        margin-bottom: 4rem;
         animation: fadein ease-out 350ms;
         .vote-item-image{
-          border: 1px solid $primary;
+          position: relative;
+          // border: 1px solid $primary;
+          background-color: #f1f1f1;
           border-radius: 5px;
           padding: .5rem;
+          .vote-code{
+            line-height: 21px;
+            position: absolute;
+            top:-20px;
+            right: -20px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            background-color: orange;
+            color: white;
+            border-radius: 50%;
+            span{
+              font-size: 20px;
+            }
+          }
           .vote-image{
             overflow: hidden;
             border-radius: 5px;

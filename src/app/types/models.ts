@@ -244,6 +244,9 @@ export interface VoteItem {
   CreatedAt: Date;
   ExamId: string;
   isLiked: boolean;
+  District: string;
+  Province: string;
+  Description: string;
 }
 
 export interface VoteResponse {

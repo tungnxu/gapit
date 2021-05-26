@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { VoteApi } from 'src/app/api/vote.api';
@@ -26,12 +27,16 @@ export class VotingListComponent implements OnInit {
   page = 1
   total: number
   loadingVote: boolean
-
+  examId = ""
   votedExams : any[] = []
 
-  constructor(private modalService: BsModalService,private formBuilder: FormBuilder, private voteApi: VoteApi, private localStorageService: LocalStorageService) { }
+  isLiking = false
+  isDisLiking = false
+
+  constructor(private modalService: BsModalService,private formBuilder: FormBuilder, private voteApi: VoteApi, private localStorageService: LocalStorageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.examId = this.route.snapshot.queryParams['examId'] || ''
     this.votedExams = JSON.parse(this.localStorageService.get('vE')) || []
     this.fetch(1).subscribe( (data: QueryVote) => {
       this.total = data.total
@@ -47,7 +52,7 @@ export class VotingListComponent implements OnInit {
 
   private fetch(page): Observable<any> {
     const skip = (page - 1) * this.quantity
-    return this.voteApi.getListVotes(skip, this.quantity)
+    return this.voteApi.getListVotes(skip, this.quantity, this.examId)
   }
 
   loadMore() {
@@ -77,8 +82,8 @@ export class VotingListComponent implements OnInit {
     this.modalService.show(GiftModalComponent,  {initialState, class: 'modal-md modal-dialog-centered modal-gift' , animated: true});
   }
 
-  fb(e) {
-    let url = 'https://nucuoirangrotuonglaituoisang.com/voting';
+  fb(e, examId) {
+    let url = 'https://nucuoirangrotuonglaituoisang.com/voting?examId=' + examId;
     e.preventDefault();
     var facebookWindow = window.open(
       'https://www.facebook.com/sharer/sharer.php?u='+ url ,
@@ -92,18 +97,21 @@ export class VotingListComponent implements OnInit {
   }
 
   likePainting(examid){
+    this.isLiking = true
     this.voteApi.likePainting(examid).subscribe((res: VoteResponse) =>{
       const fPaint = this.lstPainting.find(x => x.ExamId == examid)
       fPaint.NumberOfLikes = res.NumberOfLikes
       fPaint.isLiked = true
       this.votedExams.push(examid)
       this.localStorageService.set('vE', JSON.stringify(this.votedExams))
+      this.isLiking = false
       this.openModal(examid)
     })
   }
 
   dislikePainting(examid){
     if(confirm('Bạn có chắc muốn bỏ bình chọn bài thi này ?')){
+      this.isDisLiking = true
       this.voteApi.dislikePainting(examid).subscribe((res: VoteResponse) =>{
         const fPaint = this.lstPainting.find(x => x.ExamId == examid)
         fPaint.NumberOfLikes = res.NumberOfLikes
@@ -111,9 +119,35 @@ export class VotingListComponent implements OnInit {
         const index = this.votedExams.findIndex(obj => obj.id == examid)
         this.votedExams.splice(index,1)
         this.localStorageService.set('vE', JSON.stringify(this.votedExams))
+        this.isDisLiking = false
       })
     }
 
+  }
+
+  onSearch(examId:string) {
+    this.examId = examId
+    this.page = 1
+    this.loading = true
+    this.votedExams = JSON.parse(this.localStorageService.get('vE')) || []
+    this.fetch(this.page).subscribe(data => {
+      this.loading = false
+      this.fetch(1).subscribe( (data: QueryVote) => {
+        this.total = data.total
+        if(!data?.data) {
+          this.lstPainting = []
+        }else{
+          this.lstPainting = data?.data?.map(x => {
+            if(this.votedExams && this.votedExams.includes(x.ExamId)){
+              x.isLiked = true
+            }
+            return x;
+          })
+        }
+       
+      })
+      this.total = data.count
+    })
   }
 
 }

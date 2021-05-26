@@ -1,14 +1,24 @@
 <section class="voting-list mt-5">
     <div class="container">
-        <h2 class="text-center mb-4">BÀI DỰ THI</h2>
+        <h2 class="text-center mb-3">BÀI DỰ THI</h2>
+        <div class=" mb-5 row search-form w-25 mx-auto">
+            <input placeholder="Tìm theo mã dự thi (vd: 20)" #searchKey class="form-control " type="text" name="search" id="search" [(value)]="examId" (keydown.enter)="onSearch(searchKey.value)">
+            <a [hidden]="examId == ''" class="clear-action" href="javascript:;" (click)="onSearch('')"><i class="fa fa-times" aria-hidden="true"></i></a>
+            <a  class="search-action" href="javascript:;" (click)="onSearch(searchKey.value)"><i class="fa fa-search" aria-hidden="true"></i></a>
+        </div>
 
         <div class="voting-list">
-            <div class="row">
+   
+            <div *ngIf="lstPainting.length == 0 && examId != ''" class="h-50 text-center text-muted">
+                Không tìm thấy bài dự thi nào có mã "<b>{{ examId }}</b>"
+            </div>
+            <div *ngIf="lstPainting.length > 0" class="row">
                 <div *ngFor="let item of lstPainting" class="col-sm-6 col-md-4 col-lg-3">
                     <div class="vote-item">
                         <div class="vote-item-image mb-2">
+                            <div class="vote-code"> <small>Mã</small><br> <span> {{ item?.ExamId }}</span></div>
                             <div class="vote-image">
-                                <img width="100%" height="100%" class="logo-smile" title="{{item?.Name}}" [src]="'https://hvn.gapit.com.vn/' +item?.Image" alt="logo-label">
+                                <img width="100%" height="100%" class="logo-smile" title="{{item?.Name}} {{item?.Description ? '- ' + item?.Description : ''}}" [src]="'https://hvn.gapit.com.vn/' +item?.Image" alt="logo-label">
                             </div>
                             <div class="vote-info d-flex align-items-center">
                                 <i class="fa fa-thumbs-up ml-2 " aria-hidden="true"></i>
@@ -18,12 +28,13 @@
                             </div>
                         </div>
                         <div class="vote-item-info text-center">
-                            <h5 class="vote-item-title text-truncate mb-0">{{item?.Name}}</h5>
-                            <p class="vote-item-author text-capitalize mb-2">{{item?.StudentName}}</p>
+                            <h5 class="vote-item-title text-truncate mb-0"  title="{{item?.Name}} {{item?.Description ? '- ' + item?.Description : ''}}">{{item?.Name}}</h5>
+                            <p class="vote-item-author text-capitalize mb-0">{{item?.StudentName}}</p>
+                            <p class="text-muted mb-2  text-truncate" title="{{item?.District}} - {{item?.Province}}" style="font-size: 12px;">{{item?.District}} - {{item?.Province}}</p>
                             <div class="vote-action d-flex justify-content-center">
-                                <button *ngIf="!item.isLiked" class="btn btn-primary mr-2" title="Bình chọn" type="button" (click)="likePainting(item?.ExamId)"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
-                                <button *ngIf="item?.isLiked" style="opacity: .5;" class="btn bg-dark mr-2" title="Bỏ chọn" type="button" (click)="dislikePainting(item.ExamId)"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
-                                <button class="btn btn-primary " title="Chia sẻ" type="button" (click)="fb($event)"> <i class="fa fa-share" aria-hidden="true"></i></button>
+                                <button [disabled]="isLiking" *ngIf="!item.isLiked" class="btn btn-primary mr-2" title="Bình chọn" type="button" (click)="likePainting(item?.ExamId)"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
+                                <button [disabled]="isDisLiking" *ngIf="item?.isLiked" style="opacity: .5;" class="btn bg-dark mr-2" title="Bỏ chọn" type="button" (click)="dislikePainting(item.ExamId)"> <i class="fa fa-thumbs-up text-white" aria-hidden="true"></i></button>
+                                <button class="btn btn-primary " title="Chia sẻ" type="button" (click)="fb($event, item?.ExamId)"> <i class="fa fa-share" aria-hidden="true"></i></button>
                             </div>
                         </div>
                     </div>
