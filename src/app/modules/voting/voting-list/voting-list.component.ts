@@ -84,6 +84,7 @@ export class VotingListComponent implements OnInit {
 
   fb(e, examId) {
     let url = 'https://nucuoirangrotuonglaituoisang.com/voting?examId=' + examId;
+    console.log(url)
     e.preventDefault();
     var facebookWindow = window.open(
       'https://www.facebook.com/sharer/sharer.php?u='+ url ,
@@ -129,6 +130,11 @@ export class VotingListComponent implements OnInit {
     this.examId = examId
     this.page = 1
     this.loading = true
+
+    const error = (error) => {
+      this.lstPainting = []
+      this.loading = false
+    }
     this.votedExams = JSON.parse(this.localStorageService.get('vE')) || []
     this.fetch(this.page).subscribe(data => {
       this.loading = false
@@ -147,7 +153,7 @@ export class VotingListComponent implements OnInit {
        
       })
       this.total = data.count
-    })
+    }, error)
   }
 
 }

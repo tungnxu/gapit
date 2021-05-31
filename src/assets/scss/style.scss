@@ -546,8 +546,8 @@ footer{
     }
     
     .voting-top-item{
+      background-image: linear-gradient(to right, #fdc530, #f27535);
       position: relative;
-      background-color: $primary;
       padding:  .5rem;
       border-radius: 5px;
       margin: 0 0 3rem 0;
@@ -650,26 +650,31 @@ footer{
             top:-20px;
             right: -20px;
             width: 50px;
+            font-weight: bold;
             height: 50px;
+            line-height: 50px;
             text-align: center;
-            background-color: orange;
+            background-image: linear-gradient(to right, #fdc530, #f27535);
             color: white;
             border-radius: 50%;
             span{
-              font-size: 20px;
+              font-size: 15px;
             }
           }
           .vote-image{
             overflow: hidden;
             border-radius: 5px;
             height: 220px;
+            &.focus-img{
+              height: 360px;
+            }
             img{
               object-fit: contain;
             }
           }
 
           .vote-info{
-            color: $primary;
+            color: #f39a32;
             margin-top: .5rem;
             i{
               font-size: 30px;
@@ -683,6 +688,10 @@ footer{
 
         .vote-item-info{
           color: $gray-700;
+          .btn-gradient{
+            border: none;
+            background: linear-gradient(to right, #00c0ff, #0077ff) !important;
+          }
         }
       }
     }

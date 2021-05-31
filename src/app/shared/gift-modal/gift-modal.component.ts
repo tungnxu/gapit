@@ -27,6 +27,7 @@ export class GiftModalComponent implements OnInit {
   error = ''
 
   isSuccess:boolean
+  voucherVoting: string
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -35,7 +36,7 @@ export class GiftModalComponent implements OnInit {
 
   ngOnInit() {
     this.giftForm = this.formBuilder.group({
-      phone: [null, Validators.pattern],
+      // phone: ["", Validators.pattern],
       email: [null, Validators.email],
     })
   }
@@ -50,23 +51,30 @@ export class GiftModalComponent implements OnInit {
       return
     }
 
-    if(!this.f.phone.value && !this.f.email.value ){
-      this.error = 'Vui lòng điền số điện thoại hoặc email'
+    if(!this.f.email.value ){
+      this.error = 'Vui lòng điền email'
       return
     }
 
 
     const next = (data) => {
-      this.isSuccess = true
       this.loading = false
+      if(data?.voucherVoting != '' )
+      {
+        this.isSuccess = true
+        this.voucherVoting = data.voucherVoting
+      }else{
+        this.error = data.message
+      }
+
     }
 
     const error = (error) => {
-      this.error = error.error.message
+      this.error = error.message
       this.loading = false
     }
     this.loading = true
-    this.voteApi.takeGift(this.examid, this.f.phone.value, this.f.email.value).subscribe(next, error)
+    this.voteApi.takeGift(this.examid, this.f.email.value).subscribe(next, error)
 
   }
 

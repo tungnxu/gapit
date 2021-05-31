@@ -472,6 +472,18 @@
 
 .search-form{
   position: relative;
+  &.number{
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
   input{
     border-radius: 30px 0px 30px 30px !important;
     padding-right: 42px;

@@ -37,15 +37,8 @@ export class PromotionModalComponent implements OnInit {
   }
 
   openRegisterModal() {
-    this.bsModalRef.hide()
-    const initialState = {
-
-      title: 'Đăng ký tài khoản',
-      backdrop: false,
-      ignoreBackdropClick: true,
-    };
-    this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign(initialState, { class: 'modal-xl modal-dialog-centered' }));
-    this.bsRegisterModalRef.content.closeBtnName = 'Close';
+   this.router.navigate(['/voting'])
+   this.bsModalRef.hide()
   }
 
 }
