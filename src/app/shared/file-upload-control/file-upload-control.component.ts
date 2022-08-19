@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input } from '@angular/core'
+import { Component, OnInit, forwardRef, Input, Output, EventEmitter } from '@angular/core'
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
 import { isFunction } from 'lodash'
 import { v4 } from 'uuid'
@@ -17,6 +17,7 @@ import { v4 } from 'uuid'
 })
 export class FileUploadControlComponent implements OnInit, ControlValueAccessor {
   @Input() label: string
+  @Output() onFileUrl = new EventEmitter<string>()
   file: any
   fileName: string
   inputId: string
@@ -39,6 +40,7 @@ export class FileUploadControlComponent implements OnInit, ControlValueAccessor 
     this.fileName = this.file.name
     if (isFunction(this.onChangeFn)) {
       this.onChangeFn(this.file)
+      this.onFileUrl.emit(URL.createObjectURL(this.file))
     }
   }
 

@@ -35,6 +35,7 @@ export class User {
   Token?: string
   RefreshToken?: string
   student?: Student
+  isFacebookUser?: boolean
 }
 
 

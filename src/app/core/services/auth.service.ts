@@ -64,6 +64,15 @@ export class AuthService {
     }
   }
 
+  forgot(username: string){
+    return this.accountApi.forgetPassword({email: username})
+  }
+
+  changePassword(oldPassword: string, newPassword: string){
+    return this.accountApi.changePassword({oldPassword: oldPassword, newPassword: newPassword})
+  }
+
+
   login(username: string, password: string) {
     const command = {
       username: username,
@@ -106,7 +115,18 @@ export class AuthService {
       username: this.jWTTokenService.getUsername(),
       id: this.jWTTokenService.getUserId(),
       expiredDate: this.jWTTokenService.getExpiryTime(),
-      student: JSON.parse(this.localStorageService.get('student'))
+      student: JSON.parse(this.localStorageService.get('student')),
+      isFacebookUser: false
+    }
+    this.currentUserSubject.next(userInfo)
+  }
+
+  generateFacebookUserInfo() {
+    const userInfo: User = {
+      username: this.jWTTokenService.getUsername(),
+      id: this.jWTTokenService.getUserId(),
+      expiredDate: this.jWTTokenService.getExpiryTime(),
+      isFacebookUser: true
     }
     this.currentUserSubject.next(userInfo)
   }

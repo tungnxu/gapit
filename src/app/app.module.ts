@@ -14,9 +14,11 @@ import { AppInterceptor } from './core/services/app-interceptor.service';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ToastrModule } from 'ngx-toastr';
+import { TrungThuComponent } from './trung-thu/trung-thu.component';
 @NgModule({
   declarations: [
     AppComponent,
+    TrungThuComponent,
   ],
   imports: [
     BrowserModule,

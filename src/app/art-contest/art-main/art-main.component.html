@@ -1,0 +1,19 @@
+<div class="art-contest-container">
+  <nav class="navbar d-flex navbar-expand-lg navbar-light" style="width: 100%;height:70px;">
+    <div class="navbar-wrapper mr-auto"><a class="logo" routerLink="/"><img src="assets/img/logo.png" alt=""></a></div>
+  </nav>
+
+  <nav class=" art-contest-menu d-flex justify-content-center ">
+    <ul >
+      <li><a [routerLink]="['dang-ky']" routerLinkActive="router-link-active" >Đăng ký dự thi</a></li> |
+      <li><a [routerLink]="['xem-ket-qua']" routerLinkActive="router-link-active" >Xem kết quả</a></li> |
+      <li><a [routerLink]="['voting']" routerLinkActive="router-link-active" >Voting</a></li> |
+      <li><a [routerLink]="['the-le']" routerLinkActive="router-link-active" >Thể lệ cuộc thi</a></li> |
+      <li><a [routerLink]="['thu-vien']" routerLinkActive="router-link-active" >Thư viện tranh đoạt giải</a></li>
+    </ul>
+  </nav>
+  <main class="container-contest mt-5">
+  <router-outlet></router-outlet>
+  <!-- <img src="assets/img/red-curse.svg" alt="" srcset=""> -->
+</main>
+</div>

@@ -1,0 +1,67 @@
+<div class="modal-body p-0 form-side no-side">
+  <button type="button" (click)="bsModalRef.hide()" class="close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="row">
+    <div class="col-sm-12 ">
+
+      <div class="form-modal py-4 px-5">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <h3 class="text-primary text-center mb-4">{{title}}</h3>
+
+          <div class="form-group" hasError="oldPassword">
+            <input type="password" formControlName="oldPassword" placeholder="Mật khẩu cũ"
+              class="form-control" id="exampleInputPassword1">
+              <div errorMessage>
+                <div class="invalid-feedback" *ifError="'required'" translate>
+                  Mật khẩu không thể bỏ trống
+                </div>
+                <div class="invalid-feedback" *ifError="'minlength'" translate>
+                  Mật khẩu ít nhất 6 ký tự
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group" hasError="newPassword">
+            <input type="password" formControlName="newPassword" placeholder="Mật khẩu mới"
+              class="form-control" id="exampleInputPassword2">
+              <div errorMessage>
+                <div class="invalid-feedback" *ifError="'required'" translate>
+                  Mật khẩu không thể bỏ trống
+                </div>
+                <div class="invalid-feedback" *ifError="'minlength'" translate>
+                  Mật khẩu ít nhất 6 ký tự
+                </div>
+              </div>
+          </div>
+
+          <div class="form-group" hasError="confirmPassword">
+            <input type="password" formControlName="confirmPassword" placeholder="Xác nhận mật khẩu mới"
+              class="form-control" id="exampleInputPassword3">
+              <div errorMessage>
+                <div class="invalid-feedback" *ifError="'required'" translate>
+                  Mật khẩu không thể bỏ trống
+                </div>
+                <div class="invalid-feedback" *ifError="'minlength'" translate>
+                  Mật khẩu ít nhất 6 ký tự
+                </div>
+              </div>
+          </div>
+
+          <i>* Mật khẩu tối thiểu 6 ký tự, viết thường</i>
+
+        <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
+        <div *ngIf="success" class="alert alert-info my-3 mb-0">{{success}}</div>
+
+          <div class="form-group">
+            <button [class.is-loading]="loading" type="submit"
+              class="btn btn-primary btn-block">Đổi mật khẩu</button>
+          </div>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+

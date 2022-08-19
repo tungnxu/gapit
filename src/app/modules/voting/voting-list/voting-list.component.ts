@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { VoteApi } from 'src/app/api/vote.api';
@@ -33,7 +33,7 @@ export class VotingListComponent implements OnInit {
   isLiking = false
   isDisLiking = false
 
-  constructor(private modalService: BsModalService,private formBuilder: FormBuilder, private voteApi: VoteApi, private localStorageService: LocalStorageService, private route: ActivatedRoute) { }
+  constructor(private modalService: BsModalService,private formBuilder: FormBuilder, private voteApi: VoteApi,   private _router: Router, private localStorageService: LocalStorageService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.examId = this.route.snapshot.queryParams['examId'] || ''
@@ -127,6 +127,12 @@ export class VotingListComponent implements OnInit {
   }
 
   onSearch(examId:string) {
+    this._router.navigate([], {
+      queryParams: {
+        examId: examId
+      },
+      queryParamsHandling: 'merge',
+    });
     this.examId = examId
     this.page = 1
     this.loading = true

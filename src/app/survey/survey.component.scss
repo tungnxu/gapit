@@ -1,0 +1,119 @@
+header {
+    min-height: 80px;
+    width: 100%;
+    background-color: #fafafa;
+}
+
+main {
+    min-height: calc(100vh - 80px);
+    background-color: #fafafa;
+    padding: 5rem 0;
+    @media screen and (max-width: 768px) {
+        padding: 1.5rem 0;
+      }
+
+}
+
+.survey-container {
+    position: relative;
+    margin: 0rem auto;
+    max-width: 900px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    @media screen and (max-width: 768px) {
+        margin: 0rem .5rem ;
+      }
+
+    .survey-header {
+        width: 100%;
+        text-align: center;
+        background-color: #FC0000;
+        color: white;
+        padding: 1rem .5rem;
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+            text-transform: uppercase;
+            @media screen and (max-width: 768px) {
+                font-size: 30px;
+              }
+        }
+
+        h2 {
+            font-size: 16px;
+        }
+    }
+
+    .survey-content {
+        padding: 1rem;
+        max-width: 700px;
+        margin: 0 auto;
+
+        .survey-form {
+
+            .form-other{
+                font-size: 14px !important;
+                margin: 0 0.3rem;
+                outline: none;
+                padding: 2px 0;
+            }
+            .form-group {
+                box-shadow: 0px 3px 9px rgba(17, 17, 26, 0.1);
+                padding: 3rem 2rem;
+                border-radius: 20px;
+                @media screen and (max-width: 768px) {
+                    padding: 1rem 1.5rem;
+                  }
+
+                &:not(:last-child) {
+                    margin-bottom: 2rem;
+                }
+
+                input[type='text'] {
+                    border: none;
+                    border-bottom: 1px solid lightgray;
+                    border-radius: 0;
+                    font-size: 18px;
+                    padding: 8px 0;
+                }
+
+                .invalid-feedback {
+                    background: #ecdddd;
+                    padding: 0.5rem;
+                    border-radius: 3px;
+                }
+
+            }
+
+            label {
+                input[type='checkbox'] {
+                    margin-right: .5rem;
+                }
+
+                &.question {
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 1.2rem;
+                }
+
+                &.answer{
+                    cursor: pointer;
+                }
+
+                font-size: 16px;
+
+                span {
+                    font-size: 16px;
+                    color: #FC0000;
+
+                    &.eng {
+                        font-size: 14px;
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -1,6 +1,6 @@
 <ngx-slick-carousel class="carousel main-slide slider" #slickModal="slick-carousel" [config]="slideConfig">
     <div ngxSlickItem *ngFor="let slide of slideLanding" class="slide-item slide">
-        <div class="main-header"  [ngStyle]="{ 'background-image': 'url(' + slide?.imageUrl + ')'}" >
+        <div [routerLink]="[slide?.link]" [class.pointer]="slide?.link" routerLinkActive="router-link-active"  class="main-header"  [ngStyle]="{ 'background-image': 'url(' + slide?.imageUrl + ')'}" >
             <div class="overlay"></div>
             <img *ngIf="slide?.hasLable" class="logo-smile" src="assets/img/logo-label.png" alt="logo-label">
             <div class="header-content">

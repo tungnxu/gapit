@@ -9,6 +9,13 @@ import { MainSlide } from 'src/app/types/models';
 export class LandingSlideComponent implements OnInit {
   slideLanding: MainSlide[] = [
     {
+      bigTitle: '',
+      smallTitle: '',
+      hasLable: false,
+      imageUrl: 'assets/img/slide-art-contest.jpg',
+      link: '/cuoc-thi-ve'
+    },
+    {
       bigTitle: 'Chương trình Nha Học Đường Colgate "Nụ cười rạng rỡ, Tương lai tươi sáng" đến với trẻ em trên toàn thế giới',
       smallTitle: 'GIÁO DỤC SỨC KHỎE RĂNG MIỆNG',
       hasLable: true,

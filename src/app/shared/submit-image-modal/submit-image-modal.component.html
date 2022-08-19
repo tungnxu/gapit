@@ -1,0 +1,160 @@
+<div class="modal-body p-4 form-side no-side" style=" touch-action: manipulation;">
+    <!-- <button type="button" class="close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button> -->
+    <form [formGroup]="submitImageForm" (ngSubmit)="onSubmit()">
+        <h4 *ngIf="!success" class="text-primary mt-2">Trung Thu Đến Nhà, Đón Quà Online 2021</h4>
+
+        <ng-container *ngIf="!success">
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class=" row align-items-start" hasError="name">
+                        <label for="name" class="col-form-label col-md-4 required"><small>Họ và tên:</small></label>
+                        <div class="col-md-8">
+                            <input formControlName="name" placeholder="Nguyễn Văn A" type="text"
+                                class="form-control form-control-sm" id="name">
+                            <div errorMessage>
+                                <div class="invalid-feedback" *ifError="'required'" translate>
+                                    Vui lòng điền họ và tên
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="  row align-items-start" hasError="phone">
+                        <label for="phone" class="col-form-label col-md-4 required"><small>Số điện
+                                thoại:</small></label>
+                        <div class="col-md-8">
+                            <input type="tel" formControlName="phone" class="form-control form-control-sm" id="phone"
+                                placeholder="Ví dụ: 0912345679" pattern="((0|84)[3|5|7|8|9][0-9]{8})">
+                            <div errorMessage>
+                                <div class="invalid-feedback" *ifError="'required'" translate>
+                                    Vui lòng điền số điện thoại
+                                </div>
+                                <div class="invalid-feedback" *ifError="'pattern'" translate>
+                                    Số điện thoại sai định dạng (Ví dụ: 0912345678)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" " hasError="description">
+                        <label for="description" class="col-form-label"><small>Mô tả:</small></label>
+                        <textarea formControlName="description" id="description" placeholder="Mô tả"
+                            class="form-control form-control-sm" name="description" rows="2"></textarea>
+                        <!-- <div errorMessage>
+                            <div class="invalid-feedback" *ifError="'required'" translate>
+                              Vui lòng điền một vài mô tả cho bài dự thi
+                            </div>
+                          </div> -->
+                    </div>
+
+                    <div class="form-group" hasError="file">
+                        <label for="file" class=" col-form-label required mr-3"><small>Tải ảnh lên:</small></label>
+                        <file-upload-control formControlName="file" label="Tải ảnh lên (tối đa: 5Mb)"
+                            (onFileUrl)="onFileUrl($event)">
+                        </file-upload-control>
+                        <div errorMessage>
+                            <div class="invalid-feedback" *ifError="'required'" translate>
+                                Vui lòng chọn file bài dự thi để tải lên
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group" hasError="frameborder">
+                        <label for="description" class="col-form-label required"><small>Chọn khung:</small></label>
+                        <div class="d-flex justify-content-between">
+                            <div class="form-check" *ngFor="let frame of frames">
+                                <input class="form-check-input" formControlName="frameborder"
+                                    (change)="changeFrame($event)" [value]="frame.id" type="radio" name="frameborder"
+                                    [id]="frame.id">
+                                <label class="form-check-label" [for]="frame.id">
+                                    Mẫu {{frame.id}} <br> <img width="40" [src]="frame.src" alt="" srcset="">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- {{submitImageForm.value | json}} -->
+
+                    <!-- {{fileUrl}} -->
+
+                </div>
+
+                <div class="col-md-6" style="  max-height: 420px; ">
+                    <div class="d-flex justify-content-between">
+                    <h6 class="text-muted" style=" user-select: none;">Xem trước</h6>
+                        <a *ngIf="fileUrl" href="javascript:;" (click)="render()"><small>Tải về</small></a>
+                    </div>
+                    <div class="image-con">
+                        <div *ngIf="fileUrl" class="image-control">
+                            <button class="btn btn-dark" title="phóng to"  style="  position: absolute;    right: 11px;    top: 0;" type="button" (click)="z = z + 5"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            <button  class="btn btn-dark" title="thu to"  style="  position: absolute;    right: 60px;    top: 0;" type="button" (click)="z = z - 5"><i class="fa fa-minus" aria-hidden="true"></i></button>
+
+                            <button  class="btn btn-dark" title="Dịch sang trái"  style="  position: absolute;    left: 7px;    top: 160px;" type="button" (mousedown)="mousedownleft()" (mouseup)="mouseup()"
+                                (mouseleave)="mouseup()" (click)="x = x - 10"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                            <button  class="btn btn-dark" title="Dịch sang phải"  style="  position: absolute;    right: 18px;    top: 160px;" type="button" (mousedown)="mousedownright()" (mouseup)="mouseup()"
+                                (mouseleave)="mouseup()" (click)="x = x + 10"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                            <button  class="btn btn-dark" title="Dịch lên"  style="  position: absolute;    left: 40%;    top: 300px;" type="button" (mousedown)="mousedowndown()" (mouseup)="mouseup()"
+                                (mouseleave)="mouseup()" (click)="y = y + 10"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                            <button  class="btn btn-dark" title="Dịch xuống" style="  position: absolute;    left: 40%;    top: 0px;" type="button" (mousedown)="mousedowntop()" (mouseup)="mouseup()"
+                                (mouseleave)="mouseup()" (click)="y = y - 10"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                            <button  class="btn btn-dark" *ngIf="x != 0 || y!= 0" title="Về vị trí ban đầu" type="button" (click)="x = 0; y = 0; z=100"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+
+                        </div>
+                        <div class="image-snap" style="pointer-events: none ;  user-select: none;" [style.background-image]="'url('+fileUrl + ')'"
+                            [style.background-position-x.px]="x" [style.background-position-y.px]="y"  [style.background-size]=" z +'%'">
+
+
+                            <div class="image-frame" [style.background-image]="'url('+ currentFrame.src + ')'">
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
+            <!-- <div class=" row align-items-start" hasError="email">
+                <label for="email" class="col-sm-4 col-form-label"><small>Email(nếu có):</small></label>
+                <div class="col-sm-8">
+                    <input type="email" formControlName="email" placeholder="example@gmail.com"
+                        class="form-control form-control-sm" id="email">
+                    <div errorMessage>
+                    <div class="invalid-feedback" *ifError="'required'" translate>
+                      Vui lòng điền email
+                    </div>
+                  </div> 
+                </div>
+            </div> -->
+
+
+            <!-- <div class="form-group custom-control custom-checkbox">
+                <input formControlName="isParent" type="checkbox" class="custom-control-input" id="isParent">
+                <label class="custom-control-label" for="isParent"><small>Tôi xác nhận là
+                        phụ huynh/ người giám hộ của học sinh với thông tin đầy dủ phía
+                        trên.</small></label>
+            </div> -->
+
+            <div class="form-group mt-3 position-relative" style="z-index: 9;">
+                <button [class.is-loading]="loading" type="submit" class="btn btn-secondary btn-block">GỬI BÀI</button>
+            </div>
+            <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
+        </ng-container>
+
+        <div *ngIf="success" style=" white-space: pre-line; font-size: 14px;" class="alert alert-info my-3 mb-0">
+            {{success}}</div>
+    </form>
+</div>
+<div id="target" class="image-snap-real" [style.background-image]="'url('+fileUrl + ')'"
+    [style.background-position-x.px]="x" [style.background-position-y.px]="y"  [style.background-size]=" z +'%'">
+    <div class="image-frame" [style.background-image]="'url('+ currentFrame.src + ')'">
+
+    </div>
+</div>

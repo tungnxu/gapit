@@ -4,6 +4,11 @@
 @import "resource-list";
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+body{
+  overflow-x: hidden;
+
+}
+
 button{
   outline: none !important;
 }
@@ -15,6 +20,10 @@ button{
     margin: 0;
   }
 
+}
+
+.pointer{
+  cursor: pointer;
 }
 
 .text-bold{
@@ -357,6 +366,9 @@ footer{
 
 }
 
+
+
+
 .round-colgate{
   border-radius: 20px 0 20px 20px;
 }
@@ -531,20 +543,20 @@ footer{
     .slick-prev {
       left: 0 !important;
       right: unset !important;
-    
+
     }
-    
+
     .slick-next {
       right: 0 !important;
     }
-    
+
     .slick-arrow{
       top: 50% !important;
       &:before{
         color: $gray-500 !important;
       }
     }
-    
+
     .voting-top-item{
       background-image: linear-gradient(to right, #fdc530, #f27535);
       position: relative;
@@ -625,7 +637,7 @@ footer{
       }
 
 
-     
+
     }
   }
 
@@ -732,5 +744,72 @@ footer{
       bottom: 1rem;
       width: 80px;
     }
+  }
+}
+
+.image-con{
+  position: relative;
+  .image-control{
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 3;
+    opacity: .6;
+  }
+}
+.image-snap{
+  position: relative;
+  background-color: #fafafa;
+  // background-image: url('./../img/side.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  // transform: scale(0.4);
+  // transform-origin: top left;
+  transform: scale(0.35);
+  transform-origin: top left;
+  width: 1000px;
+  padding-top: 1000px;
+
+
+  .image-frame{
+    position: absolute;
+    // background-image: url('./../img/frame/frame1.png');
+    background-size: contain;
+    right: 0;
+    bottom:0;
+    top:0;
+    left: 0;
+    // background-size: ;
+    background-repeat: no-repeat;
+  }
+}
+
+
+.image-snap-real{
+  display: none;
+  position: relative;
+  background-color: #fafafa;
+  // background-image: url('./../img/side.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  // transform: scale(0.4);
+  // transform-origin: top left;
+
+  width: 1000px;
+  padding-top: 1000px;
+  .image-frame{
+    position: absolute;
+    // background-image: url('./../img/frame/frame1.png');
+    background-size: contain;
+    right: 0;
+    bottom:0;
+    top:0;
+    left: 0;
+    // background-size: ;
+    background-repeat: no-repeat;
   }
 }

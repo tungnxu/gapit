@@ -16,10 +16,25 @@ import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 import { PromotionModalComponent } from './promotion-modal/promotion-modal.component';
 import { GiftModalComponent } from './gift-modal/gift-modal.component';
 import { NotiModalComponent } from './noti-modal/noti-modal.component';
+import { SubmitImageModalComponent } from './submit-image-modal/submit-image-modal.component';
+import { ChangePassModalComponent } from './change-pass-modal/change-pass-modal.component';
 
 
 @NgModule({
-  declarations: [SanitizeHtmlPipe, NotiModalComponent, LoginModalComponent,GiftModalComponent, RegisterModalComponent, CountAnimationDirective, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent],
+  declarations: [
+    SanitizeHtmlPipe,
+    NotiModalComponent,
+    LoginModalComponent,
+    GiftModalComponent,
+    RegisterModalComponent,
+    CountAnimationDirective,
+    TermModalComponent,
+    SearchResultModalComponent,
+    PromotionModalComponent,
+    SubmitContestModalComponent,
+    TemplateModalComponent,
+    SubmitImageModalComponent,
+    ChangePassModalComponent],
   imports: [
     LayoutsModule,
     CommonModule,
@@ -33,6 +48,6 @@ import { NotiModalComponent } from './noti-modal/noti-modal.component';
     CountAnimationDirective,
     SanitizeHtmlPipe
   ],
-  entryComponents: [LoginModalComponent, NotiModalComponent, RegisterModalComponent,GiftModalComponent, TermModalComponent, SearchResultModalComponent,PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent]
+  entryComponents: [LoginModalComponent, NotiModalComponent, RegisterModalComponent, GiftModalComponent, TermModalComponent, SearchResultModalComponent, PromotionModalComponent, SubmitContestModalComponent, TemplateModalComponent, SubmitImageModalComponent, ChangePassModalComponent]
 })
 export class SharedModule { }

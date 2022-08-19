@@ -14,15 +14,21 @@ import { RegisterModalComponent } from '../register-modal/register-modal.compone
   styleUrls: ['./login-modal.component.scss']
 })
 export class LoginModalComponent implements OnInit {
+  mode: 'login' | 'forgot' = 'login'
   title: string
   closeBtnName: string
   bsRegisterModalRef: BsModalRef;
 
   loginForm: FormGroup
+
+  forgotForm: FormGroup = this.formBuilder.group({
+    username: ['', Validators.required],
+  })
   loading = false
   submitted = false
   returnUrl: string
   error = ''
+  success = ''
 
   constructor(
     public bsModalRef: BsModalRef,
@@ -75,6 +81,32 @@ export class LoginModalComponent implements OnInit {
     };
     this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign(initialState, { class: 'modal-xl modal-dialog-centered' }));
     this.bsRegisterModalRef.content.closeBtnName = 'Close';
+  }
+
+  openForgotForm(){
+    this.mode = 'forgot'
+  }
+
+  onSubmitForgot(){
+    this.error = null;
+    this.success = null
+    if (this.forgotForm.invalid) {
+      return
+    }
+
+    const next = (data) => {
+      this.loading = false
+      this.mode = 'login'
+      this.success = 'Thông tin về mật khẩu đã được gửi về email/số điện thoại của bạn. Vui lòng kiểm tra và đăng nhập với mật khẩu mới.'
+    }
+
+    const error = (error) => {
+      this.error = error.error.message
+      this.loading = false
+    }
+    this.loading = true
+    this.authService.forgot(this.f.username.value).subscribe(next, error)
+
   }
 
 }

@@ -34,4 +34,18 @@ export class AccountApi extends BaseApi {
   getRefreshToken(){
     return this.httpClient.post<any>(this.createUrl('RefreshToken'), null)
   }
+
+  // Todo: Replace api send email
+  forgetPassword(command: {
+    email: string;
+  }){
+    return this.httpClient.post<any>(this.createUrl('ForgetPassword'), command)
+  }
+
+  changePassword(command: {
+    oldPassword: string;
+    newPassword: string;
+  }){
+    return this.httpClient.post<any>(this.createUrl('ChangePassword'), command)
+  }
 }

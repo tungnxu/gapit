@@ -7,6 +7,7 @@
             <div  class="d-flex flex-column align-items-end" *ngIf="!currentUser?.student?.student_info">
                 <small class="text-secondary"><b>{{currentUser?.username}}</b></small>
                 <small> <a href="javascript:;" (click)="openTemplateModal()">Đăng ký dự thi</a> </small>
+                <small> <a href="javascript:;" (click)="openChangepassModal()">Đổi mật khẩu</a> </small>
             </div>
             <div class="d-flex flex-column align-items-end" *ngIf="currentUser?.student?.student_info">
                 <div *ngIf="currentUser?.student"><small>Xin chào, </small> <b class="text-secondary">{{currentUser?.student?.student_info?.student_name}}</b></div>

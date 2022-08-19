@@ -1,0 +1,33 @@
+<button type="button" (click)="export()">Export</button>
+
+<table style="width: 100%;
+font-size: 9px;">
+    <thead>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>You are</th>
+        <th>You are Other</th>
+        <th>Recomendation Method</th>
+        <th>Recomendation Method Other</th>
+        <th>Indication Issue</th>
+        <th>Indication Issue Other</th>
+        <th>Product Recommend</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of data">
+        <td>{{item.name?.replace(',','.')}}</td>
+        <td>{{item.phone?.replace(',','.')}}</td>
+        <td>{{item.email?.replace(',','.')}}</td>
+        <td>{{item.address?.replace(',','.')}}</td>
+        <td>{{item.questYouAre.join("|").replace(',','.')}}</td>
+        <td>{{item.questYouAreOther?.replace(',','.')}}</td>
+        <td>{{item.questRecomendationMethod.join("|").replace(',','.')}}</td>
+        <td>{{item.questRecomendationMethodOther?.replace(',','.')}}</td>
+        <td>{{item.questIndicationIssue.join("|").replace(',','.')}}</td>
+        <td>{{item.questIndicationIssueOther?.replace(',','.')}}</td>
+        <td>{{item.questProductRecommend.join("|").replace(',','.')}}</td>
+        </tr>
+    </tbody>
+</table>

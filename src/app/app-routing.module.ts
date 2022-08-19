@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EmptyLayoutComponent } from './layouts/empty-layout/empty-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { SubmitImageModalComponent } from './shared/submit-image-modal/submit-image-modal.component';
+import { TrungThuComponent } from './trung-thu/trung-thu.component';
 
 const routes: Routes = [
   {
@@ -33,13 +36,35 @@ const routes: Routes = [
         loadChildren: () => import('./modules/voting/voting.module').then(m => m.VotingModule)
       },
 
+
     ]
+  },
+  {
+    path: '',
+    component: EmptyLayoutComponent,
+    children: [
+      {
+        path: 'trung-thu',
+        component: TrungThuComponent
+      },
+      {
+        path: 'survey',
+        loadChildren: () => import('./survey/survey.module').then(m => m.SurveyModule)
+      },
+      {
+        path: 'cuoc-thi-ve',
+        loadChildren: () => import('./art-contest/art-contest.module').then(m => m.ArtContestModule)
+      },
+
+    ]
+
   },
   {
     path: 'gallery',
     loadChildren: () => import('./modules/painting/painting.module').then(m => m.PaintingModule)
   },
-  { path: 'stuff-registration', loadChildren: () => import('./page/page.module').then(m => m.PageModule) },
+  { path: 'upload-image', loadChildren: () => import('./page/page.module').then(m => m.PageModule) },
+
   // {
   //   path: '**',
   //   component: NotFoundComponent

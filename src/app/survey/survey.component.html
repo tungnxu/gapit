@@ -1,0 +1,133 @@
+<header >
+    <div class="container">
+        <div class="logo">
+            <a class="logo" routerLink="/survey"><img src="assets/img/logo.png" alt=""></a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="survey-container">
+        <div class="survey-header">
+            <h1>Thông tin nha sĩ</h1>
+            <h2>DENTIST QUESTIONNAIRE</h2>
+        </div>
+        <div class="survey-content">
+            <form class="survey-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="name" class="required question">1. Tên của anh/ chị <span>(Name)</span>:</label>
+                  <input type="text" formControlName="name" id="name" class="form-control" placeholder="Nguyễn Văn A"
+                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    Vui lòng nhập tên
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="phone" class="required question">2. Số điện thoại phòng nha/ số điện thoại cá nhân của anh/ chị: <span>(Clinic phone/ mobile phone)</span></label>
+                  <input type="text" formControlName="phone" id="phone" class="form-control"  placeholder="Vd: 0123456789"
+                    [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback d-block">
+                    Vui lòng nhập số điện thoại
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class=" question">3. Địa chỉ Email: <span>(Email)</span></label>
+                  <input email type="email" formControlName="email" id="email" class="form-control"  placeholder="example@abc.com"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                  <!-- <div *ngIf="submitted && f.email.errors?.required" class="invalid-feedback d-block">
+                       Vui lòng nhập địa chỉ email
+                  </div> -->
+                  <div *ngIf="submitted && f.email.errors?.email" class="invalid-feedback d-block">
+                    Vui lòng nhập đúng định dạng email
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="address" class="required question">4. Địa chỉ <span>(Address)</span></label>
+                  <input type="text" formControlName="address" id="address" class="form-control"  placeholder="Số nhà, quận huyện, tỉnh thành"
+                    [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                  <div *ngIf="submitted && f.address.errors" class="invalid-feedback d-block">
+                    Vui lòng nhập địa chỉ
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="required question">5. Anh/ chị là <span>(Practice)</span></label>
+                  <div *ngFor="let data of YOU_ARE; let i=index">
+                    <label class="answer">
+                      <input type="checkbox" [value]="data.value"
+                        (change)="onCheckboxChange($event, this.form?.controls['questYouAre'], ctlr)" />
+                      {{data.description}} <span class="eng"> {{data.descriptionEnglish}} </span>
+                      <!-- <input  class="form-other" *ngIf="data.value == 'Khác' && this.form.value.questYouAre == 'Khác' "  placeholder="Mô tả thêm" type="text" name="other" > -->
+                    </label>
+                  </div>
+                    <input [hidden]="!(this.form.value?.questYouAre?.indexOf('Khác') > -1)" class="form-other" formControlName="questYouAreOther" name="questYouAreOther" id="questYouAreOther" placeholder="Câu trả lời của bạn" type="text"  >
+                  <div class="invalid-feedback d-block" *ngIf="submitted && this.form?.controls['questYouAre']?.errors?.required">
+                    Vui lòng lựa chọn ít nhất 1 phương án
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label class="required question">6. Anh/ chị thích giới thiệu sản phẩm chăm sóc răng miệng cho bệnh nhân/ khách hàng bằng (các) phương pháp nào? <span>(What recommendation way(s) would you prefer?)</span></label>
+                  <div *ngFor="let data of RECOMMENDATION_METHOD; let i=index">
+                    <label class="answer">
+                      <input type="checkbox" [value]="data.value"
+                        (change)="onCheckboxChange($event, this.form?.controls['questRecomendationMethod'])" />
+                      {{data.description}} <span class="eng"> {{data.descriptionEnglish}} </span>
+                      <!-- <input class="form-other" *ngIf="data.value == 'Khác' && this.form.value.questRecomendationMethod == 'Khác' "  placeholder="Mô tả thêm" type="text" name="other" > -->
+                    </label>
+                  </div>
+                  <input [hidden]="!(this.form.value?.questRecomendationMethod?.indexOf('Khác') > -1)" class="form-other" formControlName="questRecomendationMethodOther" name="questRecomendationMethodOther" id="questRecomendationMethodOther" placeholder="Câu trả lời của bạn" type="text"  >
+                  <div class="invalid-feedback d-block" *ngIf="submitted && this.form?.controls['questRecomendationMethod']?.errors?.required">
+                    Vui lòng lựa chọn ít nhất 1 phương án
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label class="required question">7. Anh/ chị sẽ giới thiệu sản phẩm chăm sóc răng miệng khi gặp bệnh nhân điều trị vấn đề nào dưới đây? <span>(What indication(s) would you recommend oral care product(s)?)</span></label>
+                  <div *ngFor="let data of INDICATION_ISSUE; let i=index">
+                    <label class="answer">
+                      <input type="checkbox" [value]="data.value"
+                        (change)="onCheckboxChange($event, this.form?.controls['questIndicationIssue'])" />
+                      {{data.description}} <span class="eng"> {{data.descriptionEnglish}} </span>
+
+                      <!-- <input class="form-other" *ngIf="data.value == 'Khác' && this.form.value.questIndicationIssue == 'Khác' "  placeholder="Mô tả thêm" type="text" name="other" > -->
+                    </label>
+                  </div>
+                  <input  [hidden]="!(this.form.value?.questIndicationIssue?.indexOf('Khác') > -1)" class="form-other" formControlName="questIndicationIssueOther" name="questIndicationIssueOther" id="questIndicationIssueOther" placeholder="Câu trả lời của bạn" type="text"  >
+                  <div class="invalid-feedback d-block" *ngIf="submitted && this.form?.controls['questIndicationIssue']?.errors?.required">
+                    Vui lòng lựa chọn ít nhất 1 phương án
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label class="required question">8. Anh/ chị sẽ sẵn lòng giới thiệu (các) sản phẩm Colgate nào? <span>(What Colgate product(s) would you recommend the most?)</span></label>
+                  <div *ngFor="let data of PRODUCT_RECOMMEND; let i=index">
+                    <label class="answer">
+                      <input type="checkbox" [value]="data.value"
+                        (change)="onCheckboxChange($event, this.form?.controls['questProductRecommend'])" />
+                      {{data.description}} <span class="eng"> {{data.descriptionEnglish}} </span>
+                    </label>
+                  </div>
+                  <div class="invalid-feedback d-block" *ngIf="submitted && this.form?.controls['questProductRecommend']?.errors?.required">
+                    Vui lòng lựa chọn ít nhất 1 phương án
+                  </div>
+                </div>
+          
+                <div class="text-center">
+                    <div class=" form-check mb-3 px-3">
+                        <input [(ngModel)]="isConfirm" [ngModelOptions]="{standalone: true}" type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Tôi đã đọc và đồng ý với các</label>
+                        <span><a href="https://www.colgatepalmolive.com/en-us/legal-privacy-policy" target="_blank" rel="noopener noreferrer"> Chính sách bảo mật</a></span>
+                      </div>
+                  <button [class.is-loading]="loading" [disabled]="!isConfirm" class="btn btn-primary btn-lg mb-5">GỬI THÔNG TIN</button>
+                </div>
+              </form>
+        </div>
+    </section>
+
+</main>
