@@ -5,6 +5,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FileUploadControlComponent } from '../shared/file-upload-control/file-upload-control.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { PopoverModule } from 'ngx-bootstrap/popover';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,9 +15,6 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     CommonModule,
     FormValidationModule,
     BsDatepickerModule.forRoot(),
-    
-
-
   ],
   exports: [
     FileUploadControlComponent,

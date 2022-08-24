@@ -1,15 +1,9 @@
 <form [formGroup]="submitContestForm" (ngSubmit)="onSubmit()">
-
-  <div class="student-info text-14 text-muted mt-4" >
-      <p class="m-0">Bạn: {{(user$ | async)?.student?.student_info?.student_name}}</p>
-  </div>
-  <h4 *ngIf="!success" class="text-primary mt-2">Gửi bài dự thi {{ (user$ | async)?.student?.exams.length === 0 ? 'đầu tiên' : 'thứ 2' }}</h4>
-
-  <h6 class="text-uppercase">Thông tin bài dự thi</h6>
+  <h6 class="text-uppercase text-muted">UPLOAD BÀI THI</h6>
   <ng-container *ngIf="!success">
 
   <div class=" row align-items-start"  hasError="exam_name">
-      <label for="exam_name" class="col-sm-4 col-form-label"><small>Tiêu
+      <label for="exam_name" class="col-sm-4 col-form-label"><small>*Tiêu
               đề:</small></label>
       <div class="col-sm-8">
           <input formControlName="exam_name" type="text" class="form-control form-control-sm" id="exam_name">
@@ -33,7 +27,7 @@
   </div>
 
   <div class=" row align-items-start" hasError="file">
-      <label for="file" class="col-sm-4 col-form-label"><small>Tải lên bài dự
+      <label for="file" class="col-sm-4 col-form-label"><small>*Tải lên bài dự
               thi:</small></label>
       <div class="col-sm-8">
            <file-upload-control      formControlName="file"   label="Tải lên bài dự thi (tối đa: 5Mb)" ></file-upload-control>

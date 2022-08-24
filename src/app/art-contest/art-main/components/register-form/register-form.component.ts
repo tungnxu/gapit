@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { defineLocale, viLocale } from 'ngx-bootstrap/chronos';
 import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
@@ -19,7 +19,7 @@ import { User, Province, District } from 'src/app/types/models';
 })
 export class RegisterFormComponent implements OnInit {
 
-
+  @Output() onSubmitRegister = new EventEmitter()
   registrationForm: FormGroup
   loading = false
   returnUrl: string
@@ -120,7 +120,7 @@ export class RegisterFormComponent implements OnInit {
       this.localStorageService.set('student', JSON.stringify(student))
       this.authService.generateUserInfo()
       this.loading = false
-      this.openSubmitContestModal()
+      this.onSubmitRegister.next()
 
     }
 
@@ -160,15 +160,7 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  openSubmitContestModal(){
-    const initialState = {
 
-      backdrop: true,
-      ignoreBackdropClick: true,
-    };
-    // this.bsSubmitContestModalRef = this.modalService.show(SubmitContestModalComponent, Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
-    // this.bsSubmitContestModalRef.content.closeBtnName = 'Close';
-  }
 
   nonAccentVietnamese(str) {
     str = str.toLowerCase();

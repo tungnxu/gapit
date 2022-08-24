@@ -8,5 +8,8 @@
   <a class="ml-2 pointer" (click)="remove()">
     <i class="fa fa-trash"></i>
   </a>
+
 </div>
+<div class="mb-2" *ngIf="imageSrc"> <img width="340"  [src]="imageSrc" alt="" ></div>
+
 <input [id]="inputId" accept="image/*" class="ghost" type="file" (change)="onFileChanged($event)">

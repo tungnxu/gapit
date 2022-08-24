@@ -15,10 +15,11 @@ import { FormValidationModule } from 'src/app/core/form-validation/form-validati
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { ContestFormComponent } from './components/contest-form/contest-form.component';
+import { SuccessSubmitComponent } from './components/success-submit/success-submit.component';
 
 
 @NgModule({
-  declarations: [ArtMainComponent, DangKyComponent, XemKetQuaComponent, TheLeComponent, ThuVienComponent, RegisterFormComponent, ContestFormComponent],
+  declarations: [ArtMainComponent, DangKyComponent, XemKetQuaComponent, TheLeComponent, ThuVienComponent, RegisterFormComponent, ContestFormComponent, SuccessSubmitComponent],
   imports: [
     CommonModule,
     ArtMainRoutingModule,

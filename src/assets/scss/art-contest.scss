@@ -1,0 +1,97 @@
+.art-contest-container{
+  background-image: url('/assets/img/red-curse.svg'), url('/assets/img/art-bg.jpg');
+  background-size: contain, cover;
+  background-position: 0 103%,left  top;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100vw;
+
+  @media only screen and (max-width: 1366px) {
+    // background-size: contain, contain;
+    background-attachment: fixed;
+  }
+
+  .art-contest-menu{
+    position: relative;
+    ul{
+      display: flex;
+      list-style: none;
+      background-image: url('/assets/img/art-menu.png');
+      background-size: contain;
+      background-position: 0 4px;
+      background-repeat: no-repeat;
+      margin-top: -68px;
+      padding: 3rem 1rem 2rem 1rem;
+      font-size: 20px;
+      color: #ffffff;
+
+      @media only screen and (max-width: 1622px) {
+        font-size: 14px;
+        background-position: 0 20px;
+      }
+
+      li{
+        margin: 0 60px;
+        @media only screen and (max-width: 1622px) {
+          margin: 0 30px;
+        }
+        a{
+          color: #ffffff;
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+.container-contest{
+  max-width: 85vw;
+  margin: 0 auto;
+  @media only screen and (max-width: 1366px) {
+    max-width: 95vw;
+    margin: 0 auto;
+  }
+}
+
+
+.art-box{
+  border-radius: 64px;
+  background-color: #ffffff;
+  padding: 56px;
+  box-shadow: 23px 21px 0px -17px red, 25px 23px 0px -14px #a30303;
+  margin-bottom: 2rem;
+  h1{
+    color: $primary;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: capitalize;
+  }
+}
+
+.dang-ki-page{
+  display: flex;
+  justify-content: flex-end;
+
+  .art-box{
+    min-width: 600px;
+    @media only screen and (max-width: 800px) {
+      max-width: 95vw;
+      margin: 0 auto;
+    }
+  }
+}
+
+.xem-ket-qua-page{
+  display: flex;
+  justify-content: flex-end;
+
+  .art-box{
+    min-width: 600px;
+    @media only screen and (max-width: 800px) {
+      max-width: 95vw;
+      margin: 0 auto;
+    }
+  }
+}

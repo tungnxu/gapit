@@ -28,4 +28,8 @@ export class StudentApi extends BaseApi {
   uploadExam(formData:FormData):Observable<any>{
     return this.httpClient.post(this.createUrl('UploadExam'),formData)
   }
+
+  reUploadExam(formData:FormData):Observable<any>{
+    return this.httpClient.post(this.createUrl('ReUploadAsync'),formData)
+  }
 }

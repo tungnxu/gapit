@@ -140,6 +140,7 @@ export interface Exam {
   create_date: Date;
   url: string;
   point?: any;
+  email?:string;
 }
 
 export interface Student {

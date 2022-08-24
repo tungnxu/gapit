@@ -10,8 +10,11 @@
 
 <div class="dang-ki-page">
   <div class="art-box">
-    <h1> Mau dang ky du thi</h1>
-    <app-register-form *ngIf="!currentUser?.student?.student_info"></app-register-form>
-    <app-contest-form *ngIf="currentUser?.student?.student_info"></app-contest-form>
+    <h1>Mẫu đăng ký dự thi</h1>
+    <app-register-form *ngIf="(state | async) == 0" (onSubmitRegister)="onSubmitRegister()"></app-register-form>
+    <app-contest-form *ngIf="(state | async) == 1" (onSubmitArt)="onSubmitArt()" [exams]="currentUser?.exams"></app-contest-form>
+    <app-success-submit *ngIf="(state | async) == 2"></app-success-submit>
+
+    <pre> {{currentUser| json}} </pre>
   </div>
 </div>

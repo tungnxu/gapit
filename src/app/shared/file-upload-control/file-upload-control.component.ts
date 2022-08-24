@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef, Input, Output, EventEmitter } from '@angular/core'
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
+import { DomSanitizer } from '@angular/platform-browser'
 import { isFunction } from 'lodash'
 import { v4 } from 'uuid'
 
@@ -20,10 +21,11 @@ export class FileUploadControlComponent implements OnInit, ControlValueAccessor 
   @Output() onFileUrl = new EventEmitter<string>()
   file: any
   fileName: string
+  imageSrc: any
   inputId: string
   private onChangeFn: Function
 
-  constructor(
+  constructor(private _sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -38,11 +40,13 @@ export class FileUploadControlComponent implements OnInit, ControlValueAccessor 
     formData.append('file',  this.file,  this.file.name);
     // input.value = '' comment tạm
     this.fileName = this.file.name
+    this.imageSrc = this._sanitizer.bypassSecurityTrustResourceUrl( URL.createObjectURL(this.file));
     if (isFunction(this.onChangeFn)) {
       this.onChangeFn(this.file)
       this.onFileUrl.emit(URL.createObjectURL(this.file))
     }
   }
+
 
   remove() {
     this.file = undefined
