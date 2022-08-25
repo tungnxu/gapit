@@ -10,6 +10,11 @@ const routes: Routes = [
     component: ArtContestComponent,
   },
   {
+    path:'',
+    redirectTo:'dang-ky',
+    pathMatch: 'full'
+  },
+  {
     path: '',
     loadChildren: () => import('./art-main/art-main.module').then(m => m.ArtMainModule)
   }

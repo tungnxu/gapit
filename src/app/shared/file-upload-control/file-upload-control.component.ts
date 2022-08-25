@@ -51,6 +51,7 @@ export class FileUploadControlComponent implements OnInit, ControlValueAccessor 
   remove() {
     this.file = undefined
     this.fileName = undefined
+    this.imageSrc = undefined
     if (isFunction(this.onChangeFn)) {
       this.onChangeFn(this.file)
     }
@@ -67,6 +68,7 @@ export class FileUploadControlComponent implements OnInit, ControlValueAccessor 
     }
     const fileName = this.getFileNameFromUrl(fileUrl)
     this.fileName = fileName
+    this.imageSrc = fileUrl;
   }
 
   getFileNameFromUrl = (url: string) => {

@@ -5,6 +5,7 @@
   background-repeat: no-repeat;
   min-height: 100vh;
   width: 100vw;
+  position: relative;
 
   @media only screen and (max-width: 1366px) {
     // background-size: contain, contain;
@@ -23,3 +24,26 @@
   }
 }
 
+.action{
+  position: absolute;
+  top: 58%;
+  left: 64%;
+  button{
+    min-width: 160px !important;
+    box-shadow: 0px 9px 15px hsla(0, 0%, 0%, 0.141);
+  }
+}
+
+.deadline{
+  background-image: url('/assets/img/time.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  width: 260px;
+  height: 260px;
+  position: absolute;
+  top: 60%;
+  left: 74%;
+  text-align: center;
+  padding: 3rem 0rem 0rem 2.5rem;
+}

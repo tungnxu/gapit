@@ -16,10 +16,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { ContestFormComponent } from './components/contest-form/contest-form.component';
 import { SuccessSubmitComponent } from './components/success-submit/success-submit.component';
+import { EditContestFormComponent } from './components/edit-contest-form/edit-contest-form.component';
 
 
 @NgModule({
-  declarations: [ArtMainComponent, DangKyComponent, XemKetQuaComponent, TheLeComponent, ThuVienComponent, RegisterFormComponent, ContestFormComponent, SuccessSubmitComponent],
+  declarations: [ArtMainComponent, DangKyComponent, XemKetQuaComponent, TheLeComponent, ThuVienComponent, RegisterFormComponent, ContestFormComponent, SuccessSubmitComponent, EditContestFormComponent],
   imports: [
     CommonModule,
     ArtMainRoutingModule,

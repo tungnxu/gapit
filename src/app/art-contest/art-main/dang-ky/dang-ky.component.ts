@@ -14,7 +14,8 @@ import { Province, District, User } from 'src/app/types/models';
 export enum RegisterState  {
   RegisterForm,
   SubmitForm,
-  Success
+  Success,
+  EditForm,
 }
 
 @Component({
@@ -40,9 +41,14 @@ export class DangKyComponent implements OnInit {
   ngOnInit(): void {
     this.authService.currentUser.subscribe(userData => {
       this.currentUser = userData
-      if(this.currentUser?.student?.student_info) {
+      if(this.currentUser?.student?.student_info && this.currentUser?.student?.exams.length == 0) {
         this.registerState.next(RegisterState.SubmitForm)
       }
+
+      if(this.currentUser?.student?.exams?.length > 0) {
+        this.registerState.next(RegisterState.EditForm)
+      }
+
     })
   }
 

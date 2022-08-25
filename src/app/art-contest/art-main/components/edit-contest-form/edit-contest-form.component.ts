@@ -9,11 +9,12 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 import { User, Student, Exam } from 'src/app/types/models';
 
 @Component({
-  selector: 'app-contest-form',
-  templateUrl: './contest-form.component.html',
-  styleUrls: ['./contest-form.component.scss']
+  selector: 'app-edit-contest-form',
+  templateUrl: './edit-contest-form.component.html',
+  styleUrls: ['./edit-contest-form.component.scss']
 })
-export class ContestFormComponent implements OnInit {
+export class EditContestFormComponent implements OnInit {
+  @Input() exam: Exam
   @Output() onSubmitArt = new EventEmitter()
   submitContestForm: FormGroup
   loading = false
@@ -35,12 +36,11 @@ export class ContestFormComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.submitContestForm = this.formBuilder.group({
-      exam_name: ['', Validators.required],
-      description: [''],
-      file: ['', Validators.required],
-      email: [''],
+      exam_name: [this.exam.name_exam, Validators.required],
+      description: [this.exam.description],
+      file: [this.exam.url, Validators.required],
+      email: [this.exam.email],
       isParent: [false]
     })
 
@@ -100,7 +100,7 @@ export class ContestFormComponent implements OnInit {
       this.loading = false
     }
     this.loading = true
-    this.studentApi.uploadExam(form).pipe(switchMap(() => this.studentApi.getStudentInfo())).subscribe(next, error)
+    this.studentApi.reUploadExam(form).pipe(switchMap(() => this.studentApi.getStudentInfo())).subscribe(next, error)
 
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-art-main',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArtMainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authService.currentUser.subscribe((user) => {
+      if(!user) this.router.navigate(['cuoc-thi-ve/login'])
+    })
   }
 
 }
