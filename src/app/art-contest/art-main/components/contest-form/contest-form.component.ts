@@ -14,6 +14,7 @@ import { User, Student, Exam } from 'src/app/types/models';
   styleUrls: ['./contest-form.component.scss']
 })
 export class ContestFormComponent implements OnInit {
+  @Input() formId?: number
   @Output() onSubmitArt = new EventEmitter()
   submitContestForm: FormGroup
   loading = false
@@ -76,10 +77,21 @@ export class ContestFormComponent implements OnInit {
       return
     }
 
-    form.append('file', this.f.file.value, fileName)
-    form.append('exam_name', this.f.exam_name.value)
-    form.append('email', this.f.email.value)
-    form.append('description', this.f.description.value)
+    // form.append('file', this.f.file.value, fileName)
+    // form.append('exam_name', this.f.exam_name.value)
+    // form.append('email', this.f.email.value)
+    // form.append('description', this.f.description.value)
+    // this.formId ?? form.append('form_id', this.formId + '' ) 
+
+    const payload = {
+      file: this.f.file.value,
+      exam_name: this.f.exam_name.value,
+      email: this.f.email.value,
+      description: this.f.description.value,
+      form_id: this.formId
+    }
+
+    Object.keys(payload).forEach(key => form.append(key, payload[key]));
 
     const next = (student: Student) => {
       this.localStorageService.set('student', JSON.stringify(student))

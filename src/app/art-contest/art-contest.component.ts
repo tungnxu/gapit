@@ -17,7 +17,9 @@ export class ArtContestComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe((user) => {
-      if(user) this.router.navigate(['cuoc-thi-ve/dang-ky'])
+      if(user) {
+        user.UserType === 'student' ? this.router.navigate(['cuoc-thi-ve/dang-ky']) : this.router.navigate(['cuoc-thi-ve/dang-ky-gv'])
+      } 
     })
   }
 

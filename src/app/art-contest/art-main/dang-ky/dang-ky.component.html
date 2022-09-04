@@ -9,12 +9,12 @@
 </div> -->
 
 <div class="dang-ki-page">
-  <div class="art-box">
-    <h1>Mẫu đăng ký dự thi</h1>
+  <div *ngIf="currentUser?.UserType == 'student'" class="art-box">
+    <h1>Mẫu đăng ký dự thi </h1>
     <app-register-form *ngIf="(state | async) == 0" (onSubmitRegister)="onSubmitRegister()"></app-register-form>
     <app-contest-form *ngIf="(state | async) == 1" (onSubmitArt)="onSubmitArt()" ></app-contest-form>
     <app-success-submit *ngIf="(state | async) == 2"></app-success-submit>
-    <app-edit-contest-form *ngIf="(state | async) == 3" (onSubmitArt)="onSubmitArt()" [exam]="currentUser?.student?.exams[0]"></app-edit-contest-form>
+    <app-edit-contest-form *ngIf="(state | async) == 3" (onSubmitArt)="onSubmitArt()" [exam]="currentExam"></app-edit-contest-form>
 
   </div>
 </div>

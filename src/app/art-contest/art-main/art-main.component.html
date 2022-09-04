@@ -5,7 +5,10 @@
 
   <nav class=" art-contest-menu d-flex justify-content-center ">
     <ul >
-      <li><a [routerLink]="['dang-ky']" routerLinkActive="router-link-active" >Đăng ký dự thi</a></li> |
+      <li>
+        <a *ngIf="user?.UserType === 'student'" [routerLink]="['dang-ky']" routerLinkActive="router-link-active" >Đăng ký dự thi</a> 
+        <a *ngIf="user?.UserType === 'teacher'" [routerLink]="['dang-ky-gv']" routerLinkActive="router-link-active" >Đăng ký dự thi</a>
+      </li> |
       <li><a [routerLink]="['xem-ket-qua']" routerLinkActive="router-link-active" >Xem kết quả</a></li> |
       <li><a [routerLink]="['voting']" routerLinkActive="router-link-active" >Voting</a></li> |
       <li><a [routerLink]="['the-le']" routerLinkActive="router-link-active" >Thể lệ cuộc thi</a></li> |

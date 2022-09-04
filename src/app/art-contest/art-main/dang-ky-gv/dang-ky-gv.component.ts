@@ -20,12 +20,14 @@ export enum RegisterState  {
 
 @Component({
   selector: 'app-dang-ky',
-  templateUrl: './dang-ky.component.html',
-  styleUrls: ['./dang-ky.component.scss'],
+  templateUrl: './dang-ky-gv.component.html',
+  styleUrls: ['./dang-ky-gv.component.scss'],
 })
-export class DangKyComponent implements OnInit {
+export class DangKyGVComponent implements OnInit {
+  studentInfo: any
   currentUser: User
   currentExam : Exam
+  formId: number
   registerState = new BehaviorSubject<RegisterState>(RegisterState.RegisterForm)
 
 
@@ -41,24 +43,21 @@ export class DangKyComponent implements OnInit {
   ngOnInit(): void {
     this.authService.currentUser.subscribe(userData => {
       this.currentUser = userData
-      if(this.currentUser?.student?.student_info && this.currentUser?.student?.exams.length == 0) {
-        this.registerState.next(RegisterState.SubmitForm)
-      }
-
-      if(this.currentUser?.student?.exams?.length > 0) {
-        this.currentExam = this.currentUser?.student?.exams.find(x => x.status)
-        this.registerState.next(RegisterState.EditForm)
-      }
-
+      this.registerState.next(RegisterState.RegisterForm)
     })
   }
 
-  onSubmitRegister(){
+  onSubmitRegister($event){
     this.registerState.next(RegisterState.SubmitForm)
+    this.formId = $event
   }
 
   onSubmitArt(){
     this.registerState.next(RegisterState.Success)
+  }
+
+  selectStudent(event){
+    this.studentInfo = event
   }
 
 

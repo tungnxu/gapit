@@ -1,0 +1,14 @@
+.student-wrapper{
+    display: block;
+    position: relative;
+   
+    .dropdown{
+        background: #ffffff;
+        border-radius: 5px;
+        padding: 8px;
+        position: absolute;
+        display: flex;
+        top: 100%;
+        left: 0;
+    }
+}

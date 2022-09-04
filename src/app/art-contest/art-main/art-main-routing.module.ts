@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ArtMainComponent } from './art-main.component';
+import { DangKyGVComponent } from './dang-ky-gv/dang-ky-gv.component';
 import { DangKyComponent } from './dang-ky/dang-ky.component';
 import { TheLeComponent } from './the-le/the-le.component';
 import { ThuVienComponent } from './thu-vien/thu-vien.component';
@@ -15,6 +16,10 @@ const routes: Routes = [
       {
         path: 'dang-ky',
         component: DangKyComponent
+      },
+      {
+        path: 'dang-ky-gv',
+        component: DangKyGVComponent
       },
       {
         path: 'xem-ket-qua',

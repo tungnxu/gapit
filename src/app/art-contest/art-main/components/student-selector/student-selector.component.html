@@ -1,0 +1,10 @@
+<div class="student-wrapper">
+    <input type="text" name="" id="" placeholder="Nhap ten học sinh" (input)="onInputChange($event)" (focus)="onFocus()" >
+    <div class="dropdown" (click)="select()" *ngIf="studentData">
+        <img class="mr-2"  width="60" height="60" src="assets/img/ava.png" alt="student-ava">
+        <div>
+            <h6>{{studentData.student_name}}</h6>
+            <p>Học sinh lớp {{studentData.school_class}} - Trường {{studentData.school_name}}</p>
+        </div>
+    </div>
+</div>

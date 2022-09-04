@@ -17,10 +17,13 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { ContestFormComponent } from './components/contest-form/contest-form.component';
 import { SuccessSubmitComponent } from './components/success-submit/success-submit.component';
 import { EditContestFormComponent } from './components/edit-contest-form/edit-contest-form.component';
+import { DangKyGVComponent } from './dang-ky-gv/dang-ky-gv.component';
+import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
+import { RegisterFormGVComponent } from './components/register-form-gv/register-form-gv.component';
 
 
 @NgModule({
-  declarations: [ArtMainComponent, DangKyComponent, XemKetQuaComponent, TheLeComponent, ThuVienComponent, RegisterFormComponent, ContestFormComponent, SuccessSubmitComponent, EditContestFormComponent],
+  declarations: [ArtMainComponent,RegisterFormGVComponent, StudentSelectorComponent, DangKyComponent, XemKetQuaComponent, TheLeComponent, ThuVienComponent, RegisterFormComponent, ContestFormComponent, SuccessSubmitComponent, EditContestFormComponent, DangKyGVComponent],
   imports: [
     CommonModule,
     ArtMainRoutingModule,

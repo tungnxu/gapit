@@ -32,4 +32,9 @@ export class StudentApi extends BaseApi {
   reUploadExam(formData:FormData):Observable<any>{
     return this.httpClient.post(this.createUrl('ReUploadAsync'),formData)
   }
+
+  searchStudentInfo(studentName: string):Observable<any> {
+    const params = {user_name: studentName}
+    return this.httpClient.get<any>(this.createUrl('GetUserInfo'),  { params: this.createParams(params)})
+  }
 }

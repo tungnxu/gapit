@@ -36,6 +36,7 @@ export class User {
   RefreshToken?: string
   student?: Student
   isFacebookUser?: boolean
+  UserType?: string
 }
 
 
@@ -141,6 +142,7 @@ export interface Exam {
   url: string;
   point?: any;
   email?:string;
+  status?:boolean;
 }
 
 export interface Student {

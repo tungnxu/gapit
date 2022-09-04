@@ -84,6 +84,7 @@ export class AuthService {
         this.jWTTokenService.setToken(user.Token)
         this.localStorageService.set('token', user.Token)
         this.localStorageService.set('refreshToken', user.RefreshToken)
+        this.localStorageService.set('userType', user.UserType)
         //TODO
         this.generateUserInfo()
         // const userInfo: User = {
@@ -116,7 +117,8 @@ export class AuthService {
       id: this.jWTTokenService.getUserId(),
       expiredDate: this.jWTTokenService.getExpiryTime(),
       student: JSON.parse(this.localStorageService.get('student')),
-      isFacebookUser: false
+      isFacebookUser: false,
+      UserType: this.localStorageService.get('userType'),
     }
     this.currentUserSubject.next(userInfo)
   }
