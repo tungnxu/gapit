@@ -88,7 +88,7 @@ export class ContestFormComponent implements OnInit {
       exam_name: this.f.exam_name.value,
       email: this.f.email.value,
       description: this.f.description.value,
-      form_id: this.formId
+      form_id: this.formId ?? null
     }
 
     Object.keys(payload).forEach(key => form.append(key, payload[key]));
