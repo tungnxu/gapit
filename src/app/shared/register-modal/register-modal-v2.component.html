@@ -1,0 +1,50 @@
+            <div class="modal-body p-0 art-modal-register">
+                <div class="row">
+                    <div class="col-sm-12 form-side">
+                        <button type="button" class="close" (click)="bsModalRef1.hide()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="form-modal p-5">
+                            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                                <h3 class="text-primary art-modal-title">{{title}}</h3>
+                                <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
+                                <div class="form-group" hasError="username">
+                                    <input formControlName="username" autocomplete="new-user" type="text" placeholder="Email/Số điện thoại đăng nhập"
+                                        class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                                        <div errorMessage>
+                                          <div class="invalid-feedback" *ifError="'required'" translate>
+                                            Vui lòng điền email/số điện thoại
+                                          </div>
+                                        </div>
+                                </div>
+                                <div class="form-group position-relative" hasError="password">
+                                    <input formControlName="password" autocomplete="new-password" [type]="hide ? 'password' : 'text'"  placeholder="Mật khẩu tối thiểu 6 ký tự, viết thường"
+                                        class="form-control" id="inputPassword">
+                                        <div errorMessage>
+                                          <div class="invalid-feedback" *ifError="'required'" translate>
+                                            Mật khẩu không thể bỏ trống
+                                          </div>
+                                          <div class="invalid-feedback" *ifError="'minlength'" translate>
+                                            Mật khẩu ít nhất 6 ký tự
+                                          </div>
+                                        </div>
+
+                                        <a *ngIf="registerForm.value.password" href="javascript:;" (click)='hide = !hide'  style="position: absolute;top: 8px; right: 16px; z-index: 2;"><i [hidden]="!hide" class="fa fa-eye" aria-hidden="true"></i><i  [hidden]="hide" class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                </div>
+
+                                <div class="form-group custom-control custom-checkbox">
+                                    <input formControlName="isCheckTerm" type="checkbox" class="custom-control-input" id="exampleCheck1">
+                                    <label class="custom-control-label " for="exampleCheck1">Tôi đã đọc kỹ <a
+                                                href="https://www.colgatepalmolive.com.vn/legal-privacy-policy" target="_blank" >Điều khoản đăng ký</a></label>
+                                </div>
+                                <div class="form-group">
+                                    <button [class.is-loading]="loading" type="submit" class="btn btn-primary btn-block">Đăng ký</button></div>
+                                <div class="text-muted  text-center"><small>Đã có tài khoản? </small>
+                                  <br><a (click)="openLoginModal()" href="javascript:;">Đăng nhập</a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>

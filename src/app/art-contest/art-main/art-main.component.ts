@@ -18,8 +18,8 @@ export class ArtMainComponent implements OnInit {
       this.user = user
       if(!user) {
         this.router.navigate(['cuoc-thi-ve/login'])
-      }else{
-        user.UserType === 'student' ? this.router.navigate(['cuoc-thi-ve/dang-ky']) : this.router.navigate(['cuoc-thi-ve/dang-ky-gv'])
+      }else if ( this.router.url == '/cuoc-thi-ve' ) {
+        user.UserType === 'student'? this.router.navigate(['cuoc-thi-ve/dang-ky']) : this.router.navigate(['cuoc-thi-ve/dang-ky-gv'])
       }
     })
   }

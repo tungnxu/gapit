@@ -16,10 +16,11 @@ export class ArtContestComponent implements OnInit {
   constructor(private modalService: BsModalService, private authService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authService.getNewToken()
     this.authService.currentUser.subscribe((user) => {
       if(user) {
         user.UserType === 'student' ? this.router.navigate(['cuoc-thi-ve/dang-ky']) : this.router.navigate(['cuoc-thi-ve/dang-ky-gv'])
-      } 
+      }
     })
   }
 
@@ -41,7 +42,7 @@ export class ArtContestComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
     }
-    this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign({initialState}, { class: 'modal-xl modal-dialog-centered' }));
+    this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
     this.bsRegisterModalRef.content.closeBtnName = 'Close';
 
   }

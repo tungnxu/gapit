@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { StudentApi } from 'src/app/api/student.api';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -15,7 +15,8 @@ import { User, Student, Exam } from 'src/app/types/models';
 })
 export class ContestFormComponent implements OnInit {
   @Input() formId?: number
-  @Output() onSubmitArt = new EventEmitter()
+  @Input() studentName? : string
+  @Output() onSubmitArt = new EventEmitter<number>()
   submitContestForm: FormGroup
   loading = false
   submitted = false
@@ -81,7 +82,7 @@ export class ContestFormComponent implements OnInit {
     // form.append('exam_name', this.f.exam_name.value)
     // form.append('email', this.f.email.value)
     // form.append('description', this.f.description.value)
-    // this.formId ?? form.append('form_id', this.formId + '' ) 
+    // this.formId ?? form.append('form_id', this.formId + '' )
 
     const payload = {
       file: this.f.file.value,
@@ -93,26 +94,34 @@ export class ContestFormComponent implements OnInit {
 
     Object.keys(payload).forEach(key => form.append(key, payload[key]));
 
-    const next = (student: Student) => {
+    const next = (res: any) => {
+      // this.localStorageService.set('student', JSON.stringify(student))
+      // this.authService.generateUserInfo()
+      this.loading = false
+      // const idExam = student?.exams?.length == 1 ? student?.exams[0]?.id : student?.exams[1]?.id
+      this.onSubmitArt.next(res.id)
+    }
+
+    const next2 = ([res, student]) => {
       this.localStorageService.set('student', JSON.stringify(student))
-      // console.log(student)
       this.authService.generateUserInfo()
       this.loading = false
-      const idExam = student?.exams?.length == 1 ? student?.exams[0]?.id : student?.exams[1]?.id
-      this.onSubmitArt.next()
-      // this.bsModalRef.hide()
-      // this.toastr.info('Bạn đã gửi bài thành công ! ', '', {
-      //   timeOut: 6000,
-      //   positionClass: 'toast-top-center',
-      // });
+      this.onSubmitArt.next(res.id)
     }
 
     const error = (error) => {
-      this.error = error.error.message
+      this.error = error?.error?.Message
       this.loading = false
     }
     this.loading = true
-    this.studentApi.uploadExam(form).pipe(switchMap(() => this.studentApi.getStudentInfo())).subscribe(next, error)
+
+    if(this.formId) {
+      this.studentApi.uploadExam(form).subscribe(next, error)
+    }else{
+      this.studentApi.uploadExam(form).pipe(switchMap((res: any)=> {
+        return combineLatest( [of(res), this.studentApi.getStudentInfo()]);
+      })).subscribe(next2,error)
+    }
 
   }
 

@@ -22,7 +22,7 @@ export class StudentSelectorComponent implements OnInit {
         if (term?.length < 3) {
           return of([])
         }
-        return this.studentApi.searchStudentInfo(term).pipe(catchError(() => { 
+        return this.studentApi.searchStudentInfo(term).pipe(catchError(() => {
           delete this.studentData
           return of(null);}))
       }
@@ -32,7 +32,7 @@ export class StudentSelectorComponent implements OnInit {
     })
   }
 
-  
+
   onInputChange($event) {
     this.searchText = $event.target.value
     this.term$.next($event.target.value)
@@ -46,5 +46,7 @@ export class StudentSelectorComponent implements OnInit {
   onFocus(){
     this.term$.next(this.searchText )
   }
+
+
 
 }

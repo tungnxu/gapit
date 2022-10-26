@@ -1,17 +1,20 @@
 <div class="xem-ket-qua-page">
   <div class="art-box">
-    <h1> Ket qua du thi</h1>
+    <h1>Kết Quả Dự Thi</h1>
     <form [formGroup]="resultForm" (ngSubmit)="onSubmit()">
-      <div class="text-center">
-        <img width="30%" src="assets/img/logo-label.png" alt="">
+      <div class="text-center mb-4">
+        <img width="100%" src="assets/img/look-up.png" alt="">
       </div>
-      <h6 class="text-primary"><b>Tra cứu kết quả dự thi</b></h6>
-      <div class="input-group text-center" hasError="code">
+      <div class="input-group text-center search-wraper mb-4" hasError="code">
         <input type="number" formControlName="code" placeholder="Nhập mã bài dự thi (vd: 20)"
-          class="form-control code-input mr-2" style="-moz-appearance: textfield;">
-        <button type="submit" [class.is-loading]="loading" class="btn btn-primary">Tra kết quả</button>
+          class="form-control  mr-2 search-input" style="-moz-appearance: textfield;">
       </div>
-      <small class="text-muted">Mã bài dự thi được về email khi nộp bài</small>
+      <p class="text-muted text-center mb-3">Mã bài dự thi được về email khi nộp bài</p>
+
+       <div class="text-center mb-3">
+        <button type="submit" [class.is-loading]="loading" class="btn btn-primary">Tra kết quả</button>
+       </div>
+
 
       <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
 

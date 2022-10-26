@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ChangePassModalComponent } from 'src/app/shared/change-pass-modal/change-pass-modal.component';
@@ -33,7 +34,7 @@ export class MainLayoutComponent implements OnInit {
   promotionModalRef:  BsModalRef;
 
   currentUser: User
-  constructor(private modalService: BsModalService, private authService: AuthService, private _http: HttpClient) {}
+  constructor(private modalService: BsModalService, private authService: AuthService, private _http: HttpClient , private  router: Router) {}
 
   ngOnInit(): void {
     this.authService.getNewToken()
@@ -47,7 +48,12 @@ export class MainLayoutComponent implements OnInit {
   }
 
   get codeExam(){
-    return this.currentUser?.student?.exams?.map(x => x.id).toString()
+    return this.currentUser?.student?.exams?.find(x => x.status)?.id
+  }
+
+
+  goToArt(){
+    this.router.navigate(['cuoc-thi-ve'])
   }
 
   logout(){
@@ -61,7 +67,7 @@ export class MainLayoutComponent implements OnInit {
       backdrop: true,
       ignoreBackdropClick: true,
     }
-    this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign({initialState}, { class: 'modal-xl modal-dialog-centered' }));
+    this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
     this.bsRegisterModalRef.content.closeBtnName = 'Close';
 
   }

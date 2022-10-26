@@ -28,6 +28,8 @@ export class DangKyGVComponent implements OnInit {
   currentUser: User
   currentExam : Exam
   formId: number
+  code: number
+  studentName: string
   registerState = new BehaviorSubject<RegisterState>(RegisterState.RegisterForm)
 
 
@@ -49,11 +51,13 @@ export class DangKyGVComponent implements OnInit {
 
   onSubmitRegister($event){
     this.registerState.next(RegisterState.SubmitForm)
-    this.formId = $event
+    this.studentName = $event.name
+    this.formId = $event.id
   }
 
-  onSubmitArt(){
+  onSubmitArt($event){
     this.registerState.next(RegisterState.Success)
+    this.code = $event
   }
 
   selectStudent(event){

@@ -1,0 +1,26 @@
+.art-modal-login{
+  background-image: url('/assets/img/log-bot.png');
+  background-position: bottom center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-bottom: 114px !important;
+
+  .close{
+    top: 3.5rem;
+    right: 3.5rem;
+    border: 2px solid #ababab;
+    color: #1c1717;
+    span{
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
+.art-modal-title{
+  background-image: url('/assets/img/ink.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 13px 10px 17px 10px;
+  background-position: -1px 9px;
+}

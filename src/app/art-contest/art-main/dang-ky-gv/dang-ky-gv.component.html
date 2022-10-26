@@ -1,10 +1,10 @@
 
 <div class="dang-ki-page">
   <div *ngIf="currentUser?.UserType == 'teacher'" class="art-box">
-    <h1>Mẫu đăng ký dự thi cho giáo viên </h1>
-    <app-student-selector (selectStudent)="selectStudent($event)"></app-student-selector>
+    <h1  *ngIf="(state | async) == 0 || (state | async) == 1 " class="art-title">Mẫu đăng ký dự thi</h1>
+    <app-student-selector *ngIf="(state | async) == 0" (selectStudent)="selectStudent($event)"></app-student-selector>
     <app-register-form-gv *ngIf="(state | async) == 0" (onSubmitRegister)="onSubmitRegister($event)" [studentInfo]="studentInfo"></app-register-form-gv>
-    <app-contest-form *ngIf="(state | async) == 1" (onSubmitArt)="onSubmitArt()" [formId]="formId"></app-contest-form>
-    <app-success-submit *ngIf="(state | async) == 2"></app-success-submit>
+    <app-contest-form *ngIf="(state | async) == 1" (onSubmitArt)="onSubmitArt($event)" [formId]="formId" [studentName]="studentName" ></app-contest-form>
+    <app-success-submit *ngIf="(state | async) == 2" [code]="code"></app-success-submit>
   </div>
 </div>

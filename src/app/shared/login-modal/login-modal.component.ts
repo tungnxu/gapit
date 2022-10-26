@@ -10,7 +10,7 @@ import { RegisterModalComponent } from '../register-modal/register-modal.compone
 
 @Component({
   selector: 'app-login-modal',
-  templateUrl: './login-modal.component.html',
+  templateUrl: './login-modal-v2.component.html',
   styleUrls: ['./login-modal.component.scss']
 })
 export class LoginModalComponent implements OnInit {
@@ -63,7 +63,7 @@ export class LoginModalComponent implements OnInit {
     }
 
     const error = (error) => {
-      this.error = error.error.message
+      this.error = error?.error?.message
       this.loading = false
     }
     this.loading = true
@@ -78,8 +78,8 @@ export class LoginModalComponent implements OnInit {
       title: 'Đăng ký tài khoản',
       backdrop: true,
       ignoreBackdropClick: true,
-    };
-    this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign(initialState, { class: 'modal-xl modal-dialog-centered' }));
+    }
+    this.bsRegisterModalRef = this.modalService.show(RegisterModalComponent,  Object.assign({initialState}, { class: 'modal-md modal-dialog-centered' }));
     this.bsRegisterModalRef.content.closeBtnName = 'Close';
   }
 

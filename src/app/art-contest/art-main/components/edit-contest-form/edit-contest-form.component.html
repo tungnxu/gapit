@@ -1,5 +1,6 @@
 <form [formGroup]="submitContestForm" (ngSubmit)="onSubmit()">
   <h6 class="text-uppercase text-muted">THAY ĐỔI BÀI THI</h6>
+  <p class="text-primary">Lưu ý: Chỉ có 1 lần thay đổi bài dự thi</p>
   <ng-container *ngIf="!success">
 
   <div class=" row align-items-start"  hasError="exam_name">
@@ -55,13 +56,13 @@
 
   <div class="form-group custom-control custom-checkbox">
       <input formControlName="isParent" type="checkbox" class="custom-control-input" id="isParent">
-      <label class="custom-control-label" for="isParent"><small>Tôi xác nhận là
+      <label class="custom-control-label" for="isParent">Tôi xác nhận là
           phụ huynh/ người giám hộ của học sinh với thông tin đầy dủ phía
-          trên.</small></label>
+          trên.</label>
   </div>
 
   <div class="form-group mt-3">
-      <button [class.is-loading]="loading"  type="submit" class="btn btn-primary btn-block">GỬI BÀI</button>
+      <button [class.is-loading]="loading"  type="submit" class="btn btn-primary btn-block" [disabled]="isLinkData() || !submitContestForm?.value['file']">GỬI BÀI DỰ THI MỚI</button>
   </div>
   <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
   </ng-container>

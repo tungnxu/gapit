@@ -12,4 +12,4 @@
 </div>
 <div class="mb-2" *ngIf="imageSrc"> <img width="340"  [src]="imageSrc" alt="" ></div>
 
-<input [id]="inputId" accept="image/*" class="ghost" type="file" (change)="onFileChanged($event)">
+<input [id]="inputId"  accept=".jpg,.jpeg,.png"  class="ghost" type="file" (change)="onFileChanged($event)">

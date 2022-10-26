@@ -1,10 +1,14 @@
 <div class="student-wrapper">
-    <input type="text" name="" id="" placeholder="Nhap ten học sinh" (input)="onInputChange($event)" (focus)="onFocus()" >
+  <div class="search-wraper">
+    <input #abc class="search-input" type="text" name="" id="" placeholder="Nhập username..." (input)="onInputChange($event)" (focus)="onFocus()" >
+  <i class="fa fa-search" aria-hidden="true"></i>
+  <span *ngIf="abc?.value"  (click)="abc.value=''; studentData=null" class="close" aria-hidden="true">&times;</span>
+  </div>
     <div class="dropdown" (click)="select()" *ngIf="studentData">
         <img class="mr-2"  width="60" height="60" src="assets/img/ava.png" alt="student-ava">
         <div>
-            <h6>{{studentData.student_name}}</h6>
-            <p>Học sinh lớp {{studentData.school_class}} - Trường {{studentData.school_name}}</p>
+            <h6 class="mb-1">{{studentData.student_name}}</h6>
+            <div>Học sinh lớp {{studentData.school_class}} - Trường {{studentData.school_name}}</div>
         </div>
     </div>
 </div>

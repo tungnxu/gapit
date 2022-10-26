@@ -75,7 +75,7 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
         school_email: this.studentInfo.school_email,
       })
 
-      this.onProvinceChanged(null) 
+      this.onProvinceChanged(null)
       this.onSchoolProvinceChanged(null)
     }
   }
@@ -143,11 +143,15 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
       return
     }
 
-    const next = (student) => {
-      this.localStorageService.set('student', JSON.stringify(student))
-      this.authService.generateUserInfo()
+    const next = (res: any) => {
+      // this.localStorageService.set('student', JSON.stringify(student))
+      // this.authService.generateUserInfo()
       this.loading = false
-      this.onSubmitRegister.next(student.student_info.Id)
+      const data = {
+        name: this.registrationForm.value.student_name,
+        id: res?.id
+      }
+      this.onSubmitRegister.next(data)
 
     }
 
@@ -156,9 +160,9 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
       this.loading = false
     }
     this.loading = true
-    const dob = this.datepipe.transform(this.registrationForm.value.student_date_of_birth, 'dd/MM/yyyy')
+    const dob = this.studentInfo?.student_date_of_birth ?? this.datepipe.transform(this.registrationForm.value.student_date_of_birth, 'dd/MM/yyyy')
     const payload = Object.assign({}, this.registrationForm.value, { student_date_of_birth: dob })
-    this.studentApi.studentRegister(payload).pipe(switchMap(()=> this.studentApi.getStudentInfo())).subscribe(next, error)
+    this.studentApi.studentRegister(payload).subscribe(next, error)
 
   }
 

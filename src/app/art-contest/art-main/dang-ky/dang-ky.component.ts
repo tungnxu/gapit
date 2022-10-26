@@ -27,6 +27,7 @@ export class DangKyComponent implements OnInit {
   currentUser: User
   currentExam : Exam
   registerState = new BehaviorSubject<RegisterState>(RegisterState.RegisterForm)
+  code: number
 
 
   constructor(
@@ -57,8 +58,9 @@ export class DangKyComponent implements OnInit {
     this.registerState.next(RegisterState.SubmitForm)
   }
 
-  onSubmitArt(){
+  onSubmitArt($event){
     this.registerState.next(RegisterState.Success)
+    this.code = $event
   }
 
 

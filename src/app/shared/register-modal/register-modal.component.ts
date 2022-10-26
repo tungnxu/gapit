@@ -9,7 +9,7 @@ import { LoginModalComponent } from '../login-modal/login-modal.component'
 
 @Component({
   selector: 'app-register-modal',
-  templateUrl: './register-modal.component.html',
+  templateUrl: './register-modal-v2.component.html',
   styleUrls: ['./register-modal.component.scss']
 })
 export class RegisterModalComponent implements OnInit {

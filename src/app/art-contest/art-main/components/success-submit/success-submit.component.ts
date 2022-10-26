@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-success-submit',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./success-submit.component.scss']
 })
 export class SuccessSubmitComponent implements OnInit {
-
+  @Input() code: number
   constructor() { }
 
   ngOnInit(): void {

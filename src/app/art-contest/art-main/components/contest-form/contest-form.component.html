@@ -1,5 +1,5 @@
 <form [formGroup]="submitContestForm" (ngSubmit)="onSubmit()">
-  <h6 class="text-uppercase text-muted">UPLOAD BÀI THI</h6>
+  <h6 class="text-uppercase text-muted">UPLOAD BÀI THI {{ studentName ? 'CHO BẠN ' : '' }} <strong class="text-primary" *ngIf="studentName">{{studentName}}</strong></h6>
   <ng-container *ngIf="!success">
 
   <div class=" row align-items-start"  hasError="exam_name">
@@ -30,7 +30,7 @@
       <label for="file" class="col-sm-4 col-form-label"><small>*Tải lên bài dự
               thi:</small></label>
       <div class="col-sm-8">
-           <file-upload-control      formControlName="file"   label="Tải lên bài dự thi (tối đa: 5Mb)" ></file-upload-control>
+           <file-upload-control      formControlName="file"   label="Tải lên bài dự thi (tối đa: 5Mb - Định dạng JPG, JPEG, PNG)" ></file-upload-control>
            <div errorMessage>
               <div class="invalid-feedback" *ifError="'required'" translate>
                 Vui lòng chọn file bài dự thi để tải lên
@@ -55,9 +55,9 @@
 
   <div class="form-group custom-control custom-checkbox">
       <input formControlName="isParent" type="checkbox" class="custom-control-input" id="isParent">
-      <label class="custom-control-label" for="isParent"><small>Tôi xác nhận là
+      <label class="custom-control-label" for="isParent">Tôi xác nhận là
           phụ huynh/ người giám hộ của học sinh với thông tin đầy dủ phía
-          trên.</small></label>
+          trên.</label>
   </div>
 
   <div class="form-group mt-3">

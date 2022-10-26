@@ -3,21 +3,30 @@
 
 
     <div class="d-flex align-items-center">
+
         <ng-container *ngIf="currentUser">
             <div  class="d-flex flex-column align-items-end" *ngIf="!currentUser?.student?.student_info">
                 <small class="text-secondary"><b>{{currentUser?.username}}</b></small>
-                <small> <a href="javascript:;" (click)="openTemplateModal()">Đăng ký dự thi</a> </small>
-                <small> <a href="javascript:;" (click)="openChangepassModal()">Đổi mật khẩu</a> </small>
+                <small *ngIf="currentUser?.UserType === 'teacher'">Tài khoản giáo viên</small>
+                <small *ngIf="currentUser?.UserType === 'student'">Xin chào !</small>
+                <!-- <small> <a href="javascript:;" (click)="openChangepassModal()">Đổi mật khẩu</a> </small> -->
             </div>
             <div class="d-flex flex-column align-items-end" *ngIf="currentUser?.student?.student_info">
                 <div *ngIf="currentUser?.student"><small>Xin chào, </small> <b class="text-secondary">{{currentUser?.student?.student_info?.student_name}}</b></div>
-                <small>Số bài dự thi: {{currentUser?.student?.exams?.length}}/2 bài. <span *ngIf="codeExam">(Mã: <span class="text-info">{{codeExam}}</span>)</span></small>
+                <small>
+                  <span *ngIf="codeExam && currentUser?.UserType === 'student'">(Mã bài dự thi: <span class="text-info">{{codeExam}}</span>)</span>
+                </small>
 
             </div>
         </ng-container>
+        <button type="button" class="btn mx-2 btn-sm btn-outline-secondary text-bold" (click)="goToArt()">Cuộc thi vẽ
+          <svg class="ml-1" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.595 12.3333L14.6644 12.4028C14.822 12.5618 15.0173 12.6783 15.2321 12.7416C15.4469 12.8048 15.6742 12.8128 15.8929 12.7646C16.108 12.7194 16.3083 12.6209 16.4754 12.4781C16.6425 12.3353 16.771 12.1527 16.8491 11.9472C17.2325 10.9405 17.4158 9.86861 17.3887 8.79168C17.3106 6.67641 16.4405 4.6677 14.9511 3.16371C13.4616 1.65972 11.4614 0.770226 9.34704 0.671537C8.22897 0.632661 7.11453 0.819308 6.07014 1.22035C5.02576 1.62139 4.07281 2.22862 3.26812 3.00583C2.46344 3.78304 1.82348 4.71432 1.38641 5.74415C0.949337 6.77398 0.724098 7.88127 0.724121 9.00001C0.726694 11.2094 1.60549 13.3275 3.16774 14.8897C4.72999 16.452 6.84811 17.3308 9.05745 17.3333C9.29218 17.3333 9.52273 17.3181 9.7519 17.2986C9.92579 17.284 10.0878 17.2044 10.2057 17.0757C10.3235 16.947 10.3886 16.7787 10.388 16.6042L10.3658 14.1125C10.3602 13.6201 10.5014 13.1372 10.7715 12.7255C11.0416 12.3138 11.4283 11.9919 11.8822 11.801C12.336 11.61 12.8365 11.5587 13.3197 11.6535C13.8029 11.7483 14.2469 11.985 14.595 12.3333V12.3333ZM12.5519 6.25695C12.751 6.20412 12.9613 6.21151 13.1562 6.2782C13.3512 6.34488 13.5219 6.46787 13.647 6.6316C13.772 6.79533 13.8456 6.99246 13.8586 7.19805C13.8716 7.40365 13.8234 7.60849 13.72 7.78666C13.6166 7.96483 13.4627 8.10834 13.2777 8.19905C13.0927 8.28975 12.885 8.32357 12.6808 8.29623C12.4766 8.2689 12.2851 8.18163 12.1306 8.04547C11.976 7.9093 11.8652 7.73036 11.8123 7.53126C11.7772 7.39903 11.7684 7.26117 11.7866 7.12555C11.8048 6.98994 11.8494 6.85924 11.9181 6.7409C11.9868 6.62256 12.0781 6.51892 12.1869 6.43588C12.2956 6.35285 12.4197 6.29204 12.5519 6.25695V6.25695ZM6.14218 12.4375C5.94306 12.4903 5.73275 12.483 5.53783 12.4163C5.34291 12.3496 5.17215 12.2266 5.04712 12.0629C4.9221 11.8991 4.84843 11.702 4.83543 11.4964C4.82243 11.2908 4.87069 11.086 4.9741 10.9078C5.0775 10.7296 5.23142 10.5861 5.41639 10.4954C5.60135 10.4047 5.80906 10.3709 6.01325 10.3982C6.21743 10.4256 6.40893 10.5128 6.56352 10.649C6.71811 10.7852 6.82886 10.9641 6.88176 11.1632C6.91689 11.2954 6.92563 11.4333 6.90748 11.5689C6.88932 11.7045 6.84463 11.8352 6.77595 11.9536C6.70727 12.0719 6.61595 12.1755 6.5072 12.2586C6.39846 12.3416 6.27442 12.4024 6.14218 12.4375V12.4375ZM6.14218 8.27084C5.94306 8.32368 5.73275 8.31629 5.53783 8.2496C5.34291 8.18291 5.17215 8.05993 5.04712 7.8962C4.9221 7.73247 4.84843 7.53534 4.83543 7.32974C4.82243 7.12415 4.87069 6.91931 4.9741 6.74114C5.0775 6.56296 5.23142 6.41945 5.41639 6.32875C5.60135 6.23805 5.80906 6.20423 6.01325 6.23156C6.21743 6.2589 6.40893 6.34617 6.56352 6.48233C6.71811 6.61849 6.82886 6.79744 6.88176 6.99654C6.91689 7.12877 6.92563 7.26663 6.90748 7.40224C6.88932 7.53786 6.84463 7.66856 6.77595 7.7869C6.70727 7.90523 6.61595 8.00888 6.5072 8.09192C6.39846 8.17495 6.27442 8.23575 6.14218 8.27084V8.27084ZM9.6144 6.18751C9.41528 6.24034 9.20497 6.23295 9.01005 6.16627C8.81514 6.09958 8.64437 5.9766 8.51934 5.81287C8.39432 5.64913 8.32065 5.45201 8.30765 5.24641C8.29465 5.04081 8.34291 4.83598 8.44632 4.6578C8.54973 4.47963 8.70364 4.33612 8.88861 4.24542C9.07358 4.15471 9.28128 4.12089 9.48547 4.14823C9.68965 4.17557 9.88115 4.26283 10.0357 4.399C10.1903 4.53516 10.3011 4.7141 10.354 4.9132C10.3891 5.04544 10.3979 5.1833 10.3797 5.31891C10.3615 5.45452 10.3168 5.58523 10.2482 5.70356C10.1795 5.8219 10.0882 5.92555 9.97942 6.00858C9.87068 6.09162 9.74664 6.15242 9.6144 6.18751V6.18751Z" fill="#00A99D"/>
+            </svg>
+        </button>
         <ng-container *ngIf="!currentUser">
-            <button type="button" class="btn mx-1 btn-sm btn-primary" (click)="openRegisterModal()">Đăng ký</button>
-            <button type="button" class="btn mx-1 btn-sm  btn-outline-primary" (click)="openLoginModal()" >Đăng nhập</button>
+            <button type="button" class="btn mx-1 btn-sm btn-primary text-bold" (click)="openRegisterModal()">Đăng ký</button>
+            <button type="button" class="btn mx-1 btn-sm  btn-outline-primary text-bold" (click)="openLoginModal()" >Đăng nhập</button>
         </ng-container>
 
         <div class="btn-group" dropdown>
@@ -27,10 +36,11 @@
             </button>
             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
                 role="menu" aria-labelledby="button-basic">
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;"  *ngIf="!currentUser?.student?.student_info" (click)="currentUser ? openTemplateModal() : openLoginModal()">Mẫu đăng ký dự thi</a></li>
+              <!-- <li role="menuitem"><a class="dropdown-item" href="javascript:;"  *ngIf="!currentUser?.student?.student_info" (click)="currentUser ? openTemplateModal() : openLoginModal()">Mẫu đăng ký dự thi</a></li>
               <li role="menuitem"><a class="dropdown-item" href="javascript:;" *ngIf="currentUser?.student?.exams?.length < 2" (click)="currentUser? (currentUser?.student?.student_info ? openSubmitContestModal() : openTemplateModal() ) : openLoginModal()">Gửi bài dự thi</a></li>
               <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openSearchResultModal()">Xem kết quả</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openTermModal()">Thể lệ chương trình</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="javascript:;" (click)="openTermModal()">Thể lệ chương trình</a></li> -->
+              <li role="menuitem" *ngIf="currentUser"><a class="dropdown-item text-primary" href="javascript:;" (click)="openChangepassModal()">Đổi mật khẩu</a></li>
               <li role="menuitem" *ngIf="currentUser"><a class="dropdown-item text-primary" href="javascript:;" (click)="logout()">Đăng xuất</a></li>
             </ul>
           </div>

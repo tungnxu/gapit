@@ -15,7 +15,7 @@ import { User, Student, Exam } from 'src/app/types/models';
 })
 export class EditContestFormComponent implements OnInit {
   @Input() exam: Exam
-  @Output() onSubmitArt = new EventEmitter()
+  @Output() onSubmitArt = new EventEmitter<number>()
   submitContestForm: FormGroup
   loading = false
   submitted = false
@@ -53,6 +53,9 @@ export class EditContestFormComponent implements OnInit {
 
   get f() { return this.submitContestForm.controls }
 
+  isLinkData(): boolean {
+    return typeof this.submitContestForm.value.file == "string" && this.submitContestForm.value.file.startsWith('http')
+  }
 
   onSubmit() {
     this.submitted = true
@@ -76,18 +79,31 @@ export class EditContestFormComponent implements OnInit {
       return
     }
 
-    form.append('file', this.f.file.value, fileName)
-    form.append('exam_name', this.f.exam_name.value)
-    form.append('email', this.f.email.value)
-    form.append('description', this.f.description.value)
+    // form.append('file', this.f.file.value, fileName)
+    // form.append('exam_name', this.f.exam_name.value)
+    // form.append('email', this.f.email.value)
+    // form.append('description', this.f.description.value)
 
-    const next = (student: Student) => {
-      this.localStorageService.set('student', JSON.stringify(student))
-      // console.log(student)
-      this.authService.generateUserInfo()
+    const payload = {
+      file: this.f.file.value,
+      exam_name: this.f.exam_name.value,
+      email: this.f.email.value,
+      description: this.f.description.value,
+    }
+
+    Object.keys(payload).forEach(key => form.append(key, payload[key]));
+
+    const next = (res) => {
+      // this.localStorageService.set('student', JSON.stringify(student))
+      // // console.log(student)
+      // this.authService.generateUserInfo()
+      // this.loading = false
+      // const idExam = student?.exams?.length == 1 ? student?.exams[0]?.id : student?.exams[1]?.id
+      // this.onSubmitArt.next()
+
       this.loading = false
-      const idExam = student?.exams?.length == 1 ? student?.exams[0]?.id : student?.exams[1]?.id
-      this.onSubmitArt.next()
+      // const idExam = student?.exams?.length == 1 ? student?.exams[0]?.id : student?.exams[1]?.id
+      this.onSubmitArt.next(res.id)
       // this.bsModalRef.hide()
       // this.toastr.info('Bạn đã gửi bài thành công ! ', '', {
       //   timeOut: 6000,
@@ -96,11 +112,12 @@ export class EditContestFormComponent implements OnInit {
     }
 
     const error = (error) => {
-      this.error = error.error.message
+      this.error = error?.error?.Message
       this.loading = false
     }
     this.loading = true
-    this.studentApi.reUploadExam(form).pipe(switchMap(() => this.studentApi.getStudentInfo())).subscribe(next, error)
+    this.studentApi.uploadExam(form).subscribe(next, error)
+    // this.studentApi.reUploadExam(form).pipe(switchMap(() => this.studentApi.getStudentInfo())).subscribe(next, error)
 
   }
 

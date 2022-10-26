@@ -1,0 +1,81 @@
+<div class="modal-body p-0 form-side no-side art-modal-login">
+  <button type="button" (click)="bsModalRef.hide()" class="close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="row">
+
+    <div class="col-sm-12 ">
+
+      <div *ngIf="mode == 'login'" class="form-modal py-4 px-5">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <h3 class="art-modal-title text-primary mb-4">{{title}}</h3>
+
+          <div class="form-group" hasError="username">
+            <input type="text" formControlName="username" placeholder="Email/Số điện thoại đăng nhập"
+              class="form-control" id="username">
+            <div errorMessage>
+              <div class="invalid-feedback" *ifError="'required'" translate>
+                Vui lòng điền email/số điện thoại
+              </div>
+            </div>
+          </div>
+          <div class="form-group" hasError="password">
+            <input type="password" formControlName="password" placeholder="Mật khẩu tối thiểu 6 ký tự, viết thường"
+              class="form-control" id="exampleInputPassword1">
+            <div errorMessage>
+              <div class="invalid-feedback" *ifError="'required'" translate>
+                Mật khẩu không thể bỏ trống
+              </div>
+              <div class="invalid-feedback" *ifError="'minlength'" translate>
+                Mật khẩu ít nhất 6 ký tự
+              </div>
+            </div>
+          </div>
+          <div class="text-right mb-2">
+            <button type="button" class="btn btn-clear" (click)="openForgotForm()">Quên mật khẩu</button>
+
+          </div>
+
+          <div class="form-group">
+            <button [class.is-loading]="loading" type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+            <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
+            <div *ngIf="success" class="alert alert-info my-3 mb-0">{{success}}</div>
+            <div class="text-muted text-center my-3"><small>Chưa có tài khoản? </small>
+              <br> <a (click)="openRegisterModal()" href="javascript:;">Đăng ký</a>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <div *ngIf="mode == 'forgot'" class="form-modal py-4 px-5">
+        <h3 class="text-center text-primary">Quên mật khẩu</h3>
+        <p class="text-center">Vui lòng điền thông tin và nhấn xác nhận để phục hồi mật khẩu tài khoản</p>
+        <form [formGroup]="forgotForm" (ngSubmit)="onSubmitForgot()">
+
+          <div class="form-group" hasError="username">
+            <input type="text" formControlName="username" placeholder="Email/Số điện thoại" class="form-control"
+              id="username">
+            <div errorMessage>
+              <div class="invalid-feedback" *ifError="'required'" translate>
+                Vui lòng điền email/số điện thoại
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button [class.is-loading]="loading" type="submit" class="btn btn-primary btn-block">Xác nhận</button>
+            <!-- <button type="button" class="btn btn-clear btn-block">Quên mật khẩu</button> -->
+            <div class="text-muted text-center my-3"><small>Chưa có tài khoản? <a (click)="openRegisterModal()"
+                  href="javascript:;">Đăng ký</a></small>
+            </div>
+            <div class="text-muted text-center my-3"><small>Trở về <a (click)="mode='login'" href="javascript:;"> đăng
+                  nhập</a></small>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
