@@ -11,6 +11,7 @@ import { User } from 'src/app/types/models';
 export class ArtMainComponent implements OnInit {
 
   user: User
+  isShowMenu: boolean = false
   constructor(private authService:AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -19,7 +20,7 @@ export class ArtMainComponent implements OnInit {
       if(!user) {
         this.router.navigate(['cuoc-thi-ve/login'])
       }else if ( this.router.url == '/cuoc-thi-ve' ) {
-        user.UserType === 'student'? this.router.navigate(['cuoc-thi-ve/dang-ky']) : this.router.navigate(['cuoc-thi-ve/dang-ky-gv'])
+        user.UserType === 'student'? this.router.navigate(['cuoc-thi-ve/dang-ky']) :  (user.UserType === 'facebooker') ? this.router.navigate(['cuoc-thi-ve/binh-chon']) : this.router.navigate(['cuoc-thi-ve/dang-ky-gv'])
       }
     })
   }

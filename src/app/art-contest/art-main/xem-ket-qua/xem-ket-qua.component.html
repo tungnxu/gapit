@@ -3,7 +3,7 @@
     <h1>Kết Quả Dự Thi</h1>
     <form [formGroup]="resultForm" (ngSubmit)="onSubmit()">
       <div class="text-center mb-4">
-        <img width="100%" src="assets/img/look-up.png" alt="">
+        <img width="80%" src="assets/img/look-up.png" alt="">
       </div>
       <div class="input-group text-center search-wraper mb-4" hasError="code">
         <input type="number" formControlName="code" placeholder="Nhập mã bài dự thi (vd: 20)"
@@ -23,7 +23,7 @@
           <label class="col-4 col-form-label">Bài dự thi:</label>
           <div class="col-8">
             <div class="text-14"><i>{{result.id}} - {{result.name_exam}}</i></div>
-            <div><img width="250" height="auto" [src]="'https://hvn.gapit.com.vn/' + result.image" alt="img"></div>
+            <div><img width="100%" style="max-width: 320px" height="auto" [src]="'https://hvn.gapit.com.vn/' + result.image" alt="img"></div>
             <small><i>{{result.description}}</i></small>
           </div>
         </div>

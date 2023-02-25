@@ -1,18 +1,47 @@
 <div class="art-contest-container">
   <nav class="navbar d-flex navbar-expand-lg navbar-light" style="width: 100%;height:70px;">
     <div class="navbar-wrapper mr-auto"><a class="logo" routerLink="/"><img src="assets/img/logo.png" alt=""></a></div>
+    <button id="button-basic" (click)="isShowMenu = true" dropdownToggle type="button" class="btn btn-clear text-primary d-block d-md-none"
+    aria-controls="dropdown-basic">
+    <i class="fa fa-2x fa-bars" aria-hidden="true"></i>
+  </button>
   </nav>
 
-  <nav class=" art-contest-menu d-flex justify-content-center ">
+  <div class="menu-mobile" [class.show]="isShowMenu">
+    <div class="menu-content">
+
+      <button type="button"  class="close-menu" (click)="isShowMenu = false">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <nav>
+        <ul >
+          <li>
+            <a  (mousedown)="isShowMenu = false" *ngIf="user?.UserType === 'student'" [routerLink]="['dang-ky']" routerLinkActive="router-link-active" >Đăng ký dự thi</a>
+            <a  (mousedown)="isShowMenu = false" *ngIf="user?.UserType === 'teacher'" [routerLink]="['dang-ky-gv']" routerLinkActive="router-link-active" >Đăng ký dự thi</a>
+          </li>
+          <li><a (mousedown)="isShowMenu = false" [routerLink]="['xem-ket-qua']" routerLinkActive="router-link-active" >Xem kết quả</a></li>
+          <li><a  (mousedown)="isShowMenu = false" [routerLink]="['binh-chon']" routerLinkActive="router-link-active" >Voting</a></li>
+          <li><a  (mousedown)="isShowMenu = false" [routerLink]="['the-le']" routerLinkActive="router-link-active" >Thể lệ cuộc thi</a></li>
+          <li><a  (mousedown)="isShowMenu = false" [routerLink]="['/gallery']" routerLinkActive="router-link-active" >Thư viện tranh đoạt giải</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="backdrop">
+
+    </div>
+  </div>
+
+  <nav class=" d-none art-contest-menu d-md-flex justify-content-center ">
     <ul >
       <li>
-        <a *ngIf="user?.UserType === 'student'" [routerLink]="['dang-ky']" routerLinkActive="router-link-active" >Đăng ký dự thi</a> 
+        <a *ngIf="user?.UserType === 'student'" [routerLink]="['dang-ky']" routerLinkActive="router-link-active" >Đăng ký dự thi</a>
         <a *ngIf="user?.UserType === 'teacher'" [routerLink]="['dang-ky-gv']" routerLinkActive="router-link-active" >Đăng ký dự thi</a>
       </li> |
       <li><a [routerLink]="['xem-ket-qua']" routerLinkActive="router-link-active" >Xem kết quả</a></li> |
-      <li><a [routerLink]="['voting']" routerLinkActive="router-link-active" >Voting</a></li> |
+      <li><a [routerLink]="['binh-chon']" routerLinkActive="router-link-active" >Voting</a></li> |
       <li><a [routerLink]="['the-le']" routerLinkActive="router-link-active" >Thể lệ cuộc thi</a></li> |
-      <li><a [routerLink]="['thu-vien']" routerLinkActive="router-link-active" >Thư viện tranh đoạt giải</a></li>
+      <li><a [routerLink]="['/gallery']" routerLinkActive="router-link-active" >Thư viện tranh đoạt giải</a></li>
     </ul>
   </nav>
   <main class="container-contest mt-5">

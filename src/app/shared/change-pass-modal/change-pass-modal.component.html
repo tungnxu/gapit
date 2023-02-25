@@ -6,8 +6,9 @@
     <div class="col-sm-12 ">
 
       <div class="form-modal py-4 px-5">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <h3 class="text-primary text-center mb-4">{{title}}</h3>
+        <h3 class="text-primary text-center mb-4">{{title}}</h3>
+
+        <form [hidden]="success" [formGroup]="form" (ngSubmit)="onSubmit()">
 
           <div class="form-group" hasError="oldPassword">
             <input type="password" formControlName="oldPassword" placeholder="Mật khẩu cũ"
@@ -51,13 +52,15 @@
           <i>* Mật khẩu tối thiểu 6 ký tự, viết thường</i>
 
         <div *ngIf="error" class="alert alert-danger my-3 mb-0">{{error}}</div>
-        <div *ngIf="success" class="alert alert-info my-3 mb-0">{{success}}</div>
 
           <div class="form-group">
             <button [class.is-loading]="loading" type="submit"
               class="btn btn-primary btn-block">Đổi mật khẩu</button>
           </div>
         </form>
+
+        <div *ngIf="success" class="alert alert-info my-3 mb-0">{{success}}</div>
+
       </div>
 
 

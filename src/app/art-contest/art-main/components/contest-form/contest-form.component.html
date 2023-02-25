@@ -6,9 +6,12 @@
       <label for="exam_name" class="col-sm-4 col-form-label"><small>*Tiêu
               đề:</small></label>
       <div class="col-sm-8">
-          <input formControlName="exam_name" type="text" class="form-control form-control-sm" id="exam_name">
+          <input formControlName="exam_name" type="text" class="form-control form-control-sm" id="exam_name"  maxlength="250">
           <div errorMessage>
               <div class="invalid-feedback" *ifError="'required'" translate>
+                Vui lòng điền tiêu đề cho bài dự thi
+              </div>
+              <div class="invalid-feedback" *ifError="'whitespace'" translate>
                 Vui lòng điền tiêu đề cho bài dự thi
               </div>
             </div>

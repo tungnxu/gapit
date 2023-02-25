@@ -814,3 +814,15 @@ footer{
     background-repeat: no-repeat;
   }
 }
+
+
+input
+ {&::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+ }
+
+datalist::-webkit-calendar-picker-indicator {
+  display: none;
+  opacity: 0;
+}

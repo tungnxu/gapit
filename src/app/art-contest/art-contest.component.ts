@@ -19,7 +19,7 @@ export class ArtContestComponent implements OnInit {
     this.authService.getNewToken()
     this.authService.currentUser.subscribe((user) => {
       if(user) {
-        user.UserType === 'student' ? this.router.navigate(['cuoc-thi-ve/dang-ky']) : this.router.navigate(['cuoc-thi-ve/dang-ky-gv'])
+        user.UserType === 'student' ? this.router.navigate(['cuoc-thi-ve/dang-ky']) : (user.UserType === 'facebooker') ? this.router.navigate(['cuoc-thi-ve/binh-chon']) : this.router.navigate(['cuoc-thi-ve/dang-ky-gv'])
       }
     })
   }

@@ -23,6 +23,7 @@ export class LoginModalComponent implements OnInit {
 
   forgotForm: FormGroup = this.formBuilder.group({
     username: ['', Validators.required],
+    email: ['', [Validators.required,Validators.email]],
   })
   loading = false
   submitted = false
@@ -97,7 +98,7 @@ export class LoginModalComponent implements OnInit {
     const next = (data) => {
       this.loading = false
       this.mode = 'login'
-      this.success = 'Thông tin về mật khẩu đã được gửi về email/số điện thoại của bạn. Vui lòng kiểm tra và đăng nhập với mật khẩu mới.'
+      this.success = 'Thông tin về mật khẩu đã được gửi về email mà bạn cung cấp. Vui lòng kiểm tra và đăng nhập với mật khẩu mới.'
     }
 
     const error = (error) => {
@@ -105,7 +106,18 @@ export class LoginModalComponent implements OnInit {
       this.loading = false
     }
     this.loading = true
-    this.authService.forgot(this.f.username.value).subscribe(next, error)
+    this.authService.forgot(this.forgotForm.controls.username.value, this.forgotForm.controls.email.value).subscribe(next, error)
+
+  }
+
+  loginFacebook(){
+    this.authService.loginWithFB()
+  }
+
+  doValidate(){
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.forgotForm.value.username)){
+      this.forgotForm.patchValue({"email": this.forgotForm.value.username})
+    }
 
   }
 

@@ -3,6 +3,10 @@
   background-size: contain;
   background-repeat: no-repeat;
   padding: 17px 0px;
-  background-position: 361px 0px;
+  background-position: 302px 0px;
   margin-top: -35px;
+
+  @media only screen and (max-width: 768px) {
+    background-position: 166px 0px;
+  }
 }

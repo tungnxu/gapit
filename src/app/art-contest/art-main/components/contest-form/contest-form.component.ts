@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { combineLatest, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { User, Student, Exam } from 'src/app/types/models';
 })
 export class ContestFormComponent implements OnInit {
   @Input() formId?: number
-  @Input() studentName? : string
+  @Input() studentName?: string
   @Output() onSubmitArt = new EventEmitter<number>()
   submitContestForm: FormGroup
   loading = false
@@ -39,7 +39,7 @@ export class ContestFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.submitContestForm = this.formBuilder.group({
-      exam_name: ['', Validators.required],
+      exam_name: ['', [Validators.required, this.noWhitespaceValidator]],
       description: [''],
       file: ['', Validators.required],
       email: [''],
@@ -115,14 +115,20 @@ export class ContestFormComponent implements OnInit {
     }
     this.loading = true
 
-    if(this.formId) {
+    if (this.formId) {
       this.studentApi.uploadExam(form).subscribe(next, error)
-    }else{
-      this.studentApi.uploadExam(form).pipe(switchMap((res: any)=> {
-        return combineLatest( [of(res), this.studentApi.getStudentInfo()]);
-      })).subscribe(next2,error)
+    } else {
+      this.studentApi.uploadExam(form).pipe(switchMap((res: any) => {
+        return combineLatest([of(res), this.studentApi.getStudentInfo()]);
+      })).subscribe(next2, error)
     }
 
+  }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
 }

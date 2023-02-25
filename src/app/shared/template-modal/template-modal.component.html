@@ -70,7 +70,7 @@
 
                         <div class=" row align-items-start" hasError="student_district_id">
                             <label for="student_district_id"
-                                class="col-sm-4 col-form-label required"><small>Huyện/Quận:</small></label>
+                                class="col-sm-4 col-form-label required"><small>Quận/Huyện:</small></label>
                             <div class="col-sm-8">
                                 <ng-select [items]="district" formControlName="student_district_id" bindLabel="text"
                                     bindValue="value"> </ng-select>
@@ -135,7 +135,7 @@
                                     <datalist id="dynmicUserIds">
                                         <option *ngFor="let item of schoolList1" [value]="item">{{item}}</option>
                                      </datalist>
-                                 
+
                                 <div errorMessage>
                                     <div class="invalid-feedback" *ifError="'required'" translate>
                                         Vui lòng điền tên trường học
@@ -184,7 +184,7 @@
 
                         <div class=" row align-items-start" hasError="school_district_id">
                             <label for="school_district_id"
-                                class="col-sm-4 col-form-label required"><small>Huyện/Quận:</small></label>
+                                class="col-sm-4 col-form-label required"><small>Quận/Huyện:</small></label>
                             <div class="col-sm-8">
                                 <ng-select [items]="schoolDistrict" formControlName="school_district_id"
                                     bindLabel="text" bindValue="value"> </ng-select>

@@ -10,6 +10,8 @@
   </a>
 
 </div>
-<div class="mb-2" *ngIf="imageSrc"> <img width="340"  [src]="imageSrc" alt="" ></div>
+<div class="mb-2"  *ngIf="imageSrc"> <img style="    object-fit: contain;
+    width: 100%;
+    height: 300px;" [src]="imageSrc" alt="" ></div>
 
 <input [id]="inputId"  accept=".jpg,.jpeg,.png"  class="ghost" type="file" (change)="onFileChanged($event)">

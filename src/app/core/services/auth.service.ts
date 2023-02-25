@@ -8,6 +8,7 @@ import { User } from 'src/app/types/models'
 import { environment } from 'src/environments/environment'
 import { JWTTokenService } from './jwt-token.service'
 import { LocalStorageService } from './local-storage.service'
+declare var FB: any;
 
 @Injectable({
   providedIn: 'root'
@@ -21,24 +22,36 @@ export class AuthService {
     private localStorageService: LocalStorageService,
     private jWTTokenService: JWTTokenService,
     private studentApi: StudentApi) {
-    this.currentUserSubject = new BehaviorSubject<User>(null)
-    this.jWTTokenService.setToken(this.localStorageService.get('token'))
-    if (this.jWTTokenService.getUsername()) {
-      if (!this.jWTTokenService.isTokenExpired()) {
-        this.generateUserInfo()
-        // const userInfo: User = {
-        //   username: this.jWTTokenService.getUsername(),
-        //   id: this.jWTTokenService.getUserId(),
-        //   expiredDate: this.jWTTokenService.getExpiryTime()
-        // }
-        // this.currentUserSubject.next(userInfo)
-      } else {
-        if (!this.localStorageService.get('refreshToken')) {
-          this.logout()
-        }
-      }
 
+    this.facebookInit()
+    this.currentUserSubject = new BehaviorSubject<User>(null)
+
+    if(this.localStorageService.get('userType') == 'facebooker'){
+      const fbUser: User = JSON.parse(this.localStorageService.get('fbUser'))
+      this.currentUserSubject.next(fbUser)
     }
+    else{
+
+      this.jWTTokenService.setToken(this.localStorageService.get('token'))
+      if (this.jWTTokenService.getUsername()) {
+        if (!this.jWTTokenService.isTokenExpired()) {
+          this.generateUserInfo()
+          // const userInfo: User = {
+          //   username: this.jWTTokenService.getUsername(),
+          //   id: this.jWTTokenService.getUserId(),
+          //   expiredDate: this.jWTTokenService.getExpiryTime()
+          // }
+          // this.currentUserSubject.next(userInfo)
+        } else {
+          if (!this.localStorageService.get('refreshToken')) {
+            this.logout()
+          }
+        }
+
+      }
+    }
+
+
 
     this.currentUser = this.currentUserSubject.asObservable()
   }
@@ -64,8 +77,8 @@ export class AuthService {
     }
   }
 
-  forgot(username: string){
-    return this.accountApi.forgetPassword({email: username})
+  forgot(account: string ,email: string){
+    return this.accountApi.forgetPassword({account:account, email: email})
   }
 
   changePassword(oldPassword: string, newPassword: string){
@@ -111,11 +124,42 @@ export class AuthService {
       )
   }
 
+  public loginWithFB(): void {
+    FB.login((response) => {
+      if (response.authResponse) {
+          FB.api("/" + response.authResponse.userID + "?fields=id,name,first_name,last_name,email,picture",  (userData) => {
+            if (userData && !userData.error) {
+              this.localStorageService.set('token', response.authResponse.accessToken)
+              this.localStorageService.set('userType', 'facebooker')
+
+
+              const userInfo: User = {
+                username: userData.name,
+                id: userData.id,
+                expiredDate: this.jWTTokenService.getExpiryTime(),
+                isFacebookUser: true,
+                email: userData.email,
+                UserType: 'facebooker'
+              }
+              this.localStorageService.set('fbUser', JSON.stringify(userInfo))
+              this.currentUserSubject.next(userInfo)
+              location.reload();
+            }
+          }
+        );
+      }
+      else {
+        console.log('User login failed');
+      }
+    });
+
+  }
+
   generateUserInfo() {
     const userInfo: User = {
       username: this.jWTTokenService.getUsername(),
-      id: this.jWTTokenService.getUserId(),
       expiredDate: this.jWTTokenService.getExpiryTime(),
+      id: this.jWTTokenService.getUserId(),
       student: JSON.parse(this.localStorageService.get('student')),
       isFacebookUser: false,
       UserType: this.localStorageService.get('userType'),
@@ -141,7 +185,33 @@ export class AuthService {
     this.localStorageService.remove('token')
     this.localStorageService.remove('refreshToken')
     this.localStorageService.remove('student')
+    this.localStorageService.remove('userType')
+    this.localStorageService.remove('fbUser')
     this.currentUserSubject.next(null)
     window.location.reload();
+  }
+
+  public facebookInit() {
+    {
+      (window as any).fbAsyncInit = function () {
+        FB.init({
+          appId: '697941055357867',
+          cookie: true,
+          xfbml: true,
+          version: 'v15.0'
+        });
+
+        FB.AppEvents.logPageView();
+
+      };
+
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    }
   }
 }

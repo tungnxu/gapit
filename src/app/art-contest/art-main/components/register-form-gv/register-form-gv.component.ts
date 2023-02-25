@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { defineLocale, viLocale } from 'ngx-bootstrap/chronos';
 import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -9,7 +9,7 @@ import { LocationApi } from 'src/app/api/location.api';
 import { StudentApi } from 'src/app/api/student.api';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { User, Province, District } from 'src/app/types/models';
+import { User, Province, District, Ward } from 'src/app/types/models';
 
 @Component({
   selector: 'app-register-form-gv',
@@ -29,6 +29,7 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
 
   provinces: Province[] = []
   district: District[] = []
+  ward: Ward[] = []
 
   schoolProvinces: Province[] = []
   schoolDistrict: District[] = []
@@ -58,8 +59,9 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
       this.registrationForm?.patchValue({
         student_name:  this.studentInfo.student_name,
         student_date_of_birth: this.studentInfo.student_date_of_birth,
-        student_province_id: this.studentInfo.school_province_id,
+        student_province_id: this.studentInfo.student_province_id,
         student_district_id: this.studentInfo.student_district_id,
+        student_ward_id: this.studentInfo.student_ward_id,
         student_address: this.studentInfo.school_address,
 
         parent_name: this.studentInfo.parent_name,
@@ -75,8 +77,12 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
         school_email: this.studentInfo.school_email,
       })
 
-      this.onProvinceChanged(null)
-      this.onSchoolProvinceChanged(null)
+      this.district = this.provinces?.find(x => x.value === this.registrationForm?.value.student_province_id)?.districts
+      this.ward = this.district.find(x => x.value === this.registrationForm?.value.student_district_id).wards
+      this.schoolDistrict = this.schoolProvinces?.find(x => x.value === this.registrationForm?.value.school_province_id)?.schooldistricts
+      // this.onProvinceChanged(null)
+      // this.onDistrictChanged(null)
+      // this.onSchoolProvinceChanged(null)
     }
   }
 
@@ -120,12 +126,13 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
 
   buildRegistrationForm() {
     this.registrationForm = this.formBuilder.group({
-      student_name: ['', Validators.required],
+      student_name: ['', [Validators.required, this.noWhitespaceValidator]],
       student_date_of_birth: ['', Validators.required],
       student_province_id: [null, Validators.required],
       student_district_id: [null, Validators.required],
-      student_address: ['', Validators.required],
-      parent_name: ['', Validators.required],
+      student_ward_id: [null, Validators.required],
+      student_address: ['', [Validators.required , this.noWhitespaceValidator]],
+      parent_name: ['', [Validators.required, this.noWhitespaceValidator]],
       parent_phone: ['', [Validators.required, Validators.pattern]],
       parent_email: ['',  [Validators.email]],
       school_name: ['', Validators.required],
@@ -133,7 +140,7 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
       school_address: ['', Validators.required],
       school_province_id: [null, Validators.required],
       school_district_id: [null, Validators.required],
-      school_email: [''],
+      school_email: ['', [Validators.email]],
       school_type: ['', Validators.required]
     })
   }
@@ -162,16 +169,27 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
     this.loading = true
     const dob = this.studentInfo?.student_date_of_birth ?? this.datepipe.transform(this.registrationForm.value.student_date_of_birth, 'dd/MM/yyyy')
     const payload = Object.assign({}, this.registrationForm.value, { student_date_of_birth: dob })
+    if(this.studentInfo){
+      payload.user_id = this.studentInfo.user_id
+    }
     this.studentApi.studentRegister(payload).subscribe(next, error)
 
   }
 
   onProvinceChanged($event) {
-    this.district = this.provinces?.find(x => x.value === this.registrationForm.value.student_province_id)?.districts
+    this.district = this.provinces?.find(x => x.value === this.registrationForm?.value.student_province_id)?.districts
+    this.registrationForm?.controls['student_district_id'].patchValue(null)
+    // this.registrationForm?.controls['student_ward_id'].patchValue(null)
+  }
+
+  onDistrictChanged($event){
+    this.ward = this.district.find(x => x.value === this.registrationForm?.value.student_district_id).wards
+    this.registrationForm?.controls['student_ward_id'].patchValue(null)
   }
 
   onSchoolProvinceChanged($event) {
-    this.schoolDistrict = this.schoolProvinces?.find(x => x.value === this.registrationForm.value.school_province_id)?.districts
+    this.schoolDistrict = this.schoolProvinces?.find(x => x.value === this.registrationForm?.value.school_province_id)?.schooldistricts
+    this.registrationForm?.controls['school_district_id'].patchValue(null)
   }
 
   getUserIdsFirstWay($event) {
@@ -206,6 +224,12 @@ export class RegisterFormGVComponent implements OnInit, OnChanges {
     str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // Huyền sắc hỏi ngã nặng
     str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
     return str;
+  }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
 }

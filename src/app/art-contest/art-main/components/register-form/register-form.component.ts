@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { defineLocale, viLocale } from 'ngx-bootstrap/chronos';
 import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -9,7 +9,7 @@ import { LocationApi } from 'src/app/api/location.api';
 import { StudentApi } from 'src/app/api/student.api';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { User, Province, District } from 'src/app/types/models';
+import { User, Province, District, Ward } from 'src/app/types/models';
 
 @Component({
   selector: 'app-register-form',
@@ -29,6 +29,7 @@ export class RegisterFormComponent implements OnInit {
 
   provinces: Province[] = []
   district: District[] = []
+  ward: Ward[] = []
 
   schoolProvinces: Province[] = []
   schoolDistrict: District[] = []
@@ -93,12 +94,13 @@ export class RegisterFormComponent implements OnInit {
 
   buildRegistrationForm() {
     this.registrationForm = this.formBuilder.group({
-      student_name: ['', Validators.required],
+      student_name: ['', [Validators.required , this.noWhitespaceValidator]],
       student_date_of_birth: ['', Validators.required],
       student_province_id: [null, Validators.required],
       student_district_id: [null, Validators.required],
-      student_address: ['', Validators.required],
-      parent_name: ['', Validators.required],
+      student_ward_id: [null, Validators.required],
+      student_address: ['', [Validators.required , this.noWhitespaceValidator]],
+      parent_name: ['', [Validators.required, this.noWhitespaceValidator]],
       parent_phone: ['', [Validators.required, Validators.pattern]],
       parent_email: ['',  [Validators.email]],
       school_name: ['', Validators.required],
@@ -106,7 +108,7 @@ export class RegisterFormComponent implements OnInit {
       school_address: ['', Validators.required],
       school_province_id: [null, Validators.required],
       school_district_id: [null, Validators.required],
-      school_email: [''],
+      school_email: ['', [Validators.email]],
       school_type: ['', Validators.required]
     })
   }
@@ -136,11 +138,18 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onProvinceChanged($event) {
-    this.district = this.provinces.find(x => x.value === this.registrationForm.value.student_province_id).districts
+    this.district = this.provinces.find(x => x.value === this.registrationForm?.value.student_province_id).districts
+    this.registrationForm?.controls['student_district_id'].patchValue(null)
+  }
+
+  onDistrictChanged($event){
+    this.ward = this.district.find(x => x.value === this.registrationForm?.value.student_district_id).wards
+    this.registrationForm?.controls['school_ward_id'].patchValue(null)
   }
 
   onSchoolProvinceChanged($event) {
-    this.schoolDistrict = this.schoolProvinces.find(x => x.value === this.registrationForm.value.school_province_id).districts
+    this.schoolDistrict = this.schoolProvinces.find(x => x.value === this.registrationForm?.value.school_province_id)?.schooldistricts
+    this.registrationForm?.controls['school_district_id'].patchValue(null)
   }
 
   getUserIdsFirstWay($event) {
@@ -175,6 +184,12 @@ export class RegisterFormComponent implements OnInit {
     str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); // Huyền sắc hỏi ngã nặng
     str = str.replace(/\u02C6|\u0306|\u031B/g, ""); // Â, Ê, Ă, Ơ, Ư
     return str;
+  }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
 }

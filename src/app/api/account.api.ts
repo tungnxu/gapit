@@ -37,15 +37,16 @@ export class AccountApi extends BaseApi {
 
   // Todo: Replace api send email
   forgetPassword(command: {
+    account: string;
     email: string;
   }){
-    return this.httpClient.post<any>(this.createUrl('ForgetPassword'), command)
+    return this.httpClient.post<any>(this.createUrl('ForgetPasswordAsync'), command)
   }
 
   changePassword(command: {
     oldPassword: string;
     newPassword: string;
   }){
-    return this.httpClient.post<any>(this.createUrl('ChangePassword'), command)
+    return this.httpClient.post<any>(this.createUrl('ChangePasswordAsync'), command)
   }
 }

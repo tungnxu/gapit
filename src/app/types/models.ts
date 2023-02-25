@@ -7,9 +7,16 @@ export interface Province {
   value: number
   text: string
   districts: District[]
+  schooldistricts?: District[]
 }
 
 export interface District {
+  value: number
+  text: string
+  wards: Ward[]
+}
+
+export interface Ward {
   value: number
   text: string
 }
@@ -37,6 +44,7 @@ export class User {
   student?: Student
   isFacebookUser?: boolean
   UserType?: string
+  email?:string
 }
 
 
@@ -110,6 +118,7 @@ export interface StudentRegistrationInfo {
   school_address: string
   school_class: number
   school_email: string
+  user_id?:number
 }
 
 

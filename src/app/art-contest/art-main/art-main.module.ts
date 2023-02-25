@@ -20,10 +20,11 @@ import { EditContestFormComponent } from './components/edit-contest-form/edit-co
 import { DangKyGVComponent } from './dang-ky-gv/dang-ky-gv.component';
 import { StudentSelectorComponent } from './components/student-selector/student-selector.component';
 import { RegisterFormGVComponent } from './components/register-form-gv/register-form-gv.component';
+import { BinhChonComponent } from './binh-chon/binh-chon.component';
 
 
 @NgModule({
-  declarations: [ArtMainComponent,RegisterFormGVComponent, StudentSelectorComponent, DangKyComponent, XemKetQuaComponent, TheLeComponent, ThuVienComponent, RegisterFormComponent, ContestFormComponent, SuccessSubmitComponent, EditContestFormComponent, DangKyGVComponent],
+  declarations: [ArtMainComponent,RegisterFormGVComponent, StudentSelectorComponent, DangKyComponent, XemKetQuaComponent, TheLeComponent, ThuVienComponent, RegisterFormComponent, ContestFormComponent, SuccessSubmitComponent, EditContestFormComponent, DangKyGVComponent, BinhChonComponent],
   imports: [
     CommonModule,
     ArtMainRoutingModule,

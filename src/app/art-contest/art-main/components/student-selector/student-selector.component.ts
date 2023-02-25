@@ -13,7 +13,7 @@ export class StudentSelectorComponent implements OnInit {
   term$ = new BehaviorSubject<string>('');
   studentData: any
   searchText: string
-  constructor( private studentApi: StudentApi) { }
+  constructor(private studentApi: StudentApi) { }
 
   ngOnInit(): void {
     this.term$.pipe(
@@ -22,13 +22,16 @@ export class StudentSelectorComponent implements OnInit {
         if (term?.length < 3) {
           return of([])
         }
+        if (!term) return of(null)
+
         return this.studentApi.searchStudentInfo(term).pipe(catchError(() => {
           delete this.studentData
-          return of(null);}))
+          return of(null);
+        }))
       }
       )
     ).subscribe((data) => {
-      if( data?.student_info) this.studentData = data?.student_info
+      if (data?.student_info) this.studentData = data?.student_info
     })
   }
 
@@ -38,13 +41,13 @@ export class StudentSelectorComponent implements OnInit {
     this.term$.next($event.target.value)
   }
 
-  select(){
+  select() {
     this.selectStudent.emit(this.studentData)
     delete this.studentData
   }
 
-  onFocus(){
-    this.term$.next(this.searchText )
+  onFocus() {
+    this.term$.next(this.searchText)
   }
 
 

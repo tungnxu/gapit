@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -37,7 +37,7 @@ export class EditContestFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.submitContestForm = this.formBuilder.group({
-      exam_name: [this.exam.name_exam, Validators.required],
+      exam_name: [this.exam.name_exam, [Validators.required, this.noWhitespaceValidator]],
       description: [this.exam.description],
       file: [this.exam.url, Validators.required],
       email: [this.exam.email],
@@ -116,9 +116,15 @@ export class EditContestFormComponent implements OnInit {
       this.loading = false
     }
     this.loading = true
-    this.studentApi.uploadExam(form).subscribe(next, error)
+    this.studentApi.reUploadExam(form).subscribe(next, error)
     // this.studentApi.reUploadExam(form).pipe(switchMap(() => this.studentApi.getStudentInfo())).subscribe(next, error)
 
+  }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
 }

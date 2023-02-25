@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Province, QueryVote, User, VoteItem, VoteResponse } from '../types/models';
 import { BaseApi } from './base-api.class';
 import { apiUrl } from './base-url.class';
@@ -46,4 +46,159 @@ export class VoteApi extends BaseApi {
     const command = {examid: examid,  email: email}
     return this.httpClient.post<VoteResponse>(this.createUrl('gift'), command)
   }
+
+  getListVotesV2(skip: number, take: number, examId?: string){
+    const params = {skip: skip, take: take, examId: examId}
+    return of<QueryVote>({
+      total: 2,
+      data: [
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "2",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "3",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+        {
+          Name: "Bai thi cho em",
+          StudentName: "Nguyen van linh",
+          NumberOfLikes: 10,
+          NumberOfShare: 10,
+          Image: "https://placeimg.com/640/480/any",
+          ExamId: "1",
+          isLiked: false,
+          District: "giap bat",
+          Province: "gia lam",
+          Description: "Bai thi ve thien nhien cuart bạn asdf asdf á",
+          CreatedAt: new Date()
+        },
+      ]
+    })
+    // return this.httpClient.get<QueryVote>(this.createUrl(`List`), { params: this.createParams(params)})
+  }
+
+
 }

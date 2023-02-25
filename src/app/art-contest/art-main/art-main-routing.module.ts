@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ArtMainComponent } from './art-main.component';
+import { BinhChonComponent } from './binh-chon/binh-chon.component';
 import { DangKyGVComponent } from './dang-ky-gv/dang-ky-gv.component';
 import { DangKyComponent } from './dang-ky/dang-ky.component';
 import { TheLeComponent } from './the-le/the-le.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'thu-vien',
         component: ThuVienComponent
+      },
+      {
+        path: 'binh-chon',
+        component: BinhChonComponent
       }
     ]
   }
